@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Datos
 {
-    public  class RepositorioAdministrador
+    public class RepositorioAdministrador
     {
         private string ruta;
 
@@ -62,28 +62,34 @@ namespace Datos
 
             return Admins;
         }
-
-
         public bool ExisteEntradaEnArchivo(string Nombre, string Cedula)
         {
-            string rutaArchivo = ruta;
             bool encontrado = false;
 
-            if (File.Exists(rutaArchivo))
+            if (File.Exists(ruta))
             {
-                string[] Archivo = File.ReadAllLines(rutaArchivo);
-                foreach (string linea in Archivo)
+                using (StreamReader lector = new StreamReader(ruta))
                 {
-                    if (linea.Contains(Nombre) && linea.Contains(Cedula))
-                    {
-                        encontrado = true;
-                        break;
+                    string linea;
+                    while ((linea = lector.ReadLine()) != null)
+                    {    
+                        string[] valores = linea.Split(';');
+
+                        Console.WriteLine($"Comparando: Cedula {valores[0]} con {Cedula} y Nombre {valores[1]} con {Nombre}");
+
+                        if (valores.Length >= 2 && valores[0] == Cedula && valores[1] == Nombre)
+                        {
+                            encontrado = true;
+                            break;
+                        }
                     }
                 }
             }
 
+
+            Console.WriteLine($"Entrada encontrada en datos: {encontrado}");
+
             return encontrado;
         }
-
     }
 }

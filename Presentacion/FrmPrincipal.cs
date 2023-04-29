@@ -41,8 +41,12 @@ namespace Presentacion
                     FrmLoginEmpleado FrmLoginE = new FrmLoginEmpleado();
                     FrmLoginE.ShowDialog();
                 }
+                else
+                {
+                    MessageBox.Show("Nombre de usuario o contraseña incorrectos. Vuelva a intentarlo.");
+                }
+                
             }
-
         }
     }
 }
