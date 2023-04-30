@@ -79,6 +79,7 @@
             this.btnSalir.TabIndex = 3;
             this.btnSalir.Text = "Salir";
             this.btnSalir.UseVisualStyleBackColor = true;
+            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             // 
             // btnConsultar
             // 
@@ -159,11 +160,14 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(758, 472);
+            this.ControlBox = false;
             this.Controls.Add(this.dgEmpleados);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.pictureBox1);
+            this.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.Name = "FrmLoginAdmin";
             this.Text = "FrmLoginAdmin";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmLoginAdmin_FormClosing);
             this.Load += new System.EventHandler(this.FrmLoginAdmin_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel1.ResumeLayout(false);

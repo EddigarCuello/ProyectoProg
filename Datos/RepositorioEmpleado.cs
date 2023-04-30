@@ -77,8 +77,6 @@ namespace Datos
                     {
                         string[] valores = linea.Split(';');
 
-                        Console.WriteLine($"Comparando: Cedula {valores[0]} con {Cedula} y Nombre {valores[1]} con {Nombre}");
-
                         if (valores.Length >= 2 && valores[0] == Cedula && valores[1] == Nombre)
                         {
                             encontrado = true;
@@ -87,9 +85,6 @@ namespace Datos
                     }
                 }
             }
-
-
-            Console.WriteLine($"Entrada encontrada en datos: {encontrado}");
 
             return encontrado;
         }

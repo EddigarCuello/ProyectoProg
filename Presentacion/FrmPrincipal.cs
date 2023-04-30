@@ -21,25 +21,39 @@ namespace Presentacion
         List<Administrador> ListaA;
         CRUDEmpleado Servicios = new CRUDEmpleado();
         CRUDAdmin ServiciosA = new CRUDAdmin();
+
+        void AbrirFormularioRegistrar(FrmRegistrar f)
+        {
+            this.Hide();
+            f.ShowDialog(this);
+        }
+
+        void AbrirFormularioLoginAdmin(FrmLoginAdmin f)
+        {
+            this.Hide();
+            f.ShowDialog(this);
+        }
+        void AbrirFormularioLoginEmpleado(FrmLoginEmpleado f)
+        {
+            this.Hide();
+            f.ShowDialog(this);
+        }
         private void btnCreateAccount_Click(object sender, EventArgs e)
         {
-            FrmRegistrar FrmRegistrarF = new FrmRegistrar();
-            FrmRegistrarF.ShowDialog();
+            AbrirFormularioRegistrar(new FrmRegistrar());
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
             if (ServiciosA.ExisteCuenta(tbUsuario.Text, tbContraseña.Text) == true)
             {
-                FrmLoginAdmin FrmLoginA = new FrmLoginAdmin();
-                FrmLoginA.ShowDialog();
+                AbrirFormularioLoginAdmin(new FrmLoginAdmin());
             }
             else
             {
                 if (Servicios.ExisteCuenta(tbUsuario.Text, tbContraseña.Text) == true)
                 {
-                    FrmLoginEmpleado FrmLoginE = new FrmLoginEmpleado();
-                    FrmLoginE.ShowDialog();
+                    AbrirFormularioLoginEmpleado(new FrmLoginEmpleado());
                 }
                 else
                 {
@@ -47,6 +61,11 @@ namespace Presentacion
                 }
                 
             }
+        }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

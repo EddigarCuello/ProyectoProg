@@ -40,6 +40,7 @@
             this.CNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CPlaca_Vehiculo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cfecha_Entrada = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnAgregarCliente = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panel1.SuspendLayout();
@@ -90,6 +91,7 @@
             this.btnSalir.TabIndex = 3;
             this.btnSalir.Text = "Salir";
             this.btnSalir.UseVisualStyleBackColor = true;
+            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             // 
             // btnConsultar
             // 
@@ -154,16 +156,31 @@
             this.Cfecha_Entrada.Name = "Cfecha_Entrada";
             this.Cfecha_Entrada.ReadOnly = true;
             // 
+            // btnAgregarCliente
+            // 
+            this.btnAgregarCliente.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnAgregarCliente.BackgroundImage")));
+            this.btnAgregarCliente.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnAgregarCliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAgregarCliente.Location = new System.Drawing.Point(710, 364);
+            this.btnAgregarCliente.Name = "btnAgregarCliente";
+            this.btnAgregarCliente.Size = new System.Drawing.Size(40, 47);
+            this.btnAgregarCliente.TabIndex = 5;
+            this.btnAgregarCliente.UseVisualStyleBackColor = true;
+            this.btnAgregarCliente.Click += new System.EventHandler(this.btnAgregarCliente_Click);
+            // 
             // FrmLoginEmpleado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ControlBox = false;
+            this.Controls.Add(this.btnAgregarCliente);
             this.Controls.Add(this.dgClientes);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.panel1);
             this.Name = "FrmLoginEmpleado";
             this.Text = "FrmLogin";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmLoginEmpleado_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.panel1.ResumeLayout(false);
@@ -186,5 +203,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn CNombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn CPlaca_Vehiculo;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cfecha_Entrada;
+        private System.Windows.Forms.Button btnAgregarCliente;
     }
 }

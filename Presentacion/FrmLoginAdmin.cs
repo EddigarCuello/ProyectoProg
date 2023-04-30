@@ -18,6 +18,8 @@ namespace Presentacion
         public FrmLoginAdmin()
         {
             InitializeComponent();
+            dgEmpleados.AllowUserToAddRows = false;
+            dgEmpleados.RowHeadersVisible = false;
         }
         void Cargar()
         {
@@ -40,6 +42,31 @@ namespace Presentacion
         private void FrmLoginAdmin_Load(object sender, EventArgs e)
         {
             Cargar();
+        }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            Salir();
+        }
+        void Salir()
+        {
+            this.Close();
+        }
+
+        private void FrmLoginAdmin_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            var respuesta = MessageBox.Show("Desea Salir", "Agenda Contactos",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (respuesta == DialogResult.Yes)
+            {
+                this.Owner.Show();
+                this.Dispose();
+            }
+            else
+            {
+                e.Cancel = true;
+            }
         }
     }
 }

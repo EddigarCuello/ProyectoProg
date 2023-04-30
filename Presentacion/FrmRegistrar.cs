@@ -20,6 +20,32 @@ namespace Presentacion
         }
         CRUDEmpleado Servicios = new CRUDEmpleado();
         CRUDAdmin ServiciosA = new CRUDAdmin();
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            Salir();
+        }
+        void Salir()
+        {
+            this.Close();
+        }
+
+        private void FrmRegistrar_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            var respuesta = MessageBox.Show("Desea Salir", "Agenda Contactos",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (respuesta == DialogResult.Yes)
+            {
+                this.Owner.Show();
+                this.Dispose();
+            }
+            else
+            {
+                e.Cancel = true;
+            }
+        }
+
+
 
         public void Guardar()
         {
@@ -30,7 +56,6 @@ namespace Presentacion
             }
             else
             {
-                //float ItemCb = float.Parse(cbTipoMiembro.SelectedItem.ToString());
                 if (cbTipoMiembro.SelectedItem.ToString() == "Empleado")
                 {
                     Empleado Item = new Empleado();
@@ -102,5 +127,7 @@ namespace Presentacion
         {
             Guardar();
         }
+
+
     }
 }
