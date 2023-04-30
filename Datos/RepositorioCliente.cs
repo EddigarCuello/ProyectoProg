@@ -38,13 +38,18 @@ namespace Datos
         {
             List<Cliente> Clientes = new List<Cliente>();
 
+            if (!File.Exists(ruta))
+            {
+                File.Create(ruta).Close();
+            }
+
             using (StreamReader reader = new StreamReader(ruta))
             {
                 string linea;
                 while ((linea = reader.ReadLine()) != null)
                 {
                     string[] campos = linea.Split(';');
-                    if (campos.Length == 6)
+                    if (campos.Length == 9)
                     {
                         Cliente Cliente = new Cliente
                         {

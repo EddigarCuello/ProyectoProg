@@ -11,7 +11,7 @@ namespace Logica
     public class CRUDCliente : ICRUD<Cliente>
     {
         List<Cliente> lista;
-        RepositorioCliente Archivos = new RepositorioCliente("Clietes.txt");
+        RepositorioCliente Archivos = new RepositorioCliente("Clientes.txt");
 
         public CRUDCliente()
         {

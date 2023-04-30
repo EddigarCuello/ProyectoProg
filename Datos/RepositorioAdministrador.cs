@@ -44,7 +44,7 @@ namespace Datos
                 while ((linea = reader.ReadLine()) != null)
                 {
                     string[] campos = linea.Split(';');
-                    if (campos.Length == 6)
+                    if (campos.Length == 5)
                     {
                         Administrador Admin = new Administrador
                         {
