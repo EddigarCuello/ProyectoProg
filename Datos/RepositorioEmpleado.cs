@@ -48,9 +48,9 @@ namespace Datos
                     {
                         Empleado Empleado = new Empleado
                         {
-                            Nombre = campos[0],
-                            Direccion = campos[1],
-                            Cedula = campos[2],
+                            Cedula = campos[0],
+                            Nombre = campos[1],
+                            Direccion = campos[2],
                             Telefono = campos[3],
                             Salario = float.Parse(campos[4]),
                             NumeroDeVehiculos = int.Parse(campos[5])

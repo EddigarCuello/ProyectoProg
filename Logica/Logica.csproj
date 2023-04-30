@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CRUDAdmin.cs" />
+    <Compile Include="CRUDCliente.cs" />
     <Compile Include="CRUDEmpleado.cs" />
     <Compile Include="ICRUD.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

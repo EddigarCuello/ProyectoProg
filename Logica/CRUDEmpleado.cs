@@ -17,7 +17,7 @@ namespace Logica
         public CRUDEmpleado()
         {
 
-            //Refresh();
+            Refresh();
 
         }
         private void Refresh()

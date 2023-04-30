@@ -35,9 +35,15 @@
             this.btnSalir = new System.Windows.Forms.Button();
             this.btnConsultar = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.dgClientes = new System.Windows.Forms.DataGridView();
+            this.CCedula = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CPlaca_Vehiculo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cfecha_Entrada = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgClientes)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -105,11 +111,54 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "Empleado";
             // 
+            // dgClientes
+            // 
+            this.dgClientes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgClientes.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            this.dgClientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgClientes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.CCedula,
+            this.CNombre,
+            this.CPlaca_Vehiculo,
+            this.Cfecha_Entrada});
+            this.dgClientes.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.dgClientes.Location = new System.Drawing.Point(200, 187);
+            this.dgClientes.Name = "dgClientes";
+            this.dgClientes.ReadOnly = true;
+            this.dgClientes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgClientes.Size = new System.Drawing.Size(600, 263);
+            this.dgClientes.TabIndex = 4;
+            // 
+            // CCedula
+            // 
+            this.CCedula.HeaderText = "Cedula";
+            this.CCedula.Name = "CCedula";
+            this.CCedula.ReadOnly = true;
+            // 
+            // CNombre
+            // 
+            this.CNombre.HeaderText = "Nombre";
+            this.CNombre.Name = "CNombre";
+            this.CNombre.ReadOnly = true;
+            // 
+            // CPlaca_Vehiculo
+            // 
+            this.CPlaca_Vehiculo.HeaderText = "Placa Vehiculo";
+            this.CPlaca_Vehiculo.Name = "CPlaca_Vehiculo";
+            this.CPlaca_Vehiculo.ReadOnly = true;
+            // 
+            // Cfecha_Entrada
+            // 
+            this.Cfecha_Entrada.HeaderText = "Fecha Entrada";
+            this.Cfecha_Entrada.Name = "Cfecha_Entrada";
+            this.Cfecha_Entrada.ReadOnly = true;
+            // 
             // FrmLoginEmpleado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.dgClientes);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.panel1);
             this.Name = "FrmLoginEmpleado";
@@ -118,6 +167,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgClientes)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -130,5 +180,10 @@
         private System.Windows.Forms.Button btnSalir;
         private System.Windows.Forms.Button btnConsultar;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DataGridView dgClientes;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CCedula;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CNombre;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CPlaca_Vehiculo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Cfecha_Entrada;
     }
 }

@@ -35,10 +35,15 @@
             this.btnConsultar = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.lsEmpleados = new System.Windows.Forms.ListBox();
+            this.dgEmpleados = new System.Windows.Forms.DataGridView();
+            this.CCedula = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CNo_Vehiculos = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CSalario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgEmpleados)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -107,29 +112,64 @@
             this.pictureBox2.TabIndex = 0;
             this.pictureBox2.TabStop = false;
             // 
-            // lsEmpleados
+            // dgEmpleados
             // 
-            this.lsEmpleados.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.lsEmpleados.FormattingEnabled = true;
-            this.lsEmpleados.Location = new System.Drawing.Point(200, 208);
-            this.lsEmpleados.Name = "lsEmpleados";
-            this.lsEmpleados.Size = new System.Drawing.Size(558, 264);
-            this.lsEmpleados.TabIndex = 2;
+            this.dgEmpleados.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgEmpleados.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            this.dgEmpleados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgEmpleados.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.CCedula,
+            this.CNombre,
+            this.CNo_Vehiculos,
+            this.CSalario});
+            this.dgEmpleados.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.dgEmpleados.Location = new System.Drawing.Point(200, 209);
+            this.dgEmpleados.Name = "dgEmpleados";
+            this.dgEmpleados.ReadOnly = true;
+            this.dgEmpleados.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgEmpleados.Size = new System.Drawing.Size(558, 263);
+            this.dgEmpleados.TabIndex = 2;
+            // 
+            // CCedula
+            // 
+            this.CCedula.HeaderText = "Cedula";
+            this.CCedula.Name = "CCedula";
+            this.CCedula.ReadOnly = true;
+            // 
+            // CNombre
+            // 
+            this.CNombre.HeaderText = "Nombre";
+            this.CNombre.Name = "CNombre";
+            this.CNombre.ReadOnly = true;
+            // 
+            // CNo_Vehiculos
+            // 
+            this.CNo_Vehiculos.HeaderText = "No.Vehiculos";
+            this.CNo_Vehiculos.Name = "CNo_Vehiculos";
+            this.CNo_Vehiculos.ReadOnly = true;
+            // 
+            // CSalario
+            // 
+            this.CSalario.HeaderText = "Salario";
+            this.CSalario.Name = "CSalario";
+            this.CSalario.ReadOnly = true;
             // 
             // FrmLoginAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(758, 472);
-            this.Controls.Add(this.lsEmpleados);
+            this.Controls.Add(this.dgEmpleados);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.pictureBox1);
             this.Name = "FrmLoginAdmin";
             this.Text = "FrmLoginAdmin";
+            this.Load += new System.EventHandler(this.FrmLoginAdmin_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgEmpleados)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -142,6 +182,10 @@
         private System.Windows.Forms.Button btnConsultar;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.ListBox lsEmpleados;
+        private System.Windows.Forms.DataGridView dgEmpleados;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CCedula;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CNombre;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CNo_Vehiculos;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CSalario;
     }
 }
