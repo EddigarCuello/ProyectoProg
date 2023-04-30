@@ -25,6 +25,10 @@ namespace Entidades
 
         }
 
+        public Cliente()
+        {
+        }
+
         public override string ToString()
         {
             return base.ToString() + $"{IngresoVehiculo};{SalidaVehiculo};{CedulaEmpleado};{PlacaVihiculo};{PrecioAcordado}";
