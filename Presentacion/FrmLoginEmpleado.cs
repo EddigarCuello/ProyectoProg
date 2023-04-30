@@ -14,7 +14,6 @@ namespace Presentacion
     public partial class FrmLoginEmpleado : Form
     {
         CRUDCliente Servicios = new CRUDCliente();
-        CRUDAdmin ServiciosA = new CRUDAdmin();
         public FrmLoginEmpleado()
         {
             InitializeComponent();
