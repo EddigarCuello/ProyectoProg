@@ -12,30 +12,28 @@ using System.Windows.Forms;
 
 namespace Presentacion
 {
-    public partial class FrmAgregarEmpleado : Form
+    public partial class FrmAgregarCliente : Form
     {
-        public string Cedula { get; set; }
-        public FrmAgregarEmpleado()
+        public FrmAgregarCliente()
         {
             InitializeComponent();
 
             dtpFecha_Salida.MinDate = DateTime.Today;
             dtpFecha_Salida.MaxDate = DateTime.Today.AddDays(14);
         }
-        CRUDCliente Servicios = new CRUDCliente();
-        CRUDEmpleado Servicio = new CRUDEmpleado();
-        FrmLoginEmpleado Empleado = new FrmLoginEmpleado();
 
-        private void btnSalir_Click(object sender, EventArgs e)
-        {
-            this.Dispose();
-        }
-        void Salir()
+        CRUDCliente Servicios = new CRUDCliente();
+        FrmLoginEmpleado frmLoginEmpleado = new FrmLoginEmpleado();
+
+
+        private void Salir()
         {
             this.Close();
+            frmLoginEmpleado.Show();
+
         }
 
-        public void Guardar()
+        private void Guardar()
         {
             if (string.IsNullOrEmpty(txtNombre.Text) || string.IsNullOrEmpty(txtTelefono.Text) || string.IsNullOrEmpty(txtCedula.Text) || string.IsNullOrEmpty(txtDireccion.Text) || string.IsNullOrEmpty(txtPrecio_Acordado.Text) || string.IsNullOrEmpty(txtPlaca_vehiculo.Text) || string.IsNullOrEmpty(dtpFecha_Ingreso.Text) || string.IsNullOrEmpty(dtpFecha_Salida.Text))
             {
@@ -54,13 +52,14 @@ namespace Presentacion
                 Item.PrecioAcordado = float.Parse(txtPrecio_Acordado.Text);
                 Item.IngresoVehiculo = DateTime.Now;
                 Item.SalidaVehiculo = dtpFecha_Salida.Value;
-                Item.CedulaEmpleado = Cedula;
+                Item.CedulaEmpleado = DatosCompartidos.ObtenerCedulaEmpleado();
+                
 
                 var respuesta = Servicios.Agregar(Item);
 
                 if (respuesta.Estado == true)
                 {
-                    MessageBox.Show("EL EMPLEADO " + respuesta.Item.Nombre.ToUpper() + " " + respuesta.Mensaje);
+                    MessageBox.Show("El cliente " + respuesta.Item.Nombre.ToUpper() + " " + respuesta.Mensaje);
                     txtCedula.Clear();
                     txtDireccion.Clear();
                     txtNombre.Clear();
@@ -69,7 +68,7 @@ namespace Presentacion
                     txtPrecio_Acordado.Clear();
                     dtpFecha_Ingreso.Value = DateTime.Now;
                     dtpFecha_Salida.Value = DateTime.Now;
-                    this.Close();
+                    Salir();
 
 
                 }
@@ -84,9 +83,15 @@ namespace Presentacion
 
         }
 
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            Salir();
+        }
+
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
+        
             Guardar();
         }
 

@@ -14,61 +14,75 @@ namespace Presentacion
 {
     public partial class FrmPrincipal : Form
     {
+        
+
         public FrmPrincipal()
         {
             InitializeComponent();
         }
-        List<Administrador> ListaA;
         CRUDEmpleado Servicios = new CRUDEmpleado();
         CRUDAdmin ServiciosA = new CRUDAdmin();
-        FrmAgregarEmpleado frmAgregarEmpleado = new FrmAgregarEmpleado();
-
-        void AbrirFormularioRegistrar(FrmRegistrar f)
+        
+        private void Mostrar()
         {
-            this.Hide();
-            f.ShowDialog(this);
+            this.Show();
         }
 
-        void AbrirFormularioLoginAdmin(FrmLoginAdmin f)
+        private void Ocultar()
         {
             this.Hide();
-            f.ShowDialog(this);
-        }
-        void AbrirFormularioLoginEmpleado(FrmLoginEmpleado f)
-        {
-            this.Hide();
-            f.ShowDialog(this);
-        }
-        private void btnCreateAccount_Click(object sender, EventArgs e)
-        {
-            AbrirFormularioRegistrar(new FrmRegistrar());
         }
 
-        private void btnLogin_Click(object sender, EventArgs e)
+        private void CerrarApp()
         {
-            if (ServiciosA.ExisteCuenta(tbUsuario.Text, tbContraseña.Text) == true)
+            Environment.Exit(0);
+        }
+
+        private void Inicio()
+        {
+            this.Hide();
+
+            if (ServiciosA.ExisteCuenta(tbUsuario.Text, txtCedula.Text) == true)
             {
-                AbrirFormularioLoginAdmin(new FrmLoginAdmin());
+                FrmLoginAdmin frmLoginAdmin = new FrmLoginAdmin();
+                frmLoginAdmin.ShowDialog();
             }
             else
             {
-                if (Servicios.ExisteCuenta(tbUsuario.Text, tbContraseña.Text) == true)
+                if (Servicios.ExisteCuenta(tbUsuario.Text, txtCedula.Text) == true)
                 {
-                    AbrirFormularioLoginEmpleado(new FrmLoginEmpleado());
-                    frmAgregarEmpleado.Cedula = tbContraseña.Text;
-                    
+                    DatosCompartidos.ActualizarCedulaEmpleado(txtCedula.Text);
+                    FrmLoginEmpleado frmLoginEmpleado = new FrmLoginEmpleado();
+                    frmLoginEmpleado.ShowDialog();
                 }
                 else
                 {
                     MessageBox.Show("Nombre de usuario o contraseña incorrectos. Vuelva a intentarlo.");
+                    Mostrar();
                 }
-                
+
             }
         }
 
-        private void btnSalir_Click(object sender, EventArgs e)
+        private void Registrarse()
         {
-            this.Close();
+            Ocultar();
+            FrmRegistrar registrar = new FrmRegistrar();
+            registrar.ShowDialog();
+        }
+
+        private void btnCreateAccount_Click(object sender, EventArgs e)
+        {
+            Registrarse();
+        }
+        private void btnLogin_Click(object sender, EventArgs e)
+        {
+            Inicio();
+        }
+
+    private void btnSalir_Click(object sender, EventArgs e)
+        {
+            CerrarApp(); 
         }
     }
 }

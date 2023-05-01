@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="Administrador.cs" />
     <Compile Include="Cliente.cs" />
+    <Compile Include="DatosCompartidos.cs" />
     <Compile Include="Empleado.cs" />
     <Compile Include="Persona.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -20,18 +20,13 @@ namespace Presentacion
         }
         CRUDEmpleado Servicios = new CRUDEmpleado();
         CRUDAdmin ServiciosA = new CRUDAdmin();
-        private void btnSalir_Click(object sender, EventArgs e)
-        {
-            Salir();
-        }
+        FrmPrincipal FrmPrincipal = new FrmPrincipal();
+
         void Salir()
         {
+            FrmPrincipal.Show();
             this.Close();
         }
-
-
-
-
         public void Guardar()
         {
             if (string.IsNullOrEmpty(txtNombre.Text) || string.IsNullOrEmpty(txtTelefono.Text) || string.IsNullOrEmpty(txtCedula.Text) || string.IsNullOrEmpty(txtDireccion.Text) || string.IsNullOrEmpty(cbTipoMiembro.Text))
@@ -56,13 +51,13 @@ namespace Presentacion
 
                     if (respuesta.Estado == true)
                     {
-                        MessageBox.Show("EL EMPLEADO " + respuesta.Item.Nombre.ToUpper() + " " + respuesta.Mensaje);
+                        MessageBox.Show("El empleado " + respuesta.Item.Nombre.ToUpper() + " " + respuesta.Mensaje);
                         txtCedula.Clear();
                         cbTipoMiembro.ResetText();
                         txtDireccion.Clear();
                         txtNombre.Clear();
                         txtTelefono.Clear();
-                        this.Close();
+                        Salir();
 
 
                     }
@@ -86,13 +81,13 @@ namespace Presentacion
 
                     if (respuesta.Estado == true)
                     {
-                        MessageBox.Show("EL EMPLEADO " + respuesta.Item.Nombre.ToUpper() + " " + respuesta.Mensaje);
+                        MessageBox.Show("El administrador " + respuesta.Item.Nombre.ToUpper() + " " + respuesta.Mensaje);
                         txtCedula.Clear();
                         cbTipoMiembro.ResetText();
                         txtDireccion.Clear();
                         txtNombre.Clear();
                         txtTelefono.Clear();
-                        this.Close();
+                        Salir();
 
 
                     }
@@ -111,6 +106,11 @@ namespace Presentacion
         private void btnRegistrarse_Click(object sender, EventArgs e)
         {
             Guardar();
+        }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            Salir();
         }
 
 

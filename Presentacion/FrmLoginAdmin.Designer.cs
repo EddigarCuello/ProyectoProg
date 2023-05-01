@@ -36,10 +36,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.dgEmpleados = new System.Windows.Forms.DataGridView();
-            this.CCedula = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CNo_Vehiculos = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CSalario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -118,11 +114,6 @@
             this.dgEmpleados.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgEmpleados.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.dgEmpleados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgEmpleados.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.CCedula,
-            this.CNombre,
-            this.CNo_Vehiculos,
-            this.CSalario});
             this.dgEmpleados.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.dgEmpleados.Location = new System.Drawing.Point(200, 209);
             this.dgEmpleados.Name = "dgEmpleados";
@@ -130,30 +121,6 @@
             this.dgEmpleados.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgEmpleados.Size = new System.Drawing.Size(558, 263);
             this.dgEmpleados.TabIndex = 2;
-            // 
-            // CCedula
-            // 
-            this.CCedula.HeaderText = "Cedula";
-            this.CCedula.Name = "CCedula";
-            this.CCedula.ReadOnly = true;
-            // 
-            // CNombre
-            // 
-            this.CNombre.HeaderText = "Nombre";
-            this.CNombre.Name = "CNombre";
-            this.CNombre.ReadOnly = true;
-            // 
-            // CNo_Vehiculos
-            // 
-            this.CNo_Vehiculos.HeaderText = "No.Vehiculos";
-            this.CNo_Vehiculos.Name = "CNo_Vehiculos";
-            this.CNo_Vehiculos.ReadOnly = true;
-            // 
-            // CSalario
-            // 
-            this.CSalario.HeaderText = "Salario";
-            this.CSalario.Name = "CSalario";
-            this.CSalario.ReadOnly = true;
             // 
             // FrmLoginAdmin
             // 
@@ -164,10 +131,8 @@
             this.Controls.Add(this.dgEmpleados);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.pictureBox1);
-            this.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.Name = "FrmLoginAdmin";
             this.Text = "FrmLoginAdmin";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmLoginAdmin_FormClosing);
             this.Load += new System.EventHandler(this.FrmLoginAdmin_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel1.ResumeLayout(false);
@@ -187,9 +152,5 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.DataGridView dgEmpleados;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CCedula;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CNombre;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CNo_Vehiculos;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CSalario;
     }
 }

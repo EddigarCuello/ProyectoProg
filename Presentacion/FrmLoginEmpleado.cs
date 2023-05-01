@@ -13,24 +13,33 @@ namespace Presentacion
 {
     public partial class FrmLoginEmpleado : Form
     {
-        CRUDCliente Servicios = new CRUDCliente();
+
+        
         public FrmLoginEmpleado()
         {
             InitializeComponent();
             dgClientes.AllowUserToAddRows = false;
             dgClientes.RowHeadersVisible = false;
         }
-        void Cargar()
+
+        FrmAgregarCliente frmAgregarCliente = new FrmAgregarCliente();
+        FrmPrincipal frmPrincipal = new FrmPrincipal();
+        CRUDCliente Servicios = new CRUDCliente();
+
+
+        private void AgregarCliente()
         {
-            dgClientes.Rows.Clear();
-            foreach (var item in Servicios.MostrarTodo())
-            {
-                dgClientes.Rows.Add(item.Cedula,
-                                item.Nombre,
-                                item.PlacaVihiculo,
-                                item.IngresoVehiculo
-                                );
-            }
+            frmAgregarCliente.Show();
+            this.Hide();
+        }
+        private void Cargar()
+        {
+            dgClientes.DataSource = Servicios.MostrarTodo();
+        }
+        private void Salir()
+        {
+            this.Close();
+            frmPrincipal.Show();
         }
 
 
@@ -38,41 +47,15 @@ namespace Presentacion
         {
 
         }
-
-
         private void btnAgregarCliente_Click(object sender, EventArgs e)
         {
-            FrmAgregarEmpleado Agregar = new FrmAgregarEmpleado();
-            Agregar.ShowDialog();
+            AgregarCliente(); 
         }
 
         private void btnSalir_Click(object sender, EventArgs e)
         {
             Salir();
         }
-        void Salir()
-        {
-            this.Close();
-        }
-
-
-
-        private void FrmLoginEmpleado_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            var respuesta = MessageBox.Show("¿Desea Volver al menu?", "Hobby Empleado",
-                MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-            if (respuesta == DialogResult.Yes)
-            {
-                this.Owner.Show();
-                this.Dispose();
-            }
-            else
-            {
-                e.Cancel = true;
-            }
-        }
-
         private void FrmLoginEmpleado_Load(object sender, EventArgs e)
         {
             Cargar();

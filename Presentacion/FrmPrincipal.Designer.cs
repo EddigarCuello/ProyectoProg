@@ -30,7 +30,7 @@
         {
             this.pnlLogin = new System.Windows.Forms.Panel();
             this.btnLogin = new System.Windows.Forms.Button();
-            this.tbContraseña = new System.Windows.Forms.TextBox();
+            this.txtCedula = new System.Windows.Forms.TextBox();
             this.tbUsuario = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -45,7 +45,7 @@
             // pnlLogin
             // 
             this.pnlLogin.Controls.Add(this.btnLogin);
-            this.pnlLogin.Controls.Add(this.tbContraseña);
+            this.pnlLogin.Controls.Add(this.txtCedula);
             this.pnlLogin.Controls.Add(this.tbUsuario);
             this.pnlLogin.Controls.Add(this.label2);
             this.pnlLogin.Controls.Add(this.label1);
@@ -64,12 +64,12 @@
             this.btnLogin.UseVisualStyleBackColor = true;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
-            // tbContraseña
+            // txtCedula
             // 
-            this.tbContraseña.Location = new System.Drawing.Point(169, 109);
-            this.tbContraseña.Name = "tbContraseña";
-            this.tbContraseña.Size = new System.Drawing.Size(166, 20);
-            this.tbContraseña.TabIndex = 3;
+            this.txtCedula.Location = new System.Drawing.Point(169, 109);
+            this.txtCedula.Name = "txtCedula";
+            this.txtCedula.Size = new System.Drawing.Size(166, 20);
+            this.txtCedula.TabIndex = 3;
             // 
             // tbUsuario
             // 
@@ -163,7 +163,7 @@
         private System.Windows.Forms.Panel pnlLogin;
         private System.Windows.Forms.Button btnCreateAccount;
         private System.Windows.Forms.Button btnLogin;
-        private System.Windows.Forms.TextBox tbContraseña;
+        private System.Windows.Forms.TextBox txtCedula;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox tbUsuario;
         private System.Windows.Forms.Label label2;

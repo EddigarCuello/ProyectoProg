@@ -46,11 +46,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FrmAgregarEmpleado.cs">
+    <Compile Include="FrmAgregarCliente.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmAgregarEmpleado.Designer.cs">
-      <DependentUpon>FrmAgregarEmpleado.cs</DependentUpon>
+    <Compile Include="FrmAgregarCliente.Designer.cs">
+      <DependentUpon>FrmAgregarCliente.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmLoginAdmin.cs">
       <SubType>Form</SubType>
@@ -78,8 +78,8 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="FrmAgregarEmpleado.resx">
-      <DependentUpon>FrmAgregarEmpleado.cs</DependentUpon>
+    <EmbeddedResource Include="FrmAgregarCliente.resx">
+      <DependentUpon>FrmAgregarCliente.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmLoginAdmin.resx">
       <DependentUpon>FrmLoginAdmin.cs</DependentUpon>

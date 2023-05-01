@@ -13,25 +13,24 @@ namespace Presentacion
 {
     public partial class FrmLoginAdmin : Form
     {
-        CRUDEmpleado Servicios = new CRUDEmpleado();
-        CRUDAdmin ServiciosA = new CRUDAdmin();
         public FrmLoginAdmin()
         {
             InitializeComponent();
             dgEmpleados.AllowUserToAddRows = false;
             dgEmpleados.RowHeadersVisible = false;
         }
+
+        CRUDEmpleado Servicios = new CRUDEmpleado();
+        FrmPrincipal frmPrincipal = new FrmPrincipal();
         void Cargar()
         {
-            dgEmpleados.Rows.Clear();
-            foreach (var item in Servicios.MostrarTodo())
-            {
-                dgEmpleados.Rows.Add(item.Cedula,
-                                item.Nombre,
-                                item.NumeroDeVehiculos,
-                                item.Salario);
-            }
+            dgEmpleados.DataSource = Servicios.MostrarTodo();
         }
+        void Salir()
+        {
+            this.Close();
+            frmPrincipal.Show();
+        } 
 
 
         private void btnConsultar_Click(object sender, EventArgs e)
@@ -48,25 +47,8 @@ namespace Presentacion
         {
             Salir();
         }
-        void Salir()
-        {
-            this.Close();
-        }
 
-        private void FrmLoginAdmin_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            var respuesta = MessageBox.Show("Desea Salir", "Agenda Contactos",
-                MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-            if (respuesta == DialogResult.Yes)
-            {
-                this.Owner.Show();
-                this.Dispose();
-            }
-            else
-            {
-                e.Cancel = true;
-            }
-        }
+
     }
 }

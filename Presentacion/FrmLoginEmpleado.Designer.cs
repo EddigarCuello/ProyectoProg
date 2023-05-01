@@ -36,10 +36,6 @@
             this.btnConsultar = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.dgClientes = new System.Windows.Forms.DataGridView();
-            this.CCedula = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CPlaca_Vehiculo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cfecha_Entrada = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnAgregarCliente = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -119,11 +115,6 @@
             this.dgClientes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgClientes.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.dgClientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgClientes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.CCedula,
-            this.CNombre,
-            this.CPlaca_Vehiculo,
-            this.Cfecha_Entrada});
             this.dgClientes.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.dgClientes.Location = new System.Drawing.Point(200, 187);
             this.dgClientes.Name = "dgClientes";
@@ -131,30 +122,6 @@
             this.dgClientes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgClientes.Size = new System.Drawing.Size(600, 263);
             this.dgClientes.TabIndex = 4;
-            // 
-            // CCedula
-            // 
-            this.CCedula.HeaderText = "Cedula";
-            this.CCedula.Name = "CCedula";
-            this.CCedula.ReadOnly = true;
-            // 
-            // CNombre
-            // 
-            this.CNombre.HeaderText = "Nombre";
-            this.CNombre.Name = "CNombre";
-            this.CNombre.ReadOnly = true;
-            // 
-            // CPlaca_Vehiculo
-            // 
-            this.CPlaca_Vehiculo.HeaderText = "Placa Vehiculo";
-            this.CPlaca_Vehiculo.Name = "CPlaca_Vehiculo";
-            this.CPlaca_Vehiculo.ReadOnly = true;
-            // 
-            // Cfecha_Entrada
-            // 
-            this.Cfecha_Entrada.HeaderText = "Fecha Entrada";
-            this.Cfecha_Entrada.Name = "Cfecha_Entrada";
-            this.Cfecha_Entrada.ReadOnly = true;
             // 
             // btnAgregarCliente
             // 
@@ -180,7 +147,6 @@
             this.Controls.Add(this.panel1);
             this.Name = "FrmLoginEmpleado";
             this.Text = "FrmLogin";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmLoginEmpleado_FormClosing);
             this.Load += new System.EventHandler(this.FrmLoginEmpleado_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
@@ -200,10 +166,6 @@
         private System.Windows.Forms.Button btnConsultar;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dgClientes;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CCedula;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CNombre;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CPlaca_Vehiculo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Cfecha_Entrada;
         private System.Windows.Forms.Button btnAgregarCliente;
     }
 }

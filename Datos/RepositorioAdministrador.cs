@@ -59,7 +59,6 @@ namespace Datos
                     }
                 }
             }
-
             return Admins;
         }
         public bool ExisteEntradaEnArchivo(string Nombre, string Cedula)
