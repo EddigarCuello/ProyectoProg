@@ -29,21 +29,6 @@ namespace Presentacion
             this.Close();
         }
 
-        private void FrmRegistrar_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            var respuesta = MessageBox.Show("Desea Salir", "Agenda Contactos",
-                MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-            if (respuesta == DialogResult.Yes)
-            {
-                this.Owner.Show();
-                this.Dispose();
-            }
-            else
-            {
-                e.Cancel = true;
-            }
-        }
 
 
 

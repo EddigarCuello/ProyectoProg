@@ -39,10 +39,11 @@ namespace Presentacion
 
         }
 
+
         private void btnAgregarCliente_Click(object sender, EventArgs e)
         {
-            FrmAgregarEmpleado FrmAgregarEmpleado = new FrmAgregarEmpleado();
-            FrmAgregarEmpleado.ShowDialog();
+            FrmAgregarEmpleado Agregar = new FrmAgregarEmpleado();
+            Agregar.ShowDialog();
         }
 
         private void btnSalir_Click(object sender, EventArgs e)
@@ -58,7 +59,7 @@ namespace Presentacion
 
         private void FrmLoginEmpleado_FormClosing(object sender, FormClosingEventArgs e)
         {
-            var respuesta = MessageBox.Show("Desea Salir", "Agenda Contactos",
+            var respuesta = MessageBox.Show("¿Desea Volver al menu?", "Hobby Empleado",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (respuesta == DialogResult.Yes)
@@ -70,6 +71,11 @@ namespace Presentacion
             {
                 e.Cancel = true;
             }
+        }
+
+        private void FrmLoginEmpleado_Load(object sender, EventArgs e)
+        {
+            Cargar();
         }
     }
 }

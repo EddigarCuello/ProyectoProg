@@ -21,6 +21,7 @@ namespace Presentacion
         List<Administrador> ListaA;
         CRUDEmpleado Servicios = new CRUDEmpleado();
         CRUDAdmin ServiciosA = new CRUDAdmin();
+        FrmAgregarEmpleado frmAgregarEmpleado = new FrmAgregarEmpleado();
 
         void AbrirFormularioRegistrar(FrmRegistrar f)
         {
@@ -54,6 +55,8 @@ namespace Presentacion
                 if (Servicios.ExisteCuenta(tbUsuario.Text, tbContraseña.Text) == true)
                 {
                     AbrirFormularioLoginEmpleado(new FrmLoginEmpleado());
+                    frmAgregarEmpleado.Cedula = tbContraseña.Text;
+                    
                 }
                 else
                 {

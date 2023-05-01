@@ -31,7 +31,7 @@ namespace Entidades
 
         public override string ToString()
         {
-            return base.ToString() + $"{IngresoVehiculo};{SalidaVehiculo};{CedulaEmpleado};{PlacaVihiculo};{PrecioAcordado}";
+            return base.ToString() + $"{IngresoVehiculo.ToShortDateString()};{SalidaVehiculo.ToShortDateString()};{CedulaEmpleado};{PlacaVihiculo};{PrecioAcordado}";
         }
 
 

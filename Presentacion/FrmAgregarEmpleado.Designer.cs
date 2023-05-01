@@ -30,6 +30,13 @@
         {
             this.btnSalir = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txtPrecio_Acordado = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.txtPlaca_vehiculo = new System.Windows.Forms.TextBox();
+            this.dtpFecha_Salida = new System.Windows.Forms.DateTimePicker();
+            this.label6 = new System.Windows.Forms.Label();
+            this.dtpFecha_Ingreso = new System.Windows.Forms.DateTimePicker();
             this.btnAgregar = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.txtNombre = new System.Windows.Forms.TextBox();
@@ -40,13 +47,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.txtDireccion = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.dtpFecha_Ingreso = new System.Windows.Forms.DateTimePicker();
-            this.dtpFecha_Salida = new System.Windows.Forms.DateTimePicker();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.txtPrecio_Acordado = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.txtPlaca_vehiculo = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -60,6 +60,7 @@
             this.btnSalir.TabIndex = 14;
             this.btnSalir.Text = "Salir";
             this.btnSalir.UseVisualStyleBackColor = true;
+            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             // 
             // panel1
             // 
@@ -84,6 +85,64 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(680, 390);
             this.panel1.TabIndex = 13;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(353, 138);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(134, 20);
+            this.label7.TabIndex = 15;
+            this.label7.Text = "Placa del vehiculo";
+            // 
+            // txtPrecio_Acordado
+            // 
+            this.txtPrecio_Acordado.Location = new System.Drawing.Point(530, 92);
+            this.txtPrecio_Acordado.Name = "txtPrecio_Acordado";
+            this.txtPrecio_Acordado.Size = new System.Drawing.Size(121, 20);
+            this.txtPrecio_Acordado.TabIndex = 18;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(353, 90);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(124, 20);
+            this.label8.TabIndex = 16;
+            this.label8.Text = "Precio acordado";
+            // 
+            // txtPlaca_vehiculo
+            // 
+            this.txtPlaca_vehiculo.Location = new System.Drawing.Point(530, 138);
+            this.txtPlaca_vehiculo.Name = "txtPlaca_vehiculo";
+            this.txtPlaca_vehiculo.Size = new System.Drawing.Size(121, 20);
+            this.txtPlaca_vehiculo.TabIndex = 17;
+            // 
+            // dtpFecha_Salida
+            // 
+            this.dtpFecha_Salida.Location = new System.Drawing.Point(364, 272);
+            this.dtpFecha_Salida.Name = "dtpFecha_Salida";
+            this.dtpFecha_Salida.Size = new System.Drawing.Size(200, 20);
+            this.dtpFecha_Salida.TabIndex = 14;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(129, 273);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(207, 20);
+            this.label6.TabIndex = 13;
+            this.label6.Text = "Fecha de salida del vehiculo";
+            // 
+            // dtpFecha_Ingreso
+            // 
+            this.dtpFecha_Ingreso.Location = new System.Drawing.Point(364, 230);
+            this.dtpFecha_Ingreso.Name = "dtpFecha_Ingreso";
+            this.dtpFecha_Ingreso.Size = new System.Drawing.Size(200, 20);
+            this.dtpFecha_Ingreso.TabIndex = 12;
             // 
             // btnAgregar
             // 
@@ -172,64 +231,6 @@
             this.label4.Size = new System.Drawing.Size(59, 20);
             this.label4.TabIndex = 4;
             this.label4.Text = "Cedula";
-            // 
-            // dtpFecha_Ingreso
-            // 
-            this.dtpFecha_Ingreso.Location = new System.Drawing.Point(364, 230);
-            this.dtpFecha_Ingreso.Name = "dtpFecha_Ingreso";
-            this.dtpFecha_Ingreso.Size = new System.Drawing.Size(200, 20);
-            this.dtpFecha_Ingreso.TabIndex = 12;
-            // 
-            // dtpFecha_Salida
-            // 
-            this.dtpFecha_Salida.Location = new System.Drawing.Point(364, 272);
-            this.dtpFecha_Salida.Name = "dtpFecha_Salida";
-            this.dtpFecha_Salida.Size = new System.Drawing.Size(200, 20);
-            this.dtpFecha_Salida.TabIndex = 14;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(129, 273);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(207, 20);
-            this.label6.TabIndex = 13;
-            this.label6.Text = "Fecha de salida del vehiculo";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(353, 138);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(134, 20);
-            this.label7.TabIndex = 15;
-            this.label7.Text = "Placa del vehiculo";
-            // 
-            // txtPrecio_Acordado
-            // 
-            this.txtPrecio_Acordado.Location = new System.Drawing.Point(530, 92);
-            this.txtPrecio_Acordado.Name = "txtPrecio_Acordado";
-            this.txtPrecio_Acordado.Size = new System.Drawing.Size(121, 20);
-            this.txtPrecio_Acordado.TabIndex = 18;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(353, 90);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(124, 20);
-            this.label8.TabIndex = 16;
-            this.label8.Text = "Precio acordado";
-            // 
-            // txtPlaca_vehiculo
-            // 
-            this.txtPlaca_vehiculo.Location = new System.Drawing.Point(530, 138);
-            this.txtPlaca_vehiculo.Name = "txtPlaca_vehiculo";
-            this.txtPlaca_vehiculo.Size = new System.Drawing.Size(121, 20);
-            this.txtPlaca_vehiculo.TabIndex = 17;
             // 
             // FrmAgregarEmpleado
             // 

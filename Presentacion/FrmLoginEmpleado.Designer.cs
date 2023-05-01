@@ -181,6 +181,7 @@
             this.Name = "FrmLoginEmpleado";
             this.Text = "FrmLogin";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmLoginEmpleado_FormClosing);
+            this.Load += new System.EventHandler(this.FrmLoginEmpleado_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.panel1.ResumeLayout(false);
