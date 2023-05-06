@@ -38,6 +38,40 @@ namespace Datos
         {
             List<Empleado> Empleados = new List<Empleado>();
 
+            if (!File.Exists(ruta))
+            {
+                File.Create(ruta).Close();
+            }
+
+            using (StreamReader reader = new StreamReader(ruta))
+            {
+                string linea;
+                while ((linea = reader.ReadLine()) != null)
+                {
+                    string[] campos = linea.Split(';');
+                    if (campos.Length == 6)
+                    {
+                        Empleado Empleado = new Empleado
+                        {
+                            Cedula = campos[0],
+                            Nombre = campos[1],
+                            Direccion = campos[2],
+                            Telefono = campos[3],
+                            Salario = float.Parse(campos[4]),
+                            NumeroDeVehiculos = int.Parse(campos[5])
+                        };
+
+                        Empleados.Add(Empleado);
+                    }
+                }
+            }
+
+            return Empleados;
+        }
+        public List<Empleado> Recuperar2()
+        {
+            List<Empleado> Empleados = new List<Empleado>();
+
             using (StreamReader reader = new StreamReader(ruta))
             {
                 string linea;

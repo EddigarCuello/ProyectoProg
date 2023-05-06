@@ -36,6 +36,11 @@ namespace Datos
         }
         public List<Administrador> Recuperar()
         {
+
+            if (!File.Exists(ruta))
+            {
+                File.Create(ruta).Close();
+            }
             List<Administrador> Admins = new List<Administrador>();
 
             using (StreamReader reader = new StreamReader(ruta))
