@@ -21,6 +21,7 @@ namespace Presentacion
         
         #region "VARIABLES"
         ServiciosAdministradores admin = new ServiciosAdministradores();
+        ServiciosEmpleados empleados = new ServiciosEmpleados();
         FrmPrincipal FrmPrincipal = new FrmPrincipal();
         int idCiudadSeleccionada;
         int idBarrioSeleccionado;
@@ -117,6 +118,24 @@ namespace Presentacion
 
             if (txtCodigoSecreto.Text != CodigoSecreto)
             {
+                ObtenerCuenta();
+                CedulaAdmin = Item.Cedula;
+                msg1 = empleados.InsertarAdministradores(Item);
+                msg2 = empleados.InsertarCuenta(Cuenta, CedulaAdmin);
+
+                Console.WriteLine(msg2 + "\n");
+
+
+                if (msg2 != "OK")
+                {
+                    MessageBox.Show("id_calle = :" + idCalleSeleccionada.ToString() + msg2);
+                }
+                else
+                {
+
+                    MessageBox.Show("id_calle = :" + idCalleSeleccionada.ToString() + msg1);
+                }
+
 
             }
             else

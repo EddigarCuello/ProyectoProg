@@ -18,7 +18,7 @@ namespace Datos
             try
             {
                 sqlconn = Conexion_Propietario.ObtenerInstancia().CrearConexion();
-                OracleCommand comando = new OracleCommand("PC_INSERTAR_ADMINISTRADORES", sqlconn);
+                OracleCommand comando = new OracleCommand("PC_INSERTAR_EMPLEADO", sqlconn);
                 comando.CommandType = CommandType.StoredProcedure;
 
                 comando.Parameters.Add("Adm_cedula", OracleDbType.Varchar2).Value = empleado.Cedula;
@@ -54,7 +54,7 @@ namespace Datos
             try
             {
                 sqlconn = Conexion_Propietario.ObtenerInstancia().CrearConexion();
-                OracleCommand comando = new OracleCommand("PC_INSERTAR_CUENTA", sqlconn);
+                OracleCommand comando = new OracleCommand("PC_INSERTAR_CUENTA_EMP", sqlconn);
                 comando.CommandType = CommandType.StoredProcedure;
 
                 comando.Parameters.Add("usuario", OracleDbType.Varchar2).Value = cuenta.Usuario;
