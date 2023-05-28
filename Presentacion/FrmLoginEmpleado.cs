@@ -22,19 +22,19 @@ namespace Presentacion
             dgClientes.RowHeadersVisible = false;
         }
 
-        FrmAgregarCliente frmAgregarCliente = new FrmAgregarCliente();
+        //FrmAgregarCliente frmAgregarCliente = new FrmAgregarCliente();
         FrmPrincipal frmPrincipal = new FrmPrincipal();
-        CRUDCliente Servicios = new CRUDCliente();
+        //ServiciosClientee Servicios = new ServiciosClientee();
 
 
-        private void AgregarCliente()
-        {
-            frmAgregarCliente.Show();
-            this.Hide();
-        }
+        //private void AgregarCliente()
+        //{
+        //    frmAgregarCliente.Show();
+        //    this.Hide();
+        //}
         private void Cargar()
         {
-            dgClientes.DataSource = Servicios.MostrarTodo();
+            //dgClientes.DataSource = Servicios.MostrarTodo();
         }
         private void Salir()
         {
@@ -49,7 +49,7 @@ namespace Presentacion
         }
         private void btnAgregarCliente_Click(object sender, EventArgs e)
         {
-            AgregarCliente(); 
+            //AgregarCliente(); 
         }
 
         private void btnSalir_Click(object sender, EventArgs e)

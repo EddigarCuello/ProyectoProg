@@ -20,11 +20,11 @@ namespace Presentacion
             dgEmpleados.RowHeadersVisible = false;
         }
 
-        CRUDEmpleado Servicios = new CRUDEmpleado();
+        //CRUDEmpleado Servicios = new CRUDEmpleado();
         FrmPrincipal frmPrincipal = new FrmPrincipal();
         void Cargar()
         {
-            dgEmpleados.DataSource = Servicios.MostrarTodo();
+            //dgEmpleados.DataSource = Servicios.MostrarTodo();
         }
         void Salir()
         {

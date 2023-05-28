@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Logica
 {
-    public interface ICRUD <T>
+    public interface IServicios <T>
     {
         Response Agregar(T Item);
         List<T> MostrarTodo();

@@ -22,7 +22,7 @@ namespace Presentacion
             dtpFecha_Salida.MaxDate = DateTime.Today.AddDays(14);
         }
 
-        CRUDCliente Servicios = new CRUDCliente();
+        //ServiciosClientee Servicios = new ServiciosClientee();
         FrmLoginEmpleado frmLoginEmpleado = new FrmLoginEmpleado();
 
 
@@ -33,55 +33,55 @@ namespace Presentacion
 
         }
 
-        private void Guardar()
-        {
-            if (string.IsNullOrEmpty(txtNombre.Text) || string.IsNullOrEmpty(txtTelefono.Text) || string.IsNullOrEmpty(txtCedula.Text) || string.IsNullOrEmpty(txtDireccion.Text) || string.IsNullOrEmpty(txtPrecio_Acordado.Text) || string.IsNullOrEmpty(txtPlaca_vehiculo.Text) || string.IsNullOrEmpty(dtpFecha_Ingreso.Text) || string.IsNullOrEmpty(dtpFecha_Salida.Text))
-            {
+        //private void Guardar()
+        //{
+        //    if (string.IsNullOrEmpty(txtNombre.Text) || string.IsNullOrEmpty(txtTelefono.Text) || string.IsNullOrEmpty(txtCedula.Text) || string.IsNullOrEmpty(txtDireccion.Text) || string.IsNullOrEmpty(txtPrecio_Acordado.Text) || string.IsNullOrEmpty(txtPlaca_vehiculo.Text) || string.IsNullOrEmpty(dtpFecha_Ingreso.Text) || string.IsNullOrEmpty(dtpFecha_Salida.Text))
+        //    {
 
-                MessageBox.Show("Faltan Datos");
-            }
-            else
-            {
-                Cliente Item = new Cliente();
+        //        MessageBox.Show("Faltan Datos");
+        //    }
+        //    else
+        //    {
+        //        Cliente Item = new Cliente();
 
-                Item.Nombre = txtNombre.Text;
-                Item.Cedula = txtCedula.Text;
-                Item.Telefono = txtTelefono.Text;
-                Item.Direccion = txtDireccion.Text;
-                Item.PlacaVihiculo = txtPlaca_vehiculo.Text;
-                Item.PrecioAcordado = float.Parse(txtPrecio_Acordado.Text);
-                Item.IngresoVehiculo = DateTime.Now;
-                Item.SalidaVehiculo = dtpFecha_Salida.Value;
-                Item.CedulaEmpleado = DatosCompartidos.ObtenerCedulaEmpleado();
+        //        Item.Nombre = txtNombre.Text;
+        //        Item.Cedula = txtCedula.Text;
+        //        Item.Telefono = txtTelefono.Text;
+        //        Item.Direccion = txtDireccion.Text;
+        //        Item.PlacaVihiculo = txtPlaca_vehiculo.Text;
+        //        Item.PrecioAcordado = float.Parse(txtPrecio_Acordado.Text);
+        //        Item.IngresoVehiculo = DateTime.Now;
+        //        Item.SalidaVehiculo = dtpFecha_Salida.Value;
+        //        Item.CedulaEmpleado = DatosCompartidos.ObtenerCedulaEmpleado();
                 
 
-                var respuesta = Servicios.Agregar(Item);
+        //        var respuesta = Servicios.Agregar(Item);
 
-                if (respuesta.Estado == true)
-                {
-                    MessageBox.Show("El cliente " + respuesta.Item.Nombre.ToUpper() + " " + respuesta.Mensaje);
-                    txtCedula.Clear();
-                    txtDireccion.Clear();
-                    txtNombre.Clear();
-                    txtTelefono.Clear();
-                    txtPlaca_vehiculo.Clear();
-                    txtPrecio_Acordado.Clear();
-                    dtpFecha_Ingreso.Value = DateTime.Now;
-                    dtpFecha_Salida.Value = DateTime.Now;
-                    Salir();
-
-
-                }
-                else
-                {
-                    MessageBox.Show(respuesta.Mensaje);
-                }
+        //        if (respuesta.Estado == true)
+        //        {
+        //            MessageBox.Show("El cliente " + respuesta.Item.Nombre.ToUpper() + " " + respuesta.Mensaje);
+        //            txtCedula.Clear();
+        //            txtDireccion.Clear();
+        //            txtNombre.Clear();
+        //            txtTelefono.Clear();
+        //            txtPlaca_vehiculo.Clear();
+        //            txtPrecio_Acordado.Clear();
+        //            dtpFecha_Ingreso.Value = DateTime.Now;
+        //            dtpFecha_Salida.Value = DateTime.Now;
+        //            Salir();
 
 
+        //        }
+        //        else
+        //        {
+        //            MessageBox.Show(respuesta.Mensaje);
+        //        }
 
-            }
 
-        }
+
+        //    }
+
+        //}
 
         private void btnSalir_Click(object sender, EventArgs e)
         {
@@ -92,7 +92,7 @@ namespace Presentacion
         private void btnAgregar_Click(object sender, EventArgs e)
         {
         
-            Guardar();
+            //Guardar();
         }
 
     }

@@ -11,6 +11,19 @@ namespace Entidades
         public static string CedulaEmpleado { get; set; }
         public static string NombreEmpleado { get; set; }
 
+        public static Persona Persona { get; set; }
+
+        public static void ActualizarPersona(Persona persona)
+        {
+            Persona = persona;
+        }
+
+        public static Persona ObtenerPersona()
+        {
+            return Persona;
+        }
+
+
         public static void ActualizarCedulaEmpleado(string cedula)
         {
             CedulaEmpleado = cedula;

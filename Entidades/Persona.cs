@@ -9,16 +9,19 @@ namespace Entidades
     public class Persona
     {
         public string Cedula {  get; set; }
-        public string Nombre { get;set; }
+        public string Pr_Nombre { get;set; }
+        public string Pr_Apellido { get; set; }
         public string Telefono { get; set; }
-        public string Direccion { get; set;}
+        public int Id_calle { get; set;}
 
-        public Persona(string cedula, string nombre, string telefono, string direccion)
+        public Persona(string cedula, string pr_nombre, string pr_apellido, string telefono, int id_calle)
         {
             Cedula = cedula;
-            Nombre = nombre;
+            Pr_Nombre = pr_nombre;
+            Pr_Apellido = pr_apellido;
             Telefono = telefono;
-            Direccion = direccion;
+            Id_calle = id_calle;
+
         }
 
         public Persona()
@@ -27,7 +30,7 @@ namespace Entidades
 
         public override string ToString()
         {
-            return $"{Cedula};{Nombre};{Telefono};{Direccion};";
+            return $"{Cedula};{Pr_Nombre};{Pr_Apellido};{Telefono};{Id_calle};";
         }
     }
 }

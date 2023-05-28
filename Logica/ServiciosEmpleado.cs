@@ -41,7 +41,10 @@ namespace Logica
 
         public List<Empleado> MostrarTodo()
         {
-            Refresh();
+            if (lista == null) 
+            {
+                Refresh();
+            }
             return lista;
         }
 
@@ -62,9 +65,29 @@ namespace Logica
             return false;
         }
 
-        public bool ExisteCuenta(string Nombre, string Cedula)
+        public bool ExisteUsuario(Empleado Item)
         {
-            return Archivos.ExisteEntradaEnArchivo(Nombre, Cedula);
+            if ((lista != null) && (Item != null))
+            {
+
+                foreach (var Obj in lista)
+                {
+                    if (Obj.Cuenta.Usuario == Item.Cuenta.Usuario && Obj.Cuenta.Contraseña== Item.Cuenta.Contraseña)
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
         }
+
+        public bool ExisteCuenta(string Usuario, string Contraseña)
+        {
+            return Archivos.ExisteEntradaEnArchivo(Usuario, Contraseña);
+        }
+
+
+
     }
 }
