@@ -52,12 +52,6 @@
     <Compile Include="FrmAgregarCliente.Designer.cs">
       <DependentUpon>FrmAgregarCliente.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmCrearCuenta.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FrmCrearCuenta.Designer.cs">
-      <DependentUpon>FrmCrearCuenta.cs</DependentUpon>
-    </Compile>
     <Compile Include="FrmLoginAdmin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -86,9 +80,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FrmAgregarCliente.resx">
       <DependentUpon>FrmAgregarCliente.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FrmCrearCuenta.resx">
-      <DependentUpon>FrmCrearCuenta.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmLoginAdmin.resx">
       <DependentUpon>FrmLoginAdmin.cs</DependentUpon>

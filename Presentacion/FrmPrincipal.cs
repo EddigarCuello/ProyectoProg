@@ -23,6 +23,8 @@ namespace Presentacion
 
         #region "Variables"
         //CRUDEmpleado Servicios = new CRUDEmpleado();
+        ServiciosAdministradores admin = new ServiciosAdministradores();
+        string tipo_cuenta;
         //CRUDAdmin ServiciosA = new CRUDAdmin();
 
         int PosX = 0;
@@ -31,6 +33,30 @@ namespace Presentacion
         #endregion
 
         #region "Metodos"
+        private bool GestionInicio()
+        {
+            string usuario = tbUsuario.Text;
+            string contraseña = tbContraseña.Text;
+            DataTable tablaCuentas = admin.V_Cuentas();
+            bool coinciden = false;
+            tipo_cuenta = ""; // Variable para guardar el tipo de cuenta
+
+            foreach (DataRow row in tablaCuentas.Rows)
+            {
+                string usuarioTabla = row["usuario"].ToString();
+                string contraseñaTabla = row["contraseña"].ToString();
+
+                if (usuario == usuarioTabla && contraseña == contraseñaTabla)
+                {
+                    coinciden = true;
+                    tipo_cuenta = row["tipo_cuenta"].ToString(); // Obtener el tipo de cuenta de la fila actual
+                    break;
+                }
+            }
+
+            return coinciden;
+        }
+
         private void MoverVentana(MouseEventArgs e)
         {
             if (e.Button != MouseButtons.Left)
@@ -60,31 +86,34 @@ namespace Presentacion
             Environment.Exit(0);
         }
 
-        //private void Inicio()
-        //{
-        //    this.Hide();
+        private void Inicio()
+        {
 
-        //    if (ServiciosA.ExisteCuenta(tbUsuario.Text, tbContraseña.Text) == true)
-        //    {
-        //        FrmLoginAdmin frmLoginAdmin = new FrmLoginAdmin();
-        //        frmLoginAdmin.ShowDialog();
-        //    }
-        //    else
-        //    {
-        //        if (Servicios.ExisteCuenta(tbUsuario.Text, tbContraseña.Text) == true)
-        //        {
-        //            DatosCompartidos.ActualizarCedulaEmpleado(tbContraseña.Text);
-        //            FrmLoginEmpleado frmLoginEmpleado = new FrmLoginEmpleado();
-        //            frmLoginEmpleado.ShowDialog();
-        //        }
-        //        else
-        //        {
-        //            MessageBox.Show("Nombre de usuario o contraseña incorrectos. Vuelva a intentarlo.");
-        //            Mostrar();
-        //        }
+            GestionInicio();
+            MessageBox.Show(tipo_cuenta);
+            this.Hide();
 
-        //    }
-        //}
+            if (GestionInicio() == true && tipo_cuenta == "Administrador")
+            {
+                FrmLoginAdmin frmLoginAdmin = new FrmLoginAdmin();
+                frmLoginAdmin.ShowDialog();
+            }
+            else
+            {
+                if (GestionInicio() == true && tipo_cuenta == "Empleado")
+                {
+                    DatosCompartidos.ActualizarCedulaEmpleado(tbContraseña.Text);
+                    FrmLoginEmpleado frmLoginEmpleado = new FrmLoginEmpleado();
+                    frmLoginEmpleado.ShowDialog();
+                }
+                else
+                {
+                    MessageBox.Show("Nombre de usuario o contraseña incorrectos. Vuelva a intentarlo.");
+                    Mostrar();
+                }
+
+            }
+        }
 
         private void Registrarse()
         {
@@ -101,7 +130,7 @@ namespace Presentacion
         }
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            //Inicio();
+            Inicio();
         }
 
         private void OcultarContraseña(TextBox tb)

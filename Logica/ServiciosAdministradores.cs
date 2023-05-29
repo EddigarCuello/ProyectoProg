@@ -14,6 +14,8 @@ namespace Logica
         List<string> Mensajes;
         Gestion_Direcciones Direcciones = new Gestion_Direcciones();
         Gestion_Administradores G_Administradores = new Gestion_Administradores();
+        Gestion_Inicio inicio = new Gestion_Inicio();
+        DataTable V_cuentas = new DataTable();
         DataTable Ciudades = new DataTable();
         DataTable Barrios = new DataTable();
         DataTable Calles = new DataTable();
@@ -53,6 +55,13 @@ namespace Logica
         {
             string msgRb = G_Administradores.Rollback();
             return msgRb;
+        }
+
+        public DataTable V_Cuentas()
+        {
+            V_cuentas = inicio.ListadoCuentas();
+            return V_cuentas;
+
         }
 
     }

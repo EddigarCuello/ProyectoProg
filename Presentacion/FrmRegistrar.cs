@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Presentacion
 {
@@ -39,6 +40,8 @@ namespace Presentacion
         #region "METODOS"
         private void MostrarCiudades()
         {
+            
+
             CB_CIUDADES.DataSource = admin.Listado_Ciudades();
             CB_CIUDADES.ValueMember = "id_ciudad";
             CB_CIUDADES.DisplayMember = "nom_ciudad";
@@ -46,11 +49,16 @@ namespace Presentacion
 
         private void MostrarBarrios(int idCiudad)
         {
+            CB_BARRIOS.SelectedIndex = -1;
+            CB_CALLES.SelectedIndex = -1;
+
             DataTable barrios = admin.Listado_Barrios(idCiudad);
 
             CB_BARRIOS.DataSource = barrios;
             CB_BARRIOS.ValueMember = "id_barrio";
             CB_BARRIOS.DisplayMember = "nom_barrio";
+
+            
 
         }
         private void DesactivarCb_Barrios()
@@ -73,7 +81,11 @@ namespace Presentacion
         private void ObtenerId_Barrio()
         {
             DataRowView selectedRow = (DataRowView)CB_BARRIOS.SelectedItem;
-            idBarrioSeleccionado = int.Parse(selectedRow["id_barrio"].ToString());
+            if (selectedRow != null)
+            { 
+                idBarrioSeleccionado = int.Parse(selectedRow["id_barrio"].ToString());
+            }
+            
         }
 
         private void ObtenerId_Calle()
@@ -87,7 +99,11 @@ namespace Presentacion
 
         private void MostrarCalles(int IdBarrio)
         {
+
+            CB_CALLES.SelectedIndex = -1;
+
             DataTable calles = admin.Listado_Calles(IdBarrio);
+            
 
             CB_CALLES.DataSource = calles;
             CB_CALLES.ValueMember = "id_calle";
@@ -174,16 +190,10 @@ namespace Presentacion
             FrmPrincipal.Show();
             this.Close();
         }
-        private void Continuar()
-        {
-            FrmCrearCuenta frmCrearCuenta = new FrmCrearCuenta();
-            frmCrearCuenta.ShowDialog();
-            this.Hide();
-        }
 
 
 
-        
+
 
         private bool ComprobarTextBox()
         {
@@ -222,22 +232,28 @@ namespace Presentacion
 
         private void FrmRegistrar_Load(object sender, EventArgs e)
         {
+
             MostrarCiudades();
             
         }
 
         private void CB_CIUDADES_SelectedIndexChanged(object sender, EventArgs e)
         {
+
             ObtenerId_Ciudad();
             MostrarBarrios(idCiudadSeleccionada);
+            
+            
+            
 
         }
 
         private void CB_BARRIOS_SelectedIndexChanged(object sender, EventArgs e)
         {
+            
             ObtenerId_Barrio();
             MostrarCalles(idBarrioSeleccionado);
-            ObtenerId_Calle();
+            //ObtenerId_Calle();
         }
 
         private void btnRegistrar_Click(object sender, EventArgs e)
