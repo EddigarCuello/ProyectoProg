@@ -14,63 +14,28 @@ namespace Presentacion
 {
     public partial class FrmPrincipal : Form
     {
-        
-
         public FrmPrincipal()
         {
             InitializeComponent();
         }
 
-        #region "Variables"
-        //CRUDEmpleado Servicios = new CRUDEmpleado();
+        #region "VARIABLES"
         ServiciosAdministradores admin = new ServiciosAdministradores();
         string tipo_cuenta;
-        //CRUDAdmin ServiciosA = new CRUDAdmin();
 
         int PosX = 0;
         int PosY = 0;
 
         #endregion
 
-        #region "Metodos"
-        private bool GestionInicio()
+        #region "METODOS PARA EL FORM"
+
+        private void Registrarse()
         {
-            string usuario = tbUsuario.Text;
-            string contraseña = tbContraseña.Text;
-            DataTable tablaCuentas = admin.V_Cuentas();
-            bool coinciden = false;
-            tipo_cuenta = ""; // Variable para guardar el tipo de cuenta
-
-            foreach (DataRow row in tablaCuentas.Rows)
-            {
-                string usuarioTabla = row["usuario"].ToString();
-                string contraseñaTabla = row["contraseña"].ToString();
-
-                if (usuario == usuarioTabla && contraseña == contraseñaTabla)
-                {
-                    coinciden = true;
-                    tipo_cuenta = row["tipo_cuenta"].ToString(); // Obtener el tipo de cuenta de la fila actual
-                    break;
-                }
-            }
-
-            return coinciden;
+            Ocultar();
+            FrmRegistrar registrar = new FrmRegistrar();
+            registrar.ShowDialog();
         }
-
-        private void MoverVentana(MouseEventArgs e)
-        {
-            if (e.Button != MouseButtons.Left)
-            {
-                PosX = e.X;
-                PosY = e.Y;
-            }
-            else
-            {
-                Left = Left + (e.X - PosX);
-                Top = Top + (e.Y - PosY);
-            }
-        }
-
         private void Mostrar()
         {
             this.Show();
@@ -85,12 +50,53 @@ namespace Presentacion
         {
             Environment.Exit(0);
         }
+        private void MoverVentana(MouseEventArgs e)
+        {
+            if (e.Button != MouseButtons.Left)
+            {
+                PosX = e.X;
+                PosY = e.Y;
+            }
+            else
+            {
+                Left = Left + (e.X - PosX);
+                Top = Top + (e.Y - PosY);
+            }
+        }
+        #endregion
 
+        #region "METODO DE INFORMACION"
+
+        private bool GestionInicio()
+        {
+            string usuario = tbUsuario.Text;
+            string contraseña = tbContraseña.Text;
+            DataTable tablaCuentas = admin.V_Cuentas();
+            
+            bool coinciden = false;
+            tipo_cuenta = ""; // Variable para guardar el tipo de cuenta
+
+            foreach (DataRow row in tablaCuentas.Rows)
+            {
+                string usuarioTabla = row["usuario"].ToString();
+                string contraseñaTabla = row["contraseña"].ToString();
+
+                if (usuario == usuarioTabla && contraseña == contraseñaTabla)
+                {
+                    coinciden = true;
+                    DatosCompartidos.ActualizarCedula(row["cedula"].ToString());
+                    tipo_cuenta = row["tipo_de_cuenta"].ToString(); // Obtener el tipo de cuenta de la fila actual
+                    break;
+                }
+            }
+
+            return coinciden;
+        }
         private void Inicio()
         {
 
-            GestionInicio();
-            MessageBox.Show(tipo_cuenta);
+            //GestionInicio();
+            //MessageBox.Show(tipo_cuenta);
             this.Hide();
 
             if (GestionInicio() == true && tipo_cuenta == "Administrador")
@@ -102,24 +108,26 @@ namespace Presentacion
             {
                 if (GestionInicio() == true && tipo_cuenta == "Empleado")
                 {
-                    DatosCompartidos.ActualizarCedulaEmpleado(tbContraseña.Text);
+                    
                     FrmLoginEmpleado frmLoginEmpleado = new FrmLoginEmpleado();
                     frmLoginEmpleado.ShowDialog();
                 }
                 else
                 {
-                    MessageBox.Show("Nombre de usuario o contraseña incorrectos. Vuelva a intentarlo.");
-                    Mostrar();
+                    if (GestionInicio() == true && tipo_cuenta == "Cliente")
+                    {
+                        FrmLoginCliente frmLoginCliente = new FrmLoginCliente();
+                        frmLoginCliente.ShowDialog();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Nombre de usuario o contraseña incorrectos. Vuelva a intentarlo.");
+                        Mostrar();
+                    }
+                    
                 }
 
             }
-        }
-
-        private void Registrarse()
-        {
-            Ocultar();
-            FrmRegistrar registrar = new FrmRegistrar();
-            registrar.ShowDialog();
         }
         #endregion
 

@@ -11,7 +11,6 @@ namespace Logica
 {
     public class ServiciosAdministradores
     {
-        List<string> Mensajes;
         Gestion_Direcciones Direcciones = new Gestion_Direcciones();
         Gestion_Administradores G_Administradores = new Gestion_Administradores();
         Gestion_Inicio inicio = new Gestion_Inicio();
@@ -45,9 +44,9 @@ namespace Logica
             return msg1;
         }
 
-        public string InsertarCuenta(Cuenta cuenta, string CedulaAdm)
+        public string InsertarCuenta(Cuenta cuenta)
         {
-            string msg2 = G_Administradores.InsertarCuenta(cuenta, CedulaAdm); 
+            string msg2 = G_Administradores.InsertarCuenta(cuenta); 
             return msg2;
         }
 

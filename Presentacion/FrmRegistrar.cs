@@ -30,14 +30,12 @@ namespace Presentacion
         string CodigoSecreto = "Admin2023";
         Persona Item = new Persona();
         Cuenta Cuenta = new Cuenta();
-        List<string> mensajes;
         string msg1;
         string msg2;
-        string CedulaAdmin;
 
         #endregion
 
-        #region "METODOS"
+        #region "METODOS DIRECCIONES"
         private void MostrarCiudades()
         {
             
@@ -110,9 +108,17 @@ namespace Presentacion
             CB_CALLES.DisplayMember = "nom_calle";
         }
 
+
+
+
+
+        #endregion
+
+        #region "METODOS PARA EL FORM"
         private bool Comprobar()
         {
-            if (string.IsNullOrEmpty(txtPrNombre.Text) || string.IsNullOrEmpty(txtTelefono.Text) || string.IsNullOrEmpty(txtCedula.Text) || string.IsNullOrEmpty(CB_CALLES.Text) /*|| string.IsNullOrEmpty(.Text)*/)
+            if (string.IsNullOrEmpty(txtPrNombre.Text) || string.IsNullOrEmpty(txtTelefono.Text) || string.IsNullOrEmpty(txtCedula.Text) ||
+                string.IsNullOrEmpty(CB_CALLES.Text) || string.IsNullOrEmpty(tbUsuario.Text) || string.IsNullOrEmpty(tbContraseña.Text))
             {
                 return true;
             }
@@ -123,81 +129,9 @@ namespace Presentacion
 
         }
 
-        public void Guardar()
-        {
-            Item.Pr_Nombre = txtPrNombre.Text;
-            Item.Pr_Apellido = txtPrApellido.Text;
-            Item.Cedula = txtCedula.Text;
-            Item.Telefono = txtTelefono.Text;
-            Item.Id_calle = idCalleSeleccionada;     
-
-
-            if (txtCodigoSecreto.Text != CodigoSecreto)
-            {
-                ObtenerCuenta();
-                CedulaAdmin = Item.Cedula;
-                msg1 = empleados.InsertarAdministradores(Item);
-                msg2 = empleados.InsertarCuenta(Cuenta, CedulaAdmin);
-
-                Console.WriteLine(msg2 + "\n");
-
-
-                if (msg2 != "OK")
-                {
-                    MessageBox.Show("id_calle = :" + idCalleSeleccionada.ToString() + msg2);
-                }
-                else
-                {
-
-                    MessageBox.Show("id_calle = :" + idCalleSeleccionada.ToString() + msg1);
-                }
-
-
-            }
-            else
-            {
-                ObtenerCuenta();
-                CedulaAdmin = Item.Cedula;
-                msg1 = admin.InsertarAdministradores(Item);
-                msg2 = admin.InsertarCuenta(Cuenta, CedulaAdmin);
-                
-
-                Console.WriteLine(msg2 + "\n");
-                
-                
-
-                if (msg2 != "OK")
-                {
-                    MessageBox.Show("id_calle = :" + idCalleSeleccionada.ToString() + msg2);
-                }
-                else
-                {
-                    
-                    MessageBox.Show("id_calle = :" + idCalleSeleccionada.ToString() + msg1);
-                }
-                
-                //MessageBox.Show(msg2);
-                //Console.WriteLine(msg1);
-
-            }
-        }
-
-
-
-        #endregion
-        void Salir()
-        {
-            FrmPrincipal.Show();
-            this.Close();
-        }
-
-
-
-
-
         private bool ComprobarTextBox()
         {
-            if (txtContraseña == tbRepeticionContraseña)
+            if (tbContraseña == tbRepeticionContraseña)
             {
                 return true;
             }
@@ -214,27 +148,76 @@ namespace Presentacion
             }
             else
             {
-                Cuenta.Contraseña = txtContraseña.Text;
-                Cuenta.Usuario = txtUsuario.Text;
+                Cuenta.Contraseña = tbContraseña.Text;
+                Cuenta.Usuario = tbUsuario.Text;
             }
         }
 
+        void Salir()
+        {
+            FrmPrincipal.Show();
+            this.Close();
+        }
+        #endregion
+
+        #region "MANEJO DE INFORMACION"
+        public void Guardar()
+        {
+
+            Item.Pr_Nombre = txtPrNombre.Text;
+            Item.Pr_Apellido = txtPrApellido.Text;
+            Item.Cedula = txtCedula.Text;
+            Item.Telefono = txtTelefono.Text;
+            Item.Id_calle = idCalleSeleccionada;
+            ObtenerCuenta();
+            Item.Usuario = Cuenta.Usuario;
+
+            
+
+            if (txtCodigoSecreto.Text == CodigoSecreto)
+            {
+                msg2 = admin.InsertarCuenta(Cuenta);
+                msg1 = admin.InsertarAdministradores(Item);
+                if(msg2 == "OK")
+                {
+                    MessageBox.Show(msg1);
+                }
+                else
+                {
+                    MessageBox.Show(msg2);
+                }
+            }
+            else
+            {
+                msg2 = empleados.InsertarCuenta(Cuenta);
+                msg1 = empleados.InsertarAdministradores(Item);
+                if (msg2 == "OK")
+                {
+                    MessageBox.Show(msg1);
+                }
+                else
+                {
+                    MessageBox.Show(msg2);
+                }
+
+            }
+        }
+
+        #endregion
+
+        #region "EVENTOS"
         private void btnSalir_Click(object sender, EventArgs e)
         {
             Salir();
         }
 
-        private void btnContinuarRegistro_Click(object sender, EventArgs e)
-        {
 
-            
-        }
 
         private void FrmRegistrar_Load(object sender, EventArgs e)
         {
 
             MostrarCiudades();
-            
+
         }
 
         private void CB_CIUDADES_SelectedIndexChanged(object sender, EventArgs e)
@@ -242,31 +225,45 @@ namespace Presentacion
 
             ObtenerId_Ciudad();
             MostrarBarrios(idCiudadSeleccionada);
-            
-            
-            
+
+
+
 
         }
 
         private void CB_BARRIOS_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+
             ObtenerId_Barrio();
             MostrarCalles(idBarrioSeleccionado);
-            //ObtenerId_Calle();
+            ObtenerId_Calle();
         }
 
-        private void btnRegistrar_Click(object sender, EventArgs e)
+
+        #endregion
+
+        private void pbSalir_Click(object sender, EventArgs e)
         {
-            if (Comprobar() == false)
+            Salir();
+        }
+
+        private void btnLogin_Click(object sender, EventArgs e)
+        {
+            if (Comprobar() == false )
             {
+                if (ComprobarTextBox() != false)
+                {
+                    Guardar();
+                }else
+                {
+                    MessageBox.Show("Contraseñas no coinciden");
+                }
                 
-                Guardar();
                 //Continuar();
             }
             else
             {
-                MessageBox.Show("Faltan Datos ");
+                MessageBox.Show("Faltan Datos");
             }
         }
     }

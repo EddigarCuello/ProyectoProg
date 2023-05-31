@@ -18,82 +18,218 @@ namespace Presentacion
         {
             InitializeComponent();
 
-            dtpFecha_Salida.MinDate = DateTime.Today;
-            dtpFecha_Salida.MaxDate = DateTime.Today.AddDays(14);
+        }
+        #region
+        //ServiciosClientee Servicios = new ServiciosClientee();
+        ServiciosAdministradores admin = new ServiciosAdministradores();
+        ServiciosClientes clientes = new ServiciosClientes();
+        int idCiudadSeleccionada;
+        int idBarrioSeleccionado;
+        int idCalleSeleccionada;
+        string CodigoSecreto = "Admin2023";
+        Cliente Item = new Cliente();
+        Vehiculo vehiculo = new Vehiculo();
+        Cuenta cuenta = new Cuenta();
+        string msg1;
+        string msg2;
+        string msg3;
+        string msg4;
+        #endregion
+
+
+        #region "METODOS DIRECCIONES"
+        private void MostrarCiudades()
+        {
+
+
+            CB_CIUDADES.DataSource = admin.Listado_Ciudades();
+            CB_CIUDADES.ValueMember = "id_ciudad";
+            CB_CIUDADES.DisplayMember = "nom_ciudad";
         }
 
-        //ServiciosClientee Servicios = new ServiciosClientee();
-        FrmLoginEmpleado frmLoginEmpleado = new FrmLoginEmpleado();
+        private void MostrarBarrios(int idCiudad)
+        {
+            CB_BARRIOS.SelectedIndex = -1;
+            CB_CALLES.SelectedIndex = -1;
 
+            DataTable barrios = admin.Listado_Barrios(idCiudad);
+
+            CB_BARRIOS.DataSource = barrios;
+            CB_BARRIOS.ValueMember = "id_barrio";
+            CB_BARRIOS.DisplayMember = "nom_barrio";
+
+
+
+        }
+        private void DesactivarCb_Barrios()
+        {
+            CB_BARRIOS.Enabled = false;
+        }
+
+        private void ActivarCb_Barrios()
+        {
+            CB_BARRIOS.Enabled = true;
+        }
+
+        private void ObtenerId_Ciudad()
+        {
+
+            DataRowView selectedRow = (DataRowView)CB_CIUDADES.SelectedItem;
+            idCiudadSeleccionada = int.Parse(selectedRow["id_ciudad"].ToString());
+        }
+
+        private void ObtenerId_Barrio()
+        {
+            DataRowView selectedRow = (DataRowView)CB_BARRIOS.SelectedItem;
+            if (selectedRow != null)
+            {
+                idBarrioSeleccionado = int.Parse(selectedRow["id_barrio"].ToString());
+            }
+
+        }
+
+        private void ObtenerId_Calle()
+        {
+            DataRowView selectedRow = (DataRowView)CB_CALLES.SelectedItem;
+            if (selectedRow != null)
+            {
+                idCalleSeleccionada = int.Parse(selectedRow["id_calle"].ToString());
+            }
+
+        }
+
+
+
+        private void MostrarCalles(int IdBarrio)
+        {
+
+            CB_CALLES.SelectedIndex = -1;
+
+            DataTable calles = admin.Listado_Calles(IdBarrio);
+
+
+            CB_CALLES.DataSource = calles;
+            CB_CALLES.ValueMember = "id_calle";
+            CB_CALLES.DisplayMember = "nom_calle";
+        }
+
+
+
+
+
+        #endregion
+
+        private bool ComprobarCampos()
+        {
+            if(string.IsNullOrEmpty(tbCedula.Text) || string.IsNullOrEmpty(tbPrNombre.Text) || string.IsNullOrEmpty(tbPrApellido.Text) ||
+                 string.IsNullOrEmpty(tbTelefono.Text) || string.IsNullOrEmpty(CB_CALLES.Text) || string.IsNullOrEmpty(tbUser.Text) ||
+                 string.IsNullOrEmpty(TbPass.Text) || string.IsNullOrEmpty(tbPlaca.Text) || string.IsNullOrEmpty(tbMarca.Text) ||
+                 string.IsNullOrEmpty(tbCilindraje.Text) || string.IsNullOrEmpty(tbTipoVeh.Text))
+            {
+                return true;
+            }else
+            {
+                return false;
+            }
+        }
+
+        public void ObtenerCuenta()
+        {
+            cuenta.Contraseña = TbPass.Text;
+           cuenta.Usuario = tbUser.Text;
+        }
+        public void Guardar()
+        {
+
+            Item.Pr_Nombre = tbPrNombre.Text;
+            Item.Pr_Apellido = tbPrApellido.Text;
+            Item.Cedula = tbCedula.Text;
+            DatosCompartidos.ActualizarCedulaCLiente(Item.Cedula);
+            Item.Telefono = tbTelefono.Text;
+            Item.Id_calle = idCalleSeleccionada;
+            
+            Item.CedulaEmpleado = DatosCompartidos.ObtenerCedula();
+
+            ObtenerCuenta();
+            Item.Usuario = cuenta.Usuario;
+
+            vehiculo.Marca = tbMarca.Text;
+            vehiculo.Placa = tbPlaca.Text;
+            vehiculo.Cilindraje = tbCilindraje.Text;
+            vehiculo.Version = dtpVersion.Value;
+            vehiculo.Modelo = tbModelo.Text;
+            vehiculo.TipoVehiculo = tbTipoVeh.Text;
+            vehiculo.CedulaCliente = Item.Cedula;
+
+
+
+
+                msg2 = clientes.InsertarCuentaCliente(cuenta);
+                msg1 = clientes.InsertarCliente(Item);
+                msg3 = clientes.InsertarVehiculos(vehiculo);
+                msg4 = clientes.InsertarFactura(Item.Cedula,Item.CedulaEmpleado,vehiculo.Placa.ToString());
+
+                 MessageBox.Show(msg4);
+                if (msg2 == "OK")
+                {
+                    MessageBox.Show(msg1);
+                }
+                else
+                {
+                    MessageBox.Show(msg2);
+                }
+           
+        }
 
         private void Salir()
         {
             this.Close();
-            frmLoginEmpleado.Show();
+            
+        }
+
+
+
+
+
+        private void CB_CIUDADES_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ObtenerId_Ciudad();
+            MostrarBarrios(idCiudadSeleccionada);
+        }
+
+        private void CB_BARRIOS_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            MessageBox.Show(idBarrioSeleccionado.ToString());
+            ObtenerId_Barrio();
+            MostrarCalles(idBarrioSeleccionado);
+            ObtenerId_Calle();
+
 
         }
 
-        //private void Guardar()
-        //{
-        //    if (string.IsNullOrEmpty(txtNombre.Text) || string.IsNullOrEmpty(txtTelefono.Text) || string.IsNullOrEmpty(txtCedula.Text) || string.IsNullOrEmpty(txtDireccion.Text) || string.IsNullOrEmpty(txtPrecio_Acordado.Text) || string.IsNullOrEmpty(txtPlaca_vehiculo.Text) || string.IsNullOrEmpty(dtpFecha_Ingreso.Text) || string.IsNullOrEmpty(dtpFecha_Salida.Text))
-        //    {
+        private void FrmAgregarCliente_Load(object sender, EventArgs e)
+        {
+            MostrarCiudades();
+        }
 
-        //        MessageBox.Show("Faltan Datos");
-        //    }
-        //    else
-        //    {
-        //        Cliente Item = new Cliente();
-
-        //        Item.Nombre = txtNombre.Text;
-        //        Item.Cedula = txtCedula.Text;
-        //        Item.Telefono = txtTelefono.Text;
-        //        Item.Direccion = txtDireccion.Text;
-        //        Item.PlacaVihiculo = txtPlaca_vehiculo.Text;
-        //        Item.PrecioAcordado = float.Parse(txtPrecio_Acordado.Text);
-        //        Item.IngresoVehiculo = DateTime.Now;
-        //        Item.SalidaVehiculo = dtpFecha_Salida.Value;
-        //        Item.CedulaEmpleado = DatosCompartidos.ObtenerCedulaEmpleado();
-                
-
-        //        var respuesta = Servicios.Agregar(Item);
-
-        //        if (respuesta.Estado == true)
-        //        {
-        //            MessageBox.Show("El cliente " + respuesta.Item.Nombre.ToUpper() + " " + respuesta.Mensaje);
-        //            txtCedula.Clear();
-        //            txtDireccion.Clear();
-        //            txtNombre.Clear();
-        //            txtTelefono.Clear();
-        //            txtPlaca_vehiculo.Clear();
-        //            txtPrecio_Acordado.Clear();
-        //            dtpFecha_Ingreso.Value = DateTime.Now;
-        //            dtpFecha_Salida.Value = DateTime.Now;
-        //            Salir();
-
-
-        //        }
-        //        else
-        //        {
-        //            MessageBox.Show(respuesta.Mensaje);
-        //        }
-
-
-
-        //    }
-
-        //}
-
-        private void btnSalir_Click(object sender, EventArgs e)
+        private void pbSalir_Click(object sender, EventArgs e)
         {
             Salir();
         }
 
-
-        private void btnAgregar_Click(object sender, EventArgs e)
+        private void btnAgregarC_Click(object sender, EventArgs e)
         {
-        
-            //Guardar();
+            if (ComprobarCampos() == false)
+            {
+                Guardar();
+                Salir();
+                
+                
+            }
+            else
+            {
+                MessageBox.Show("Faltan Datos");
+            }
         }
-
     }
 }

@@ -8,40 +8,34 @@ namespace Entidades
 {
     public static class DatosCompartidos
     {
-        public static string CedulaEmpleado { get; set; }
-        public static string NombreEmpleado { get; set; }
+        public static string Cedula { get; set; }
+        public static string CedulaCliente { get; set; }
 
-        public static Persona Persona { get; set; }
-
-        public static void ActualizarPersona(Persona persona)
+        public static void ActualizarCedula(string cedula)
         {
-            Persona = persona;
-        }
-
-        public static Persona ObtenerPersona()
-        {
-            return Persona;
+            Cedula = cedula;
         }
 
 
-        public static void ActualizarCedulaEmpleado(string cedula)
+        public static string ObtenerCedula()
         {
-            CedulaEmpleado = cedula;
+            return Cedula;
         }
 
-        public static void ActualizarNombreEmpleado(string nombre)
+        
+
+        public static void ActualizarCedulaCLiente(string cedula)
         {
-            NombreEmpleado = nombre;
+            CedulaCliente = cedula;
         }
 
-        public static string ObtenerCedulaEmpleado()
+
+        public static string ObtenerCedulaCLiente()
         {
-            return CedulaEmpleado;
+            return CedulaCliente;
         }
 
-        public static string ObtenerNombreEmpleado()
-        {
-            return NombreEmpleado;
-        }
+
+
     }
 }

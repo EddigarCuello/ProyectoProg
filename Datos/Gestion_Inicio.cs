@@ -18,7 +18,7 @@ namespace Datos
             try
             {
                 sqlconn = Conexion_Propietario.ObtenerInstancia().CrearConexion();
-                OracleCommand comando = new OracleCommand("SELECT * FROM  v_cuentas", sqlconn);
+                OracleCommand comando = new OracleCommand("SELECT * FROM VISTA_USUARIOS", sqlconn);
                 comando.CommandType = CommandType.Text;
                 sqlconn.Open();
                 ResultadoCuentas = comando.ExecuteReader();
@@ -27,7 +27,6 @@ namespace Datos
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
             finally
@@ -37,7 +36,7 @@ namespace Datos
                     sqlconn.Close();
                 }
             }
-
         }
+
     }
 }

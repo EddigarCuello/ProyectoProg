@@ -42,9 +42,9 @@ namespace Datos
 
         public DataTable ListadoBarrios(int IdCiudad)
         {
-            
+            OracleDataReader ResultadoBarrios;
             DataTable TablaBarrios = new DataTable();
-            OracleConnection sqlconn = new OracleConnection();
+            OracleConnection sqlconn = null;
             try
             {
                 sqlconn = Conexion_Propietario.ObtenerInstancia().CrearConexion();
@@ -54,8 +54,10 @@ namespace Datos
                 comando.Parameters.Add("resultado", OracleDbType.RefCursor).Direction = ParameterDirection.ReturnValue;
                 comando.Parameters.Add("idCiudad", OracleDbType.Int32).Value = IdCiudad;
 
-                OracleDataAdapter adapter = new OracleDataAdapter(comando);
-                adapter.Fill(TablaBarrios);
+                sqlconn.Open();
+                ResultadoBarrios = comando.ExecuteReader();
+
+                TablaBarrios.Load(ResultadoBarrios);
 
                 return TablaBarrios;
             }
@@ -65,7 +67,7 @@ namespace Datos
             }
             finally
             {
-                if (sqlconn.State == ConnectionState.Open)
+                if (sqlconn != null && sqlconn.State == ConnectionState.Open)
                 {
                     sqlconn.Close();
                 }
@@ -73,8 +75,11 @@ namespace Datos
         }
 
 
+
+
         public DataTable ListadoCalles(int IdBarrio)
         {
+            OracleDataReader ResultadoCalles;
             DataTable TablaCalles = new DataTable();
             OracleConnection sqlconn = new OracleConnection();
             try
@@ -85,9 +90,9 @@ namespace Datos
 
                 comando.Parameters.Add("resultado", OracleDbType.RefCursor).Direction = ParameterDirection.ReturnValue;
                 comando.Parameters.Add("idCiudad", OracleDbType.Int32).Value = IdBarrio;
-
-                OracleDataAdapter adapter = new OracleDataAdapter(comando);
-                adapter.Fill(TablaCalles);
+                sqlconn.Open();
+                ResultadoCalles = comando.ExecuteReader();
+                TablaCalles.Load(ResultadoCalles);
 
                 return TablaCalles;
             }

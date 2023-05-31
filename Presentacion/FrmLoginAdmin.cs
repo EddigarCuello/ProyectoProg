@@ -20,19 +20,17 @@ namespace Presentacion
             dgEmpleados.RowHeadersVisible = false;
         }
 
-        //CRUDEmpleado Servicios = new CRUDEmpleado();
         FrmPrincipal frmPrincipal = new FrmPrincipal();
+        ServiciosEmpleados empleados = new ServiciosEmpleados();
         void Cargar()
         {
-            //dgEmpleados.DataSource = Servicios.MostrarTodo();
+            dgEmpleados.DataSource = empleados.ListareEmpleados_NumClientes();
         }
         void Salir()
         {
             this.Close();
             frmPrincipal.Show();
         } 
-
-
         private void btnConsultar_Click(object sender, EventArgs e)
         {
 
@@ -47,8 +45,5 @@ namespace Presentacion
         {
             Salir();
         }
-
-
-
     }
 }
