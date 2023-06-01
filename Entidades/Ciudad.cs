@@ -6,16 +6,25 @@ using System.Threading.Tasks;
 
 namespace Entidades
 {
-    public class Ciudades
+    public class Ciudad
     {
-        public string Id_Ciudad { get; set; }
+        public int Id_Ciudad { get; set; }
 
         public string Nom_Ciudad { get; set; }
 
-        public Ciudades(string id_Ciudad, string nom_Ciudad)
+        public Ciudad(int id_Ciudad, string nom_Ciudad)
         {
             Id_Ciudad = id_Ciudad;
             Nom_Ciudad = nom_Ciudad;
+        }
+
+        public Ciudad()
+        {
+        }
+
+        public override string ToString()
+        {
+            return base.ToString();
         }
     }
 }

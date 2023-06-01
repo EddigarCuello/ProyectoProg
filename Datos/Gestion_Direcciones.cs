@@ -1,4 +1,5 @@
-﻿using Oracle.ManagedDataAccess.Client;
+﻿using Entidades;
+using Oracle.ManagedDataAccess.Client;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -10,64 +11,75 @@ namespace Datos
 {
     public class Gestion_Direcciones
     {
-        public DataTable ListadoCiudades()
+        public List<Ciudad> ListadoCiudades()
         {
             OracleDataReader ResultadoCiudades;
-            DataTable TablaCiudades = new DataTable();
+            List<Ciudad> ciudades = new List<Ciudad>();
             OracleConnection sqlconn = new OracleConnection();
             try
             {
                 sqlconn = Conexion_Propietario.ObtenerInstancia().CrearConexion();
-                OracleCommand comando = new OracleCommand("SELECT nom_ciudad,id_ciudad FROM  ciudades", sqlconn);
+                OracleCommand comando = new OracleCommand("SELECT nom_ciudad, id_ciudad FROM ciudades", sqlconn);
                 comando.CommandType = CommandType.Text;
                 sqlconn.Open();
                 ResultadoCiudades = comando.ExecuteReader();
-                TablaCiudades.Load(ResultadoCiudades);
-                return TablaCiudades;
+
+                while (ResultadoCiudades.Read())
+                {
+                    Ciudad ciudad = new Ciudad();
+                    ciudad.Nom_Ciudad = ResultadoCiudades["nom_ciudad"].ToString();
+                    ciudad.Id_Ciudad = Convert.ToInt32(ResultadoCiudades["id_ciudad"]);
+                    ciudades.Add(ciudad);
+                }
+
+                return ciudades;
             }
             catch (Exception ex)
             {
-
                 throw;
             }
             finally
-            { 
-                if(sqlconn.State == ConnectionState.Open)
+            {
+                if (sqlconn.State == ConnectionState.Open)
                 {
                     sqlconn.Close();
-                }  
+                }
             }
-
         }
 
-        public DataTable ListadoBarrios(int IdCiudad)
+
+
+        public List<Barrio> ListadoBarrios()
         {
             OracleDataReader ResultadoBarrios;
-            DataTable TablaBarrios = new DataTable();
-            OracleConnection sqlconn = null;
+            List<Barrio> Barrios = new List<Barrio>();
+            OracleConnection sqlconn = new OracleConnection();
             try
             {
                 sqlconn = Conexion_Propietario.ObtenerInstancia().CrearConexion();
-                OracleCommand comando = new OracleCommand("BEGIN :resultado := FN_DIRECCIONES.ObtenerBarriosPorCiudad(:idCiudad); END;", sqlconn);
+                OracleCommand comando = new OracleCommand("select * FROM barrios", sqlconn);
                 comando.CommandType = CommandType.Text;
-
-                comando.Parameters.Add("resultado", OracleDbType.RefCursor).Direction = ParameterDirection.ReturnValue;
-                comando.Parameters.Add("idCiudad", OracleDbType.Int32).Value = IdCiudad;
-
                 sqlconn.Open();
                 ResultadoBarrios = comando.ExecuteReader();
 
-                TablaBarrios.Load(ResultadoBarrios);
+                while (ResultadoBarrios.Read())
+                {
+                    Barrio barrio = new Barrio();
+                    barrio.Nom_Barrio= ResultadoBarrios["nom_barrio"].ToString();
+                    barrio.id_Barrio = Convert.ToInt32(ResultadoBarrios["id_barrio"]);
+                    barrio.Id_Ciudad = Convert.ToInt32(ResultadoBarrios["id_ciudad"]);
+                    Barrios.Add( barrio);
+                }
 
-                return TablaBarrios;
+                return Barrios;
             }
             catch (Exception ex)
             {
-                throw new Exception("Error al obtener los barrios", ex);
+                throw;
             }
             finally
             {
-                if (sqlconn != null && sqlconn.State == ConnectionState.Open)
+                if (sqlconn.State == ConnectionState.Open)
                 {
                     sqlconn.Close();
                 }
@@ -77,28 +89,33 @@ namespace Datos
 
 
 
-        public DataTable ListadoCalles(int IdBarrio)
+        public List<Calle> ListadoCalles()
         {
             OracleDataReader ResultadoCalles;
-            DataTable TablaCalles = new DataTable();
+            List<Calle> Calles = new List<Calle>();
             OracleConnection sqlconn = new OracleConnection();
             try
             {
                 sqlconn = Conexion_Propietario.ObtenerInstancia().CrearConexion();
-                OracleCommand comando = new OracleCommand("BEGIN :resultado := FN_DIRECCIONES.ObtenerCallesPorBarrio(:idBarrio); END;", sqlconn);
+                OracleCommand comando = new OracleCommand("select * FROM calles", sqlconn);
                 comando.CommandType = CommandType.Text;
-
-                comando.Parameters.Add("resultado", OracleDbType.RefCursor).Direction = ParameterDirection.ReturnValue;
-                comando.Parameters.Add("idCiudad", OracleDbType.Int32).Value = IdBarrio;
                 sqlconn.Open();
                 ResultadoCalles = comando.ExecuteReader();
-                TablaCalles.Load(ResultadoCalles);
 
-                return TablaCalles;
+                while (ResultadoCalles.Read())
+                {
+                    Calle calle = new Calle();
+                    calle.Nom_Calle = ResultadoCalles["nom_calle"].ToString();
+                    calle.Id_Calle = Convert.ToInt32(ResultadoCalles["id_calle"]);
+                    calle.Id_Barrio = Convert.ToInt32(ResultadoCalles["id_barrio"]);
+                    Calles.Add(calle);
+                }
+
+                return Calles;
             }
             catch (Exception ex)
             {
-                throw new Exception("Error al obtener los barrios", ex);
+                throw;
             }
             finally
             {

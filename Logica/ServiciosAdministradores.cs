@@ -11,31 +11,53 @@ namespace Logica
 {
     public class ServiciosAdministradores
     {
+        #region "Declaraciones y Varables"
         Gestion_Direcciones Direcciones = new Gestion_Direcciones();
         Gestion_Administradores G_Administradores = new Gestion_Administradores();
         Gestion_Inicio inicio = new Gestion_Inicio();
         DataTable V_cuentas = new DataTable();
-        DataTable Ciudades = new DataTable();
-        DataTable Barrios = new DataTable();
-        DataTable Calles = new DataTable();
+        List<Ciudad> Ciudades ;
+        List<Barrio> Barrios;
+        List<Calle> Calles;
+        #endregion
 
 
-        public DataTable Listado_Ciudades()
+
+        public List<Ciudad> Listado_Ciudades()
         {
             Ciudades = Direcciones.ListadoCiudades();
             return Ciudades;
         }
 
-        public DataTable Listado_Barrios(int Id_ciudad)
+        public List<Barrio>  Listado_Barrios(int Id_ciudad)
         {
-            Barrios = Direcciones.ListadoBarrios(Id_ciudad);
-            return Barrios;
+            List<Barrio> FiltroBarrios = new List<Barrio>();
+            Barrios = Direcciones.ListadoBarrios();
+            
+            foreach(var Barrio in Barrios) 
+            { 
+                if(Barrio.Id_Ciudad == Id_ciudad)
+                {
+                    FiltroBarrios.Add(Barrio);
+                }
+            }
+            return FiltroBarrios;
         }
 
-        public DataTable Listado_Calles(int Id_Barrios)
+        public List<Calle> Listado_Calles(int Id_Barrios)
         {
-            Calles = Direcciones.ListadoCalles(Id_Barrios);
-            return Calles;
+            List<Calle> FiltroCalles = new List<Calle>();
+            Calles = Direcciones.ListadoCalles();
+
+            foreach(var Calle in Calles)
+            {
+                if (Calle.Id_Barrio == Id_Barrios)
+                {
+                    FiltroCalles.Add(Calle);
+                }
+            }
+
+            return FiltroCalles;
         }
 
         public string InsertarAdministradores(Persona administrador)

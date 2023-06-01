@@ -41,8 +41,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Barrio.cs" />
     <Compile Include="CalcularPrecioRevision.cs" />
-    <Compile Include="Ciudades.cs" />
+    <Compile Include="Calle.cs" />
+    <Compile Include="Ciudad.cs" />
     <Compile Include="Cliente.cs" />
     <Compile Include="Cuenta.cs" />
     <Compile Include="DatosCompartidos.cs" />
