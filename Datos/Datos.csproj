@@ -74,6 +74,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConexionCliente.cs" />
     <Compile Include="Conexion_Empleado.cs" />
     <Compile Include="Conexion_Propietario.cs" />
     <Compile Include="Gestion_Administradores.cs" />

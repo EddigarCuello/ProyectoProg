@@ -45,5 +45,12 @@ namespace Logica
             return Datos;
         }
 
+        public DataTable DatosCuenta(string Cedula)
+        {
+            DataTable cuenta = new DataTable();
+            cuenta = G_Empleados.ListadoCuentas(Cedula);
+            return cuenta;
+        }
+
     }
 }

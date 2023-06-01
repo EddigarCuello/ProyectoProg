@@ -89,8 +89,11 @@ namespace Presentacion
         private void ObtenerId_Calle()
         {
             DataRowView selectedRow = (DataRowView)CB_CALLES.SelectedItem;
-            idCalleSeleccionada = int.Parse(selectedRow["id_calle"].ToString());
-
+            if (selectedRow != null)
+            {
+                
+                idCalleSeleccionada = int.Parse(selectedRow["id_calle"].ToString());
+            }
         }
 
 
@@ -129,28 +132,12 @@ namespace Presentacion
 
         }
 
-        private bool ComprobarTextBox()
-        {
-            if (tbContraseña == tbRepeticionContraseña)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
+
         private void ObtenerCuenta()
         {
-            if (ComprobarTextBox() == true)
-            {
-                MessageBox.Show("Las cotraseñas deben coicidir");
-            }
-            else
-            {
                 Cuenta.Contraseña = tbContraseña.Text;
                 Cuenta.Usuario = tbUsuario.Text;
-            }
+
         }
 
         void Salir()
@@ -251,15 +238,11 @@ namespace Presentacion
         {
             if (Comprobar() == false )
             {
-                if (ComprobarTextBox() != false)
-                {
+
                     Guardar();
-                }else
-                {
-                    MessageBox.Show("Contraseñas no coinciden");
-                }
-                
-                //Continuar();
+
+
+
             }
             else
             {

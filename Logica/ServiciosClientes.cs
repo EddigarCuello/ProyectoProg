@@ -46,9 +46,105 @@ namespace Logica
             return Factura;
         }
 
-        public string InsertarFactura(string cl_cedula,string emp_cedula,string placa)
+        public string InsertarFactura(Factura factura,string cilindraje,string tp_vehiculo,DateTime version)
         {
-            string msg = clientes.InsertarFactura(cl_cedula,emp_cedula,placa);
+            double factor_version= 1;
+            double factor_cilindraje = 1;
+            double prc_servicios = 0;
+            double prc_revision = 0;
+            double total = 0;
+            if (version.Year >= 2018)
+            {
+                factor_version = 1.2;
+            }
+            if(cilindraje == "ALTO")
+            {
+                factor_cilindraje = 1.5;
+            }
+            else
+            {
+                if(cilindraje == "MEDIO")
+                {
+                    factor_cilindraje = 1.2;
+                }
+                else
+                {
+                    factor_cilindraje = 1.1;
+                }
+            }
+
+            if(tp_vehiculo == "Moto")
+            {
+                prc_revision = 15000;
+                prc_servicios = (factor_cilindraje * factor_version * prc_revision);
+                prc_servicios = Math.Round(prc_servicios);
+            }
+            else
+            {
+                prc_revision = 30000;
+                prc_servicios = (factor_cilindraje * factor_version * prc_revision);
+                prc_servicios = Math.Round(prc_servicios);
+            }
+
+            total = prc_servicios + prc_revision;
+            total = Math.Round(total);     
+            factura.servicios = prc_servicios;
+            factura.Prc_Revision = prc_revision;
+            factura.Prc_Total = total;
+
+            string msg = clientes.InsertarFactura(factura);
+            return msg;
+        }
+
+        public string ActualizarFactura(string idFactura, string cilindraje,string tp_vehiculo,DateTime version)
+        {
+            Factura factura = new Factura();
+            double factor_version = 1;
+            double factor_cilindraje = 1;
+            double prc_servicios = 0;
+            double prc_revision = 0;
+            double total = 0;
+            if (version.Year >= 2018)
+            {
+                factor_version = 1.2;
+            }
+            if (cilindraje == "ALTO")
+            {
+                factor_cilindraje = 1.5;
+            }
+            else
+            {
+                if (cilindraje == "MEDIO")
+                {
+                    factor_cilindraje = 1.2;
+                }
+                else
+                {
+                    factor_cilindraje = 1.1;
+                }
+            }
+
+            if (tp_vehiculo == "Moto")
+            {
+                prc_revision = 15000;
+                prc_servicios = (factor_cilindraje * factor_version * prc_revision);
+                prc_servicios = Math.Round(prc_servicios);
+            }
+            else
+            {
+                prc_revision = 30000;
+                prc_servicios = (factor_cilindraje * factor_version * prc_revision);
+                prc_servicios = Math.Round(prc_servicios);
+            }
+
+            total = prc_servicios + prc_revision;
+            total = Math.Round(total);
+            factura.servicios = prc_servicios;
+            factura.Prc_Revision = prc_revision;
+            factura.Prc_Total = total;
+            factura.Cod_Factura = idFactura;
+
+            string msg = clientes.ActualizarFactura(factura);
             return msg;
         }
 

@@ -48,7 +48,7 @@ namespace Datos
             try
             {
                 sqlconn = Conexion_Propietario.ObtenerInstancia().CrearConexion();
-                OracleCommand comando = new OracleCommand("BEGIN :resultado := ObtenerBarriosPorCiudad(:idCiudad); END;", sqlconn);
+                OracleCommand comando = new OracleCommand("BEGIN :resultado := FN_DIRECCIONES.ObtenerBarriosPorCiudad(:idCiudad); END;", sqlconn);
                 comando.CommandType = CommandType.Text;
 
                 comando.Parameters.Add("resultado", OracleDbType.RefCursor).Direction = ParameterDirection.ReturnValue;
@@ -85,7 +85,7 @@ namespace Datos
             try
             {
                 sqlconn = Conexion_Propietario.ObtenerInstancia().CrearConexion();
-                OracleCommand comando = new OracleCommand("BEGIN :resultado := ObtenerCallesPorBarrio(:idBarrio); END;", sqlconn);
+                OracleCommand comando = new OracleCommand("BEGIN :resultado := FN_DIRECCIONES.ObtenerCallesPorBarrio(:idBarrio); END;", sqlconn);
                 comando.CommandType = CommandType.Text;
 
                 comando.Parameters.Add("resultado", OracleDbType.RefCursor).Direction = ParameterDirection.ReturnValue;

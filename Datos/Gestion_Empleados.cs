@@ -59,7 +59,7 @@ namespace Datos
                 sqlconn = Conexion_Propietario.ObtenerInstancia().CrearConexion();
                 OracleCommand comando = new OracleCommand();
                 comando.Connection = sqlconn;
-                comando.CommandText = "BEGIN :result := FN_INSERTAR_CUENTA(:usuario, :contraseña); END;";
+                comando.CommandText = "BEGIN :result := FN_LOGINS.FN_INSERTAR_CUENTA(:usuario, :contraseña); END;";
                 comando.CommandType = CommandType.Text;
 
                 comando.Parameters.Add("result", OracleDbType.Varchar2, 1000).Direction = ParameterDirection.ReturnValue;
@@ -130,7 +130,7 @@ namespace Datos
             try
             {
                 sqlconn = Conexion_Propietario.ObtenerInstancia().CrearConexion();
-                OracleCommand comando = new OracleCommand("BEGIN :cursor := ObtenerDatosEmpleado(:cedula); END;", sqlconn);
+                OracleCommand comando = new OracleCommand("BEGIN :cursor := FN_EMPLOYEES.ObtenerDatosEmpleado(:cedula); END;", sqlconn);
                 comando.CommandType = CommandType.Text;
 
                 // Parámetro de entrada - Cédula del empleado
@@ -156,6 +156,41 @@ namespace Datos
                 }
             }
         }
+
+        public DataTable ListadoCuentas(string cedula)
+        {
+            OracleDataReader ResultadoCuentas;
+            DataTable TablaCuentas = new DataTable();
+            OracleConnection sqlconn = new OracleConnection();
+
+            try
+            {
+                sqlconn = Conexion_Propietario.ObtenerInstancia().CrearConexion();
+                OracleCommand comando = new OracleCommand("SELECT * FROM VISTA_USUARIOS WHERE CEDULA = :cedula", sqlconn);
+                comando.CommandType = CommandType.Text;
+
+                // Parámetro de entrada - Cédula
+                comando.Parameters.Add(new OracleParameter("cedula", cedula));
+
+                sqlconn.Open();
+                ResultadoCuentas = comando.ExecuteReader();
+                TablaCuentas.Load(ResultadoCuentas);
+
+                return TablaCuentas;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                if (sqlconn.State == ConnectionState.Open)
+                {
+                    sqlconn.Close();
+                }
+            }
+        }
+
 
 
 

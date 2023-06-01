@@ -24,13 +24,13 @@ namespace Entidades
 
         
 
-        public static void ActualizarCedulaCLiente(string cedula)
+        public static void ActualizarCedulaCliente(string cedula)
         {
             CedulaCliente = cedula;
         }
 
 
-        public static string ObtenerCedulaCLiente()
+        public static string ObtenerCedulaCliente()
         {
             return CedulaCliente;
         }

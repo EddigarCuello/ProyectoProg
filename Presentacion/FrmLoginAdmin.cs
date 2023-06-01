@@ -1,4 +1,5 @@
-﻿using Logica;
+﻿using Entidades;
+using Logica;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -30,7 +31,20 @@ namespace Presentacion
         {
             this.Close();
             frmPrincipal.Show();
-        } 
+        }
+        private void CargarCuenta()
+        {
+            DataTable Dtcuenta = empleados.DatosCuenta(DatosCompartidos.ObtenerCedula());
+
+            // Verificar si se obtuvieron datos de la factura
+            if (Dtcuenta.Rows.Count > 0)
+            {
+                // Obtener los valores de las columnas de la primera fila de la tabla
+                lbUser.Text = Dtcuenta.Rows[0]["USUARIO"].ToString();
+                lbPass.Text = Dtcuenta.Rows[0]["CONTRASEÑA"].ToString();
+
+            }
+        }
         private void btnConsultar_Click(object sender, EventArgs e)
         {
 
@@ -39,6 +53,7 @@ namespace Presentacion
         private void FrmLoginAdmin_Load(object sender, EventArgs e)
         {
             Cargar();
+            CargarCuenta();
         }
 
         private void btnSalir_Click(object sender, EventArgs e)

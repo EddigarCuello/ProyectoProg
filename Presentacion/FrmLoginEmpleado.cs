@@ -23,12 +23,15 @@ namespace Presentacion
             tbPlaca.Enabled = false;
             pnPersona.Visible = false;
         }
-        #region
+        #region "VARIABLES"
         FrmPrincipal frmPrincipal = new FrmPrincipal();
         ServiciosClientes ServiciosC  = new ServiciosClientes();
         FrmAgregarCliente frmAgregarCliente = new FrmAgregarCliente();
         ServiciosClientes clientes = new ServiciosClientes();
+        ServiciosEmpleados empleados = new ServiciosEmpleados();
+        Factura Factura = new Factura();
         string cedulacl = "";
+        string idFActura;
         #endregion
         private bool ComprobartbVehiculos()
         {
@@ -76,15 +79,22 @@ namespace Presentacion
                 string TipoVeh;
                 if (rbMoto.Checked)
                 {
-                    TipoVeh = "moto";
+                    TipoVeh = "Moto";
                 }
                 else
                 {
-                    TipoVeh = "carro";
+                    TipoVeh = "Carro";
                 }
-                string msg = clientes.ActualizarVehiculos(tbPlaca.Text,TipoVeh, tbModelo.Text,
+
+                string msgF = clientes.ActualizarFactura(idFActura,tbCilindraje.Text, TipoVeh, dtpVersion.Value);
+
+                string msg = clientes.ActualizarVehiculos( tbPlaca.Text,TipoVeh, tbModelo.Text,
              tbMarca.Text, tbCilindraje.Text);
-                MessageBox.Show("Se ha editado correctamente");
+
+
+
+                MessageBox.Show(  " y " + msgF);//"Se ha editado correctamente");
+
             }
             else
             {
@@ -92,14 +102,25 @@ namespace Presentacion
             }
         }
 
+        private void CargarCuenta()
+        {
+            DataTable Dtcuenta =empleados.DatosCuenta(DatosCompartidos.ObtenerCedula());
+
+            // Verificar si se obtuvieron datos de la factura
+            if (Dtcuenta.Rows.Count > 0)
+            {
+                // Obtener los valores de las columnas de la primera fila de la tabla
+                lbUser.Text = Dtcuenta.Rows[0]["USUARIO"].ToString();
+                lbPass.Text = Dtcuenta.Rows[0]["CONTRASEÑA"].ToString();
+
+            }
+        }
+
 
 
         private void FrmAgregarCliente()
         {
-           frmAgregarCliente.ShowDialog();
-            
-
-           
+           frmAgregarCliente.ShowDialog();  
         }
         private void Cargar()
         {
@@ -138,6 +159,8 @@ namespace Presentacion
                     string placa = DtFactura.Rows[0]["PLACA"].ToString();
 
                     // Actualizar los valores de los labels con los datos obtenidos
+                    idFActura = codFactura;
+
                     lbCoidgoFact.Text = codFactura;
                     lbPrc_Servicios.Text = servicio;
                     lbPrc_Revision.Text = prcRevision;
@@ -183,6 +206,7 @@ namespace Presentacion
         private void FrmLoginEmpleado_Load(object sender, EventArgs e)
         {
             Cargar();
+            CargarCuenta();
         }
 
         private void dgClientes_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -194,6 +218,11 @@ namespace Presentacion
         private void btnEditarVeh_Click(object sender, EventArgs e)
         {
             ActualizarVeh();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

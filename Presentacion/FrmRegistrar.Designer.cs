@@ -51,9 +51,7 @@
             this.label10 = new System.Windows.Forms.Label();
             this.tbUsuario = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
-            this.tbRepeticionContraseña = new System.Windows.Forms.TextBox();
             this.tbContraseña = new System.Windows.Forms.TextBox();
-            this.label12 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.pbSalir = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
@@ -262,9 +260,7 @@
             this.panel2.Controls.Add(this.label10);
             this.panel2.Controls.Add(this.tbUsuario);
             this.panel2.Controls.Add(this.label11);
-            this.panel2.Controls.Add(this.tbRepeticionContraseña);
             this.panel2.Controls.Add(this.tbContraseña);
-            this.panel2.Controls.Add(this.label12);
             this.panel2.Location = new System.Drawing.Point(703, 153);
             this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
@@ -294,39 +290,20 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Cooper Black", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(153, 228);
+            this.label11.Location = new System.Drawing.Point(139, 283);
             this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(185, 20);
             this.label11.TabIndex = 12;
             this.label11.Text = "Digite su contraseña";
             // 
-            // tbRepeticionContraseña
-            // 
-            this.tbRepeticionContraseña.Location = new System.Drawing.Point(164, 398);
-            this.tbRepeticionContraseña.Margin = new System.Windows.Forms.Padding(4);
-            this.tbRepeticionContraseña.Name = "tbRepeticionContraseña";
-            this.tbRepeticionContraseña.Size = new System.Drawing.Size(160, 22);
-            this.tbRepeticionContraseña.TabIndex = 15;
-            // 
             // tbContraseña
             // 
-            this.tbContraseña.Location = new System.Drawing.Point(157, 277);
+            this.tbContraseña.Location = new System.Drawing.Point(153, 332);
             this.tbContraseña.Margin = new System.Windows.Forms.Padding(4);
             this.tbContraseña.Name = "tbContraseña";
             this.tbContraseña.Size = new System.Drawing.Size(160, 22);
             this.tbContraseña.TabIndex = 13;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Cooper Black", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(107, 360);
-            this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(272, 20);
-            this.label12.TabIndex = 14;
-            this.label12.Text = "Vuelva a digitar su contraseña";
             // 
             // label9
             // 
@@ -433,9 +410,7 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox tbUsuario;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.TextBox tbRepeticionContraseña;
         private System.Windows.Forms.TextBox tbContraseña;
-        private System.Windows.Forms.Label label12;
         private System.Windows.Forms.PictureBox pbSalir;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Button btnLogin;

@@ -20,6 +20,7 @@ namespace Presentacion
         }
         ServiciosClientes clientes = new ServiciosClientes();
         FrmPrincipal principal = new FrmPrincipal();
+        ServiciosEmpleados ServiciosEmpleados = new ServiciosEmpleados();
         private void CargarDatosFactura()
         {
 
@@ -60,6 +61,20 @@ namespace Presentacion
             
         }
 
+        private void CargarCuenta()
+        {
+            DataTable Dtcuenta =ServiciosEmpleados.DatosCuenta (DatosCompartidos.ObtenerCedula());
+
+            // Verificar si se obtuvieron datos de la factura
+            if (Dtcuenta.Rows.Count > 0)
+            {
+                // Obtener los valores de las columnas de la primera fila de la tabla
+                lbUser.Text= Dtcuenta.Rows[0]["USUARIO"].ToString();
+                lbPass.Text = Dtcuenta.Rows[0]["CONTRASEÑA"].ToString();
+
+            }
+        }
+
         private void Salir()
         {
 
@@ -69,6 +84,7 @@ namespace Presentacion
         private void FrmLoginCliente_Load(object sender, EventArgs e)
         {
             CargarDatosFactura();
+            CargarCuenta();
         }
 
         private void pbSalir_Click(object sender, EventArgs e)

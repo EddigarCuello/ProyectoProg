@@ -27,9 +27,10 @@ namespace Presentacion
         int idBarrioSeleccionado;
         int idCalleSeleccionada;
         string CodigoSecreto = "Admin2023";
-        Cliente Item = new Cliente();
+        Cliente Cliente = new Cliente();
         Vehiculo vehiculo = new Vehiculo();
         Cuenta cuenta = new Cuenta();
+        Factura factura = new Factura();
         string msg1;
         string msg2;
         string msg3;
@@ -141,17 +142,18 @@ namespace Presentacion
         public void Guardar()
         {
 
-            Item.Pr_Nombre = tbPrNombre.Text;
-            Item.Pr_Apellido = tbPrApellido.Text;
-            Item.Cedula = tbCedula.Text;
-            DatosCompartidos.ActualizarCedulaCLiente(Item.Cedula);
-            Item.Telefono = tbTelefono.Text;
-            Item.Id_calle = idCalleSeleccionada;
+            Cliente.Pr_Nombre = tbPrNombre.Text;
+            Cliente.Pr_Apellido = tbPrApellido.Text;
+            Cliente.Cedula = tbCedula.Text;
+            Cliente.CedulaEmpleado = DatosCompartidos.ObtenerCedula();
+            DatosCompartidos.ActualizarCedulaCliente(Cliente.Cedula);
+            Cliente.Telefono = tbTelefono.Text;
+            Cliente.Id_calle = idCalleSeleccionada;
+
             
-            Item.CedulaEmpleado = DatosCompartidos.ObtenerCedula();
 
             ObtenerCuenta();
-            Item.Usuario = cuenta.Usuario;
+            Cliente.Usuario = cuenta.Usuario;
 
             vehiculo.Marca = tbMarca.Text;
             vehiculo.Placa = tbPlaca.Text;
@@ -159,15 +161,21 @@ namespace Presentacion
             vehiculo.Version = dtpVersion.Value;
             vehiculo.Modelo = tbModelo.Text;
             vehiculo.TipoVehiculo = tbTipoVeh.Text;
-            vehiculo.CedulaCliente = Item.Cedula;
+            vehiculo.CedulaCliente = Cliente.Cedula;
+
+            factura.placa = vehiculo.Placa;
+            factura.Cliente_CC = Cliente.Cedula;
+            factura.Empleado_CC = Cliente.CedulaEmpleado;
+            factura.fecha_Fact = System.DateTime.Now;
+
 
 
 
 
                 msg2 = clientes.InsertarCuentaCliente(cuenta);
-                msg1 = clientes.InsertarCliente(Item);
+                msg1 = clientes.InsertarCliente(Cliente);
                 msg3 = clientes.InsertarVehiculos(vehiculo);
-                msg4 = clientes.InsertarFactura(Item.Cedula,Item.CedulaEmpleado,vehiculo.Placa.ToString());
+                msg4 = clientes.InsertarFactura(factura,vehiculo.Cilindraje,vehiculo.TipoVehiculo,vehiculo.Version);
 
                  MessageBox.Show(msg4);
                 if (msg2 == "OK")
@@ -199,7 +207,7 @@ namespace Presentacion
 
         private void CB_BARRIOS_SelectedIndexChanged(object sender, EventArgs e)
         {
-            MessageBox.Show(idBarrioSeleccionado.ToString());
+            //MessageBox.Show(idBarrioSeleccionado.ToString());
             ObtenerId_Barrio();
             MostrarCalles(idBarrioSeleccionado);
             ObtenerId_Calle();

@@ -50,6 +50,10 @@
             this.label15 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
+            this.lbPass = new System.Windows.Forms.Label();
+            this.lbUser = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -72,6 +76,10 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.lbPass);
+            this.panel1.Controls.Add(this.lbUser);
+            this.panel1.Controls.Add(this.label5);
+            this.panel1.Controls.Add(this.label8);
             this.panel1.Controls.Add(this.btnSalir);
             this.panel1.Controls.Add(this.btnConsultar);
             this.panel1.Controls.Add(this.label1);
@@ -283,6 +291,46 @@
             this.label18.TabIndex = 0;
             this.label18.Text = "pr_nombre";
             // 
+            // lbPass
+            // 
+            this.lbPass.AutoSize = true;
+            this.lbPass.Font = new System.Drawing.Font("Cooper Black", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbPass.Location = new System.Drawing.Point(142, 409);
+            this.lbPass.Name = "lbPass";
+            this.lbPass.Size = new System.Drawing.Size(94, 20);
+            this.lbPass.TabIndex = 42;
+            this.lbPass.Text = "Password";
+            // 
+            // lbUser
+            // 
+            this.lbUser.AutoSize = true;
+            this.lbUser.Font = new System.Drawing.Font("Cooper Black", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbUser.Location = new System.Drawing.Point(142, 361);
+            this.lbUser.Name = "lbUser";
+            this.lbUser.Size = new System.Drawing.Size(49, 20);
+            this.lbUser.TabIndex = 41;
+            this.lbUser.Text = "User";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Cooper Black", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(12, 408);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(107, 20);
+            this.label5.TabIndex = 40;
+            this.label5.Text = "Contraseña";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Cooper Black", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(12, 361);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(78, 20);
+            this.label8.TabIndex = 39;
+            this.label8.Text = "Usuario";
+            // 
             // FrmLoginAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -331,5 +379,9 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label lbPass;
+        private System.Windows.Forms.Label lbUser;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label8;
     }
 }
