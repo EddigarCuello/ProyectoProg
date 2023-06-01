@@ -41,8 +41,6 @@ namespace Presentacion
         #region "METODOS DIRECCIONES"
         private void MostrarCiudades()
         {
-
-
             CB_CIUDADES.DataSource = admin.Listado_Ciudades();
             CB_CIUDADES.ValueMember = "id_ciudad";
             CB_CIUDADES.DisplayMember = "nom_ciudad";
@@ -74,30 +72,30 @@ namespace Presentacion
 
         private void ObtenerId_Ciudad()
         {
-
-            DataRowView selectedRow = (DataRowView)CB_CIUDADES.SelectedItem;
-            idCiudadSeleccionada = int.Parse(selectedRow["id_ciudad"].ToString());
+            Ciudad ciudadSeleccionada = (Ciudad)CB_CIUDADES.SelectedItem;
+            idCiudadSeleccionada = ciudadSeleccionada.Id_Ciudad;
         }
+
 
         private void ObtenerId_Barrio()
         {
-            DataRowView selectedRow = (DataRowView)CB_BARRIOS.SelectedItem;
-            if (selectedRow != null)
+            Barrio barrioSeleccionado = (Barrio)CB_BARRIOS.SelectedItem;
+            if (barrioSeleccionado != null)
             {
-                idBarrioSeleccionado = int.Parse(selectedRow["id_barrio"].ToString());
+                idBarrioSeleccionado = barrioSeleccionado.id_Barrio;
             }
-
         }
+
 
         private void ObtenerId_Calle()
         {
-            DataRowView selectedRow = (DataRowView)CB_CALLES.SelectedItem;
-            if (selectedRow != null)
+            Calle calleSeleccionada = (Calle)CB_CALLES.SelectedItem;
+            if (calleSeleccionada != null)
             {
-                idCalleSeleccionada = int.Parse(selectedRow["id_calle"].ToString());
+                idCalleSeleccionada = calleSeleccionada.Id_Calle;
             }
-
         }
+
 
 
 
@@ -113,6 +111,10 @@ namespace Presentacion
             CB_CALLES.ValueMember = "id_calle";
             CB_CALLES.DisplayMember = "nom_calle";
         }
+
+
+
+
 
 
 
