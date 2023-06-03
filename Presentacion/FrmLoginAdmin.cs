@@ -21,30 +21,68 @@ namespace Presentacion
             dgEmpleados.RowHeadersVisible = false;
         }
 
+
+
+        #region "INSTANCIAS"
         FrmPrincipal frmPrincipal = new FrmPrincipal();
         ServiciosEmpleados empleados = new ServiciosEmpleados();
-        void Cargar()
+        ServiciosAdministradores Administradores = new ServiciosAdministradores();
+        ServiciosCuentas S_cuentas = new ServiciosCuentas();
+
+        #endregion
+
+        #region "METODOS PARA DATOS"
+        private void Cargar()
         {
             dgEmpleados.DataSource = empleados.ListareEmpleados_NumClientes();
+            string CC_Cliente = DatosCompartidos.ObtenerCedula();
+
+            Persona persona1 = new Persona();
+            persona1 = S_cuentas.ObtenerNombre(CC_Cliente);
+            lbNombres.Text = persona1.Pr_Nombre + "\n " + persona1.Pr_Apellido;
         }
+
+        private void CargarCuenta()
+        {
+            CuentaUser DatosUsuario = S_cuentas.DatosCuenta(DatosCompartidos.ObtenerCedulaAdmin());
+
+            // Verificar si se obtuvieron datos de la cuenta
+            if (DatosUsuario != null)
+            {
+                // Obtener los valores de las propiedades del objeto DatosUsuario
+                lbUser.Text = DatosUsuario.Usuario;
+                lbPass.Text = DatosUsuario.Contraseña;
+            }
+        }
+
+        private void DatosParaLogearEmpleado(DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow fila = dgEmpleados.Rows[e.RowIndex];
+                string emp_cedula = fila.Cells[0].Value.ToString();
+
+                DatosCompartidos.ActualizarCedula(emp_cedula);
+
+
+            }
+        }
+        private void CargarLogEmpleado()
+        {
+            FrmLoginEmpleadoForAdmin frmLoginEmpleado = new FrmLoginEmpleadoForAdmin();
+            frmLoginEmpleado.ShowDialog();
+        }
+        #endregion
+
+        #region "METODOS PARA EL FORM"
         void Salir()
         {
             this.Close();
             frmPrincipal.Show();
         }
-        private void CargarCuenta()
-        {
-            DataTable Dtcuenta = empleados.DatosCuenta(DatosCompartidos.ObtenerCedula());
+        #endregion
 
-            // Verificar si se obtuvieron datos de la factura
-            if (Dtcuenta.Rows.Count > 0)
-            {
-                // Obtener los valores de las columnas de la primera fila de la tabla
-                lbUser.Text = Dtcuenta.Rows[0]["USUARIO"].ToString();
-                lbPass.Text = Dtcuenta.Rows[0]["CONTRASEÑA"].ToString();
-
-            }
-        }
+        #region "EVENTOS"
         private void btnConsultar_Click(object sender, EventArgs e)
         {
 
@@ -59,6 +97,14 @@ namespace Presentacion
         private void btnSalir_Click(object sender, EventArgs e)
         {
             Salir();
+        }
+        #endregion
+
+        private void dgEmpleados_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            DatosParaLogearEmpleado(e);
+            CargarLogEmpleado();
+
         }
     }
 }

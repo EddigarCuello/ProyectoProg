@@ -70,6 +70,12 @@
     <Compile Include="FrmLoginEmpleado.Designer.cs">
       <DependentUpon>FrmLoginEmpleado.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmLoginEmpleadoForAdmin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmLoginEmpleadoForAdmin.Designer.cs">
+      <DependentUpon>FrmLoginEmpleadoForAdmin.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -95,6 +101,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmLoginEmpleado.resx">
       <DependentUpon>FrmLoginEmpleado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmLoginEmpleadoForAdmin.resx">
+      <DependentUpon>FrmLoginEmpleadoForAdmin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmPrincipal.resx">
       <DependentUpon>FrmPrincipal.cs</DependentUpon>

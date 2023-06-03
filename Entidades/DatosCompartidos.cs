@@ -9,7 +9,7 @@ namespace Entidades
     public static class DatosCompartidos
     {
         public static string Cedula { get; set; }
-        public static string CedulaCliente { get; set; }
+        public static string CedulaAdmin{ get; set; }
 
         public static void ActualizarCedula(string cedula)
         {
@@ -22,17 +22,17 @@ namespace Entidades
             return Cedula;
         }
 
-        
 
-        public static void ActualizarCedulaCliente(string cedula)
+
+        public static void ActualizarCedulaAdmin(string cedula)
         {
-            CedulaCliente = cedula;
+            CedulaAdmin = cedula;
         }
 
 
-        public static string ObtenerCedulaCliente()
+        public static string ObtenerCedulaAdmin()
         {
-            return CedulaCliente;
+            return CedulaAdmin;
         }
 
 

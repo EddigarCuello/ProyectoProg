@@ -12,24 +12,16 @@ namespace Logica
     public class ServiciosEmpleados
     {
         Gestion_Empleados G_Empleados = new Gestion_Empleados();
+    
+
         
-        public string InsertarAdministradores(Persona administrador)
+        public string InsertarEmpleado(Persona Empleado)
         {
-            string msg1 = G_Empleados.InsertarEmpleados(administrador);
+            string msg1 = G_Empleados.InsertarEmpleados(Empleado);
             return msg1;
         }
 
-        public string InsertarCuenta(Cuenta cuenta)
-        {
-            string msg2 = G_Empleados.InsertarCuenta(cuenta);
-            return msg2;
-        }
-
-
-        public DataTable ListadoClientes()
-        {
-            return null;
-        }
+       
 
         public DataTable ListareEmpleados_NumClientes() 
         {
@@ -37,20 +29,32 @@ namespace Logica
             EMPCL = G_Empleados.ListadoEmpleado_NumClientes();
             return EMPCL;
         }
-
-        public DataTable ObtDatosEmp(string Cedula)
+        //Filtado en codigo
+        public Persona ObtDatosEmp(string Cedula)
         {
-            DataTable Datos = new DataTable();
-            Datos = G_Empleados.DatosEmp(Cedula);
-            return Datos;
-        }
 
-        public DataTable DatosCuenta(string Cedula)
-        {
-            DataTable cuenta = new DataTable();
-            cuenta = G_Empleados.ListadoCuentas(Cedula);
-            return cuenta;
+            List<Persona> empleados = new List<Persona>();
+            Persona empleado = new Persona();
+
+            empleados = G_Empleados.DatosEmp();
+            foreach(Persona Emp in empleados)
+            {
+                if(Emp.Cedula == Cedula)
+                {
+                    empleado.Cedula = Emp.Cedula;
+                    empleado.Usuario  = Emp.Usuario;
+                    empleado.Pr_Nombre = Emp.Pr_Nombre;
+                    empleado.Pr_Apellido = Emp.Pr_Apellido;
+                    empleado.Telefono = Emp.Telefono;
+                    empleado.Id_calle = Emp.Id_calle;
+
+                }
+            }
+
+            return empleado;
         }
+        //Filtrado en codigo
+        
 
     }
 }

@@ -24,12 +24,14 @@ namespace Presentacion
         ServiciosAdministradores admin = new ServiciosAdministradores();
         ServiciosEmpleados empleados = new ServiciosEmpleados();
         FrmPrincipal FrmPrincipal = new FrmPrincipal();
+        ServiciosCuentas S_cuenta = new ServiciosCuentas();
+        ServicioDirecciones S_direcciones = new ServicioDirecciones();
         int idCiudadSeleccionada;
         int idBarrioSeleccionado;
         int idCalleSeleccionada;
         string CodigoSecreto = "Admin2023";
         Persona Item = new Persona();
-        Cuenta Cuenta = new Cuenta();
+        CuentaUser Cuenta = new CuentaUser();
         string msg1;
         string msg2;
 
@@ -38,7 +40,7 @@ namespace Presentacion
         #region "METODOS DIRECCIONES"
         private void MostrarCiudades()
         {
-            CB_CIUDADES.DataSource = admin.Listado_Ciudades();
+            CB_CIUDADES.DataSource = S_direcciones.Listado_Ciudades();
             CB_CIUDADES.ValueMember = "id_ciudad";
             CB_CIUDADES.DisplayMember = "nom_ciudad";
         }
@@ -48,7 +50,7 @@ namespace Presentacion
             CB_BARRIOS.SelectedIndex = -1;
             CB_CALLES.SelectedIndex = -1;
 
-            List<Barrio> barrios = admin.Listado_Barrios(idCiudad);
+            List<Barrio> barrios = S_direcciones.Listado_Barrios(idCiudad);
 
             CB_BARRIOS.DataSource = barrios;
             CB_BARRIOS.ValueMember = "id_barrio";
@@ -56,15 +58,6 @@ namespace Presentacion
 
             
 
-        }
-        private void DesactivarCb_Barrios()
-        {
-            CB_BARRIOS.Enabled = false;
-        }
-
-        private void ActivarCb_Barrios()
-        {
-            CB_BARRIOS.Enabled = true;
         }
 
         private void ObtenerId_Ciudad()
@@ -101,7 +94,7 @@ namespace Presentacion
 
             CB_CALLES.SelectedIndex = -1;
 
-            List<Calle> calles = admin.Listado_Calles(IdBarrio);
+            List<Calle> calles = S_direcciones.Listado_Calles(IdBarrio);
             
 
             CB_CALLES.DataSource = calles;
@@ -161,7 +154,7 @@ namespace Presentacion
 
             if (txtCodigoSecreto.Text == CodigoSecreto)
             {
-                msg2 = admin.InsertarCuenta(Cuenta);
+                msg2 = S_cuenta.InsertarCuenta(Cuenta);
                 msg1 = admin.InsertarAdministradores(Item);
                 if(msg2 == "OK")
                 {
@@ -174,8 +167,8 @@ namespace Presentacion
             }
             else
             {
-                msg2 = empleados.InsertarCuenta(Cuenta);
-                msg1 = empleados.InsertarAdministradores(Item);
+                msg2 = S_cuenta.InsertarCuenta(Cuenta);
+                msg1 = empleados.InsertarEmpleado(Item);
                 if (msg2 == "OK")
                 {
                     MessageBox.Show(msg1);
@@ -224,9 +217,6 @@ namespace Presentacion
             ObtenerId_Calle();
         }
 
-
-        #endregion
-
         private void pbSalir_Click(object sender, EventArgs e)
         {
             Salir();
@@ -234,10 +224,10 @@ namespace Presentacion
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            if (Comprobar() == false )
+            if (Comprobar() == false)
             {
 
-                    Guardar();
+                Guardar();
 
 
 
@@ -247,5 +237,14 @@ namespace Presentacion
                 MessageBox.Show("Faltan Datos");
             }
         }
+
+        private void CB_CALLES_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ObtenerId_Calle();
+        }
+
+        #endregion
+
+
     }
 }

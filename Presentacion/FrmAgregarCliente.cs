@@ -19,17 +19,21 @@ namespace Presentacion
             InitializeComponent();
 
         }
-        #region
+        #region "INSTANCIAS"
         //ServiciosClientee Servicios = new ServiciosClientee();
         ServiciosAdministradores admin = new ServiciosAdministradores();
         ServiciosClientes clientes = new ServiciosClientes();
+        ServiciosFactura S_factura = new ServiciosFactura();
+        ServiciosVehiculos S_vehiculos = new ServiciosVehiculos();
+        ServiciosCuentas S_cuentas = new ServiciosCuentas();
+        ServicioDirecciones S_direccionnes = new ServicioDirecciones();
         int idCiudadSeleccionada;
         int idBarrioSeleccionado;
         int idCalleSeleccionada;
         string CodigoSecreto = "Admin2023";
         Cliente Cliente = new Cliente();
         Vehiculo vehiculo = new Vehiculo();
-        Cuenta cuenta = new Cuenta();
+        CuentaUser cuenta = new CuentaUser();
         Factura factura = new Factura();
         string msg1;
         string msg2;
@@ -41,7 +45,7 @@ namespace Presentacion
         #region "METODOS DIRECCIONES"
         private void MostrarCiudades()
         {
-            CB_CIUDADES.DataSource = admin.Listado_Ciudades();
+            CB_CIUDADES.DataSource =S_direccionnes.Listado_Ciudades();
             CB_CIUDADES.ValueMember = "id_ciudad";
             CB_CIUDADES.DisplayMember = "nom_ciudad";
         }
@@ -51,7 +55,7 @@ namespace Presentacion
             CB_BARRIOS.SelectedIndex = -1;
             CB_CALLES.SelectedIndex = -1;
 
-            List<Barrio> barrios = admin.Listado_Barrios(idCiudad);
+            List<Barrio> barrios = S_direccionnes.Listado_Barrios(idCiudad);
 
             CB_BARRIOS.DataSource = barrios;
             CB_BARRIOS.ValueMember = "id_barrio";
@@ -95,16 +99,12 @@ namespace Presentacion
                 idCalleSeleccionada = calleSeleccionada.Id_Calle;
             }
         }
-
-
-
-
         private void MostrarCalles(int IdBarrio)
         {
 
             CB_CALLES.SelectedIndex = -1;
 
-            List<Calle> calles = admin.Listado_Calles(IdBarrio);
+            List<Calle> calles = S_direccionnes.Listado_Calles(IdBarrio);
 
 
             CB_CALLES.DataSource = calles;
@@ -112,34 +112,35 @@ namespace Presentacion
             CB_CALLES.DisplayMember = "nom_calle";
         }
 
-
-
-
-
-
-
-
-
         #endregion
 
+        #region "METODOS DEL FORM"
         private bool ComprobarCampos()
         {
-            if(string.IsNullOrEmpty(tbCedula.Text) || string.IsNullOrEmpty(tbPrNombre.Text) || string.IsNullOrEmpty(tbPrApellido.Text) ||
+            if (string.IsNullOrEmpty(tbCedula.Text) || string.IsNullOrEmpty(tbPrNombre.Text) || string.IsNullOrEmpty(tbPrApellido.Text) ||
                  string.IsNullOrEmpty(tbTelefono.Text) || string.IsNullOrEmpty(CB_CALLES.Text) || string.IsNullOrEmpty(tbUser.Text) ||
                  string.IsNullOrEmpty(TbPass.Text) || string.IsNullOrEmpty(tbPlaca.Text) || string.IsNullOrEmpty(tbMarca.Text) ||
                  string.IsNullOrEmpty(tbCilindraje.Text) || string.IsNullOrEmpty(tbTipoVeh.Text))
             {
                 return true;
-            }else
+            }
+            else
             {
                 return false;
             }
         }
+        private void Salir()
+        {
+            this.Close();
 
+        }
+        #endregion
+
+        #region "METODO DE DATOS"
         public void ObtenerCuenta()
         {
             cuenta.Contraseña = TbPass.Text;
-           cuenta.Usuario = tbUser.Text;
+            cuenta.Usuario = tbUser.Text;
         }
         public void Guardar()
         {
@@ -148,11 +149,11 @@ namespace Presentacion
             Cliente.Pr_Apellido = tbPrApellido.Text;
             Cliente.Cedula = tbCedula.Text;
             Cliente.CedulaEmpleado = DatosCompartidos.ObtenerCedula();
-            DatosCompartidos.ActualizarCedulaCliente(Cliente.Cedula);
+           // DatosCompartidos.ActualizarCedulaCliente(Cliente.Cedula);
             Cliente.Telefono = tbTelefono.Text;
             Cliente.Id_calle = idCalleSeleccionada;
 
-            
+
 
             ObtenerCuenta();
             Cliente.Usuario = cuenta.Usuario;
@@ -172,35 +173,25 @@ namespace Presentacion
 
 
 
+            msg2 = S_cuentas.InsertarCuenta(cuenta);
+            msg1 = clientes.InsertarCliente(Cliente);
+            msg3 = S_vehiculos.InsertarVehiculos(vehiculo);
+            msg4 = S_factura.InsertarFactura(factura, vehiculo.Cilindraje, vehiculo.TipoVehiculo, vehiculo.Version);
 
+            MessageBox.Show(msg4);
+            if (msg2 == "OK")
+            {
+                MessageBox.Show(msg1);
+            }
+            else
+            {
+                MessageBox.Show(msg2);
+            }
 
-                msg2 = clientes.InsertarCuentaCliente(cuenta);
-                msg1 = clientes.InsertarCliente(Cliente);
-                msg3 = clientes.InsertarVehiculos(vehiculo);
-                msg4 = clientes.InsertarFactura(factura,vehiculo.Cilindraje,vehiculo.TipoVehiculo,vehiculo.Version);
-
-                 MessageBox.Show(msg4);
-                if (msg2 == "OK")
-                {
-                    MessageBox.Show(msg1);
-                }
-                else
-                {
-                    MessageBox.Show(msg2);
-                }
-           
         }
+        #endregion
 
-        private void Salir()
-        {
-            this.Close();
-            
-        }
-
-
-
-
-
+        #region "EVENTOS"
         private void CB_CIUDADES_SelectedIndexChanged(object sender, EventArgs e)
         {
             ObtenerId_Ciudad();
@@ -233,13 +224,19 @@ namespace Presentacion
             {
                 Guardar();
                 Salir();
-                
-                
+
+
             }
             else
             {
                 MessageBox.Show("Faltan Datos");
             }
+        }
+        #endregion
+
+        private void CB_CALLES_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ObtenerId_Calle();
         }
     }
 }

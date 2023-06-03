@@ -74,14 +74,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConexionCliente.cs" />
-    <Compile Include="Conexion_Empleado.cs" />
     <Compile Include="Conexion_Propietario.cs" />
     <Compile Include="Gestion_Administradores.cs" />
     <Compile Include="Gestion_Clientes.cs" />
+    <Compile Include="Gestion_Cuenta.cs" />
     <Compile Include="Gestion_Direcciones.cs" />
     <Compile Include="Gestion_Empleados.cs" />
+    <Compile Include="Gestion_Factura.cs" />
     <Compile Include="Gestion_Inicio.cs" />
+    <Compile Include="Gestion_Vehiculos.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

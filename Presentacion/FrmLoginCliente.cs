@@ -18,69 +18,77 @@ namespace Presentacion
         {
             InitializeComponent();
         }
+
+        #region "INSTANCIAS"
         ServiciosClientes clientes = new ServiciosClientes();
         FrmPrincipal principal = new FrmPrincipal();
         ServiciosEmpleados ServiciosEmpleados = new ServiciosEmpleados();
+        ServiciosAdministradores Administradores = new ServiciosAdministradores();
+        ServiciosFactura S_factura = new ServiciosFactura();
+        ServiciosCuentas S_cuenta = new ServiciosCuentas();
+        #endregion
+
+        #region "Metodos para datos"
         private void CargarDatosFactura()
         {
 
 
-                // Obtener los datos de la factura correspondiente a la cédula del cliente
-                DataTable DtFactura = clientes.ObtFactura(DatosCompartidos.ObtenerCedula());
+            Factura factura = new Factura();
+            factura = S_factura.ObtFactura(DatosCompartidos.ObtenerCedula());
 
-                // Verificar si se obtuvieron datos de la factura
-                if (DtFactura.Rows.Count > 0)
-                {
-                    // Obtener los valores de las columnas de la primera fila de la tabla
-                    string codFactura = DtFactura.Rows[0]["COD_FACTURA"].ToString();
-                    string servicio = DtFactura.Rows[0]["SERVICIO"].ToString();
-                    string prcRevision = DtFactura.Rows[0]["PRC_REVISION"].ToString();
-                    string pagoTotal = DtFactura.Rows[0]["PAGO_TOTAL"].ToString();
-                    string fechaFact = DtFactura.Rows[0]["FECHA_FACT"].ToString();
-                    string empCedula = DtFactura.Rows[0]["EMP_CEDULA"].ToString();
-                    string placa = DtFactura.Rows[0]["PLACA"].ToString();
+            if (factura != null)
+            {
 
-                    // Actualizar los valores de los labels con los datos obtenidos
-                    lbCoidgoFact.Text = codFactura;
-                    lbPrc_Servicios.Text = servicio;
-                    lbPrc_Revision.Text = prcRevision;
-                    lb_Total.Text = pagoTotal;
-                    lbFechaFact.Text = fechaFact;
-                }
-                else
-                {
-                    // No se encontraron datos de la factura, puedes mostrar un mensaje o realizar alguna acción adicional si es necesario
-                    MessageBox.Show("No se encontraron datos de la factura.");
-                    lbCoidgoFact.Text = "None";
-                    lbPrc_Servicios.Text = "None";
-                    lbPrc_Revision.Text = "None";
-                    lb_Total.Text = "None";
-                    lbFechaFact.Text = "None";
-                }
 
-            
+                lbCoidgoFact.Text = factura.Cod_Factura;
+                lbPrc_Servicios.Text = factura.servicios.ToString();
+                lbPrc_Revision.Text = factura.Prc_Revision.ToString();
+                lb_Total.Text = factura.Prc_Total.ToString();
+                lbFechaFact.Text = factura.fecha_Fact.ToString();
+            }
+            else
+            {
+                MessageBox.Show("No se encontraron datos de la factura.");
+                lbCoidgoFact.Text = "None";
+                lbPrc_Servicios.Text = "None";
+                lbPrc_Revision.Text = "None";
+                lb_Total.Text = "None";
+                lbFechaFact.Text = "None";
+            }
+
+
         }
 
         private void CargarCuenta()
         {
-            DataTable Dtcuenta =ServiciosEmpleados.DatosCuenta (DatosCompartidos.ObtenerCedula());
+            CuentaUser DatosUsuario = S_cuenta.DatosCuenta(DatosCompartidos.ObtenerCedula());
+            string CC_Cliente = DatosCompartidos.ObtenerCedula();
 
-            // Verificar si se obtuvieron datos de la factura
-            if (Dtcuenta.Rows.Count > 0)
+            Persona persona1 = new Persona();
+            persona1 = S_cuenta.ObtenerNombre(CC_Cliente);
+            lbNombres.Text = persona1.Pr_Nombre + "\n " + persona1.Pr_Apellido;
+
+            // Verificar si se obtuvieron datos de la cuenta
+            if (DatosUsuario != null)
             {
-                // Obtener los valores de las columnas de la primera fila de la tabla
-                lbUser.Text= Dtcuenta.Rows[0]["USUARIO"].ToString();
-                lbPass.Text = Dtcuenta.Rows[0]["CONTRASEÑA"].ToString();
-
+                // Obtener los valores de las propiedades del objeto DatosUsuario
+                lbUser.Text = DatosUsuario.Usuario;
+                lbPass.Text = DatosUsuario.Contraseña;
             }
         }
 
+        #endregion
+
+        #region "Metodos del form"
         private void Salir()
         {
 
             principal.Show();
             this.Close();
         }
+        #endregion
+
+        #region "EVENTOS"
         private void FrmLoginCliente_Load(object sender, EventArgs e)
         {
             CargarDatosFactura();
@@ -91,5 +99,7 @@ namespace Presentacion
         {
             Salir();
         }
+        #endregion
+
     }
 }

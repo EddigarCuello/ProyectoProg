@@ -21,6 +21,7 @@ namespace Presentacion
 
         #region "VARIABLES"
         ServiciosAdministradores admin = new ServiciosAdministradores();
+        ServiciosCuentas S_cuentas = new ServiciosCuentas();
         string tipo_cuenta;
 
         int PosX = 0;
@@ -71,7 +72,7 @@ namespace Presentacion
         {
             string usuario = tbUsuario.Text;
             string contraseña = tbContraseña.Text;
-            DataTable tablaCuentas = admin.V_Cuentas();
+            DataTable tablaCuentas = S_cuentas.V_Cuentas();
             
             bool coinciden = false;
             tipo_cuenta = ""; // Variable para guardar el tipo de cuenta
@@ -86,6 +87,10 @@ namespace Presentacion
                     coinciden = true;
                     DatosCompartidos.ActualizarCedula(row["cedula"].ToString());
                     tipo_cuenta = row["tipo_de_cuenta"].ToString(); // Obtener el tipo de cuenta de la fila actual
+                    if(tipo_cuenta == "Administrador")
+                    {
+                        DatosCompartidos.ActualizarCedulaAdmin(row["cedula"].ToString());
+                    }
                     break;
                 }
             }

@@ -6,24 +6,29 @@ using System.Threading.Tasks;
 
 namespace Entidades
 {
-    public class Cuenta
+    public class CuentaUser
     {
         public string Usuario { get; set; }
         public string Contraseña { get; set;}
 
-        public Cuenta(string usuario, string contraseña)
+        public string cedula { get; set; }
+        public string Tipo_Cuenta { get; set; }
+
+        public CuentaUser(string usuario, string contraseña, string cedula, string tipo_Cuenta)
         {
             Usuario = usuario;
             Contraseña = contraseña;
+            this.cedula = cedula;
+            Tipo_Cuenta = tipo_Cuenta;
         }
 
-        public Cuenta()
+        public CuentaUser()
         {
         }
 
         public override string ToString()
         {
-            return $"{Usuario};{Contraseña}";
+            return base.ToString();
         }
     }
 }
