@@ -59,7 +59,7 @@ namespace Logica
             factura.Prc_Revision = prc_revision;
             factura.Prc_Total = total;
 
-            string msg = G_factura.InsertarFactura(factura);
+            string msg = G_factura.Insertar(factura);
             return msg;
         }
 
@@ -111,14 +111,14 @@ namespace Logica
             factura.Prc_Total = total;
             factura.Cod_Factura = idFactura;
 
-            string msg = G_factura.ActualizarFactura(factura);
+            string msg = G_factura.Actualizar(factura);
             return msg;
         }
 
         public Factura ObtFactura(string cl_cedula)
         {
             List<Factura> facturas = new List<Factura>();
-            facturas = G_factura.ObtenerFacturas();
+            facturas = G_factura.Consultar();
             Factura factura = new Factura();
             foreach (Factura fact in facturas)
             {
@@ -132,7 +132,7 @@ namespace Logica
 
         public string EliminarFactura(int p_id_factura)
         {
-            string msg = G_factura.EliminarFactura(p_id_factura);
+            string msg = G_factura.Eliminar(p_id_factura.ToString());
             return msg;
         }
     }

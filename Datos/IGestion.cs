@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Logica
+namespace Datos
 {
-    public interface IServicios <T>
+    public interface IGestion <T>
     {
         string Insertar(T item);
         string Eliminar(string identificador);

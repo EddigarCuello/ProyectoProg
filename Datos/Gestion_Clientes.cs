@@ -12,9 +12,9 @@ using System.Threading.Tasks;
 
 namespace Datos
 {
-    public class Gestion_Clientes
+    public class Gestion_Clientes : IGestion<Cliente>
     {
-        public string InsertarCliente(Cliente cliente)
+        public string Insertar(Cliente item)
         {
             string respuesta = string.Empty;
             OracleConnection sqlconn = new OracleConnection();
@@ -25,13 +25,13 @@ namespace Datos
                 comando.CommandType = CommandType.Text;
 
                 comando.Parameters.Add("result", OracleDbType.Varchar2, 1000).Direction = ParameterDirection.ReturnValue;
-                comando.Parameters.Add("Cl_cedula", OracleDbType.Varchar2).Value = cliente.Cedula;
-                comando.Parameters.Add("pr_nombre", OracleDbType.Varchar2).Value = cliente.Pr_Nombre;
-                comando.Parameters.Add("pr_apellido", OracleDbType.Varchar2).Value = cliente.Pr_Apellido;
-                comando.Parameters.Add("Emp_cedula", OracleDbType.Varchar2).Value = cliente.CedulaEmpleado;
-                comando.Parameters.Add("id_calle", OracleDbType.Int32).Value = cliente.Id_calle;
-                comando.Parameters.Add("telefono", OracleDbType.Varchar2).Value = cliente.Telefono;
-                comando.Parameters.Add("usuario", OracleDbType.Varchar2).Value = cliente.Usuario;
+                comando.Parameters.Add("Cl_cedula", OracleDbType.Varchar2).Value = item.Cedula;
+                comando.Parameters.Add("pr_nombre", OracleDbType.Varchar2).Value = item.Pr_Nombre;
+                comando.Parameters.Add("pr_apellido", OracleDbType.Varchar2).Value = item.Pr_Apellido;
+                comando.Parameters.Add("Emp_cedula", OracleDbType.Varchar2).Value = item.CedulaEmpleado;
+                comando.Parameters.Add("id_calle", OracleDbType.Int32).Value = item.Id_calle;
+                comando.Parameters.Add("telefono", OracleDbType.Varchar2).Value = item.Telefono;
+                comando.Parameters.Add("usuario", OracleDbType.Varchar2).Value = item.Usuario;
 
                 sqlconn.Open();
 
@@ -53,7 +53,8 @@ namespace Datos
 
             return respuesta;
         }
-        public string Eliminar_Cliente(string cl_cedula)
+
+        public string Eliminar(string identificador)
         {
             string resultado = "";
             OracleConnection sqlconn = new OracleConnection();
@@ -69,9 +70,9 @@ namespace Datos
                                        "END;";
                 comando.CommandType = CommandType.Text;
 
-                
+
                 comando.Parameters.Add("result", OracleDbType.Varchar2, 1000).Direction = ParameterDirection.ReturnValue;
-                comando.Parameters.Add("p_cl_cedula", OracleDbType.Varchar2).Value = cl_cedula;
+                comando.Parameters.Add("p_cl_cedula", OracleDbType.Varchar2).Value = identificador;
 
 
                 sqlconn.Open();
@@ -89,7 +90,7 @@ namespace Datos
             return resultado;
         }
 
-        public string ActualizarCliente(Cliente cliente)
+        public string Actualizar(Cliente item)
         {
             string respuesta = string.Empty;
             OracleConnection sqlconn = new OracleConnection();
@@ -100,11 +101,11 @@ namespace Datos
                 comando.CommandType = CommandType.Text;
 
                 comando.Parameters.Add("result", OracleDbType.Varchar2, 1000).Direction = ParameterDirection.ReturnValue;
-                comando.Parameters.Add("Cl_cedula", OracleDbType.Varchar2).Value = cliente.Cedula;
-                comando.Parameters.Add("pr_nombre", OracleDbType.Varchar2).Value = cliente.Pr_Nombre;
-                comando.Parameters.Add("pr_apellido", OracleDbType.Varchar2).Value = cliente.Pr_Apellido;
-                comando.Parameters.Add("telefono", OracleDbType.Varchar2).Value = cliente.Telefono;
-                comando.Parameters.Add("id_calle", OracleDbType.Int32).Value = cliente.Id_calle;
+                comando.Parameters.Add("Cl_cedula", OracleDbType.Varchar2).Value = item.Cedula;
+                comando.Parameters.Add("pr_nombre", OracleDbType.Varchar2).Value = item.Pr_Nombre;
+                comando.Parameters.Add("pr_apellido", OracleDbType.Varchar2).Value = item.Pr_Apellido;
+                comando.Parameters.Add("telefono", OracleDbType.Varchar2).Value = item.Telefono;
+                comando.Parameters.Add("id_calle", OracleDbType.Int32).Value = item.Id_calle;
 
 
                 sqlconn.Open();
@@ -127,48 +128,49 @@ namespace Datos
 
             return respuesta;
         }
-        public List<Cliente> ObtenerClientes()
+
+        public List<Cliente> Consultar()
         {
 
-                OracleDataReader ResultadoClientes;
-                List<Cliente> clientes = new List<Cliente>();
-                OracleConnection sqlconn = new OracleConnection();
-                try
+            OracleDataReader ResultadoClientes;
+            List<Cliente> clientes = new List<Cliente>();
+            OracleConnection sqlconn = new OracleConnection();
+            try
+            {
+                sqlconn = Conexion_Propietario.ObtenerInstancia().CrearConexion();
+                OracleCommand comando = new OracleCommand("SELECT * FROM clientes", sqlconn);
+                comando.CommandType = CommandType.Text;
+                sqlconn.Open();
+                ResultadoClientes = comando.ExecuteReader();
+
+                while (ResultadoClientes.Read())
                 {
-                    sqlconn = Conexion_Propietario.ObtenerInstancia().CrearConexion();
-                    OracleCommand comando = new OracleCommand("SELECT * FROM clientes", sqlconn);
-                    comando.CommandType = CommandType.Text;
-                    sqlconn.Open();
-                    ResultadoClientes = comando.ExecuteReader();
+                    Cliente cliente = new Cliente();
+                    cliente.Cedula = ResultadoClientes["cl_cedula"].ToString();
+                    cliente.CedulaEmpleado = ResultadoClientes["emp_cedula"].ToString();
+                    cliente.Pr_Nombre = ResultadoClientes["pr_nombre"].ToString();
+                    cliente.Pr_Apellido = ResultadoClientes["pr_apellido"].ToString();
+                    cliente.Telefono = ResultadoClientes["telefono"].ToString();
+                    cliente.Usuario = ResultadoClientes["usuario"].ToString();
+                    cliente.Id_calle = Convert.ToInt32(ResultadoClientes["id_calle"]);
 
-                    while (ResultadoClientes.Read())
-                    {
-                        Cliente cliente = new Cliente();
-                        cliente.Cedula = ResultadoClientes["cl_cedula"].ToString();
-                        cliente.CedulaEmpleado = ResultadoClientes["emp_cedula"].ToString();
-                        cliente.Pr_Nombre = ResultadoClientes["pr_nombre"].ToString();
-                        cliente.Pr_Apellido = ResultadoClientes["pr_apellido"].ToString();
-                        cliente.Telefono = ResultadoClientes["telefono"].ToString();
-                        cliente.Usuario = ResultadoClientes["usuario"].ToString();
-                        cliente.Id_calle = Convert.ToInt32(ResultadoClientes["id_calle"]);
-
-                        clientes.Add(cliente);
-                    }
-
-                    return clientes;
+                    clientes.Add(cliente);
                 }
-                catch (Exception ex)
+
+                return clientes;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            finally
+            {
+                if (sqlconn.State == ConnectionState.Open)
                 {
-                    throw;
-                }
-                finally
-                {
-                    if (sqlconn.State == ConnectionState.Open)
-                    {
-                        sqlconn.Close();
-                    }
+                    sqlconn.Close();
                 }
             }
+        }
     }
 
 }

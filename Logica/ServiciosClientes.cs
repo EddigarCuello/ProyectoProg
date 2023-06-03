@@ -17,19 +17,19 @@ namespace Logica
         Gestion_Clientes G_clientes = new Gestion_Clientes();
         public string InsertarCliente(Cliente cliente) 
         {
-            string msg = G_clientes.InsertarCliente(cliente);
+            string msg = G_clientes.Insertar(cliente);
             return msg;
         }
         public string EliminarCliente(string cliente)
         {
-            string msg = G_clientes.Eliminar_Cliente(cliente);
+            string msg = G_clientes.Eliminar(cliente);
             return msg;
         }
 
         public Cliente ObtCliente(string cedula)
         {
             List<Cliente> clientes = new List<Cliente>();
-             clientes= G_clientes.ObtenerClientes();
+             clientes= G_clientes.Consultar();
             Cliente cliente = new Cliente();
             foreach(Cliente client in clientes)
             {
@@ -45,7 +45,7 @@ namespace Logica
 
         public string ActualizarCliente(Cliente cliente)
         {
-            string msg = G_clientes.ActualizarCliente(cliente);
+            string msg = G_clientes.Actualizar(cliente);
             return msg;
         }
     }

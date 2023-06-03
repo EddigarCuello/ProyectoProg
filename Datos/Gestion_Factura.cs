@@ -9,9 +9,11 @@ using System.Threading.Tasks;
 
 namespace Datos
 {
-    public class Gestion_Factura
+    public class Gestion_Factura : IGestion<Factura>
     {
-        public string InsertarFactura(Factura factura)
+
+
+        public string Insertar(Factura item)
         {
             string resultado = string.Empty;
             OracleConnection sqlconn = new OracleConnection();
@@ -25,13 +27,13 @@ namespace Datos
                 comando.CommandType = CommandType.Text;
 
                 comando.Parameters.Add("result", OracleDbType.Varchar2, 1000).Direction = ParameterDirection.ReturnValue;
-                comando.Parameters.Add("servicio", OracleDbType.Varchar2).Value = factura.servicios;
-                comando.Parameters.Add("prc_revision", OracleDbType.Decimal).Value = factura.Prc_Revision;
-                comando.Parameters.Add("fecha_fact", OracleDbType.Date).Value = factura.fecha_Fact;
-                comando.Parameters.Add("cl_cedula", OracleDbType.Varchar2).Value = factura.Cliente_CC;
-                comando.Parameters.Add("emp_cedula", OracleDbType.Varchar2).Value = factura.Empleado_CC;
-                comando.Parameters.Add("placa", OracleDbType.Varchar2).Value = factura.placa;
-                comando.Parameters.Add("prc_total", OracleDbType.Decimal).Value = factura.Prc_Total;
+                comando.Parameters.Add("servicio", OracleDbType.Varchar2).Value = item.servicios;
+                comando.Parameters.Add("prc_revision", OracleDbType.Decimal).Value = item.Prc_Revision;
+                comando.Parameters.Add("fecha_fact", OracleDbType.Date).Value = item.fecha_Fact;
+                comando.Parameters.Add("cl_cedula", OracleDbType.Varchar2).Value = item.Cliente_CC;
+                comando.Parameters.Add("emp_cedula", OracleDbType.Varchar2).Value = item.Empleado_CC;
+                comando.Parameters.Add("placa", OracleDbType.Varchar2).Value = item.placa;
+                comando.Parameters.Add("prc_total", OracleDbType.Decimal).Value = item.Prc_Total;
 
                 sqlconn.Open();
                 comando.ExecuteNonQuery();
@@ -53,7 +55,42 @@ namespace Datos
             return resultado;
         }
 
-        public string ActualizarFactura(Factura factura)
+        public string Eliminar(string identificador)
+        {
+            string resultado = "";
+            OracleConnection sqlconn = new OracleConnection();
+
+            try
+            {
+                sqlconn = Conexion_Propietario.ObtenerInstancia().CrearConexion();
+                OracleCommand comando = new OracleCommand();
+                comando.Connection = sqlconn;
+                comando.CommandText = "BEGIN :result := FN_FACTURES.eliminar_factura(:factura_id);END;";
+                comando.CommandType = CommandType.Text;
+
+                comando.Parameters.Add("result", OracleDbType.Varchar2, 1000).Direction = ParameterDirection.ReturnValue;
+                comando.Parameters.Add("factura_id", OracleDbType.Int32).Value = int.Parse( identificador);
+                sqlconn.Open();
+                comando.ExecuteNonQuery();
+
+                resultado = comando.Parameters["result"].Value.ToString();
+            }
+            catch (Exception ex)
+            {
+                resultado = "Error al Eliminar la factura: " + ex.Message;
+            }
+            finally
+            {
+                if (sqlconn.State == ConnectionState.Open)
+                {
+                    sqlconn.Close();
+                }
+            }
+
+            return resultado;
+        }
+
+        public string Actualizar(Factura item)
         {
             string resultado = string.Empty;
             OracleConnection sqlconn = new OracleConnection();
@@ -67,10 +104,10 @@ namespace Datos
                 comando.CommandType = CommandType.Text;
 
                 comando.Parameters.Add("result", OracleDbType.Varchar2, 1000).Direction = ParameterDirection.ReturnValue;
-                comando.Parameters.Add("cod_factura", OracleDbType.Int32).Value = int.Parse(factura.Cod_Factura);
-                comando.Parameters.Add("servicio", OracleDbType.Varchar2).Value = factura.servicios;
-                comando.Parameters.Add("prc_revision", OracleDbType.Decimal).Value = factura.Prc_Revision;
-                comando.Parameters.Add("total", OracleDbType.Decimal).Value = factura.Prc_Total;
+                comando.Parameters.Add("cod_factura", OracleDbType.Int32).Value = int.Parse(item.Cod_Factura);
+                comando.Parameters.Add("servicio", OracleDbType.Varchar2).Value = item.servicios;
+                comando.Parameters.Add("prc_revision", OracleDbType.Decimal).Value = item.Prc_Revision;
+                comando.Parameters.Add("total", OracleDbType.Decimal).Value = item.Prc_Total;
 
                 sqlconn.Open();
                 comando.ExecuteNonQuery();
@@ -92,9 +129,8 @@ namespace Datos
             return resultado;
         }
 
-        public List<Factura> ObtenerFacturas()
+        public List<Factura> Consultar()
         {
-
             List<Factura> Facturas = new List<Factura>();
             OracleDataReader ResultadoFacturas;
             OracleConnection sqlconn = new OracleConnection();
@@ -138,41 +174,6 @@ namespace Datos
                     sqlconn.Close();
                 }
             }
-        }
-
-        public string EliminarFactura(int p_cod_factura)
-        {
-            string resultado = "";
-            OracleConnection sqlconn = new OracleConnection();
-
-            try
-            {
-                sqlconn = Conexion_Propietario.ObtenerInstancia().CrearConexion();
-                OracleCommand comando = new OracleCommand();
-                comando.Connection = sqlconn;
-                comando.CommandText = "BEGIN :result := FN_FACTURES.eliminar_factura(:factura_id);END;";
-                comando.CommandType = CommandType.Text;
-
-                comando.Parameters.Add("result", OracleDbType.Varchar2, 1000).Direction = ParameterDirection.ReturnValue;
-                comando.Parameters.Add("factura_id", OracleDbType.Int32).Value = p_cod_factura;
-                sqlconn.Open();
-                comando.ExecuteNonQuery();
-
-                resultado = comando.Parameters["result"].Value.ToString();
-            }
-            catch (Exception ex)
-            {
-                resultado = "Error al Eliminar la factura: " + ex.Message;
-            }
-            finally
-            {
-                if (sqlconn.State == ConnectionState.Open)
-                {
-                    sqlconn.Close();
-                }
-            }
-
-            return resultado;
         }
     }
 }

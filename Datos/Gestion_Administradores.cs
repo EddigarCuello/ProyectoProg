@@ -59,9 +59,5 @@ namespace Datos
             return Rpta;
         }
 
-       
-
-
-
     }
 }

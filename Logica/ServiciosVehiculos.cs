@@ -14,19 +14,19 @@ namespace Logica
         Gestion_Vehiculos G_vehiculo = new Gestion_Vehiculos();
         public string InsertarVehiculos(Vehiculo vehiculo)
         {
-            string msg = G_vehiculo.InsertarVehiculo(vehiculo);
+            string msg = G_vehiculo.Insertar(vehiculo);
             return msg;
         }
 
         public string ActualizarVehiculos(Vehiculo vehiculo)
         {
-            string msg = G_vehiculo.ActualizarVehiculo(vehiculo);
+            string msg = G_vehiculo.Actualizar(vehiculo);
             return msg;
         }
         public Vehiculo ObtDatosVeh(string cl_cedula)
         {
             Vehiculo vehiculo = new Vehiculo();
-            List<Vehiculo> Vehiculos = G_vehiculo.ObtenerDatosVehiculo();
+            List<Vehiculo> Vehiculos = G_vehiculo.Consultar();
             foreach (Vehiculo Veh in Vehiculos)
             {
                 if (Veh.CedulaCliente == cl_cedula)
@@ -55,7 +55,7 @@ namespace Logica
 
         public string EliminarVehiculo (string placa) 
         {
-            string msg = G_vehiculo.EliminarVehiculo(placa);
+            string msg = G_vehiculo.Eliminar(placa);
             return msg;
         }
     }
