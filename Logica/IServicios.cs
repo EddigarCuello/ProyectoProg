@@ -13,6 +13,6 @@ namespace Logica
 
         string Actualizar(T item);
 
-        List<T> Consultar();
+        T Consultar(String identificador);
     }
 }

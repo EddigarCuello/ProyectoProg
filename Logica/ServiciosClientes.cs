@@ -12,41 +12,43 @@ using System.Threading.Tasks;
 
 namespace Logica
 {
-    public class ServiciosClientes
+    public class ServiciosClientes : IServicios<Cliente>
     {
         Gestion_Clientes G_clientes = new Gestion_Clientes();
-        public string InsertarCliente(Cliente cliente) 
+
+
+        public string Insertar(Cliente item)
         {
-            string msg = G_clientes.Insertar(cliente);
-            return msg;
-        }
-        public string EliminarCliente(string cliente)
-        {
-            string msg = G_clientes.Eliminar(cliente);
+            string msg = G_clientes.Insertar(item);
             return msg;
         }
 
-        public Cliente ObtCliente(string cedula)
+        public string Eliminar(string identificador)
+        {
+            string msg = G_clientes.Eliminar(identificador);
+            return msg;
+        }
+
+        public string Actualizar(Cliente item)
+        {
+            string msg = G_clientes.Actualizar(item);
+            return msg;
+        }
+
+        public Cliente Consultar(String identificador)
         {
             List<Cliente> clientes = new List<Cliente>();
-             clientes= G_clientes.Consultar();
+            clientes = G_clientes.Consultar();
             Cliente cliente = new Cliente();
-            foreach(Cliente client in clientes)
+            foreach (Cliente client in clientes)
             {
-                if(client.Cedula == cedula)
+                if (client.Cedula == identificador)
                 {
                     cliente = client;
                 }
             }
 
             return cliente;
-
-        }
-
-        public string ActualizarCliente(Cliente cliente)
-        {
-            string msg = G_clientes.Actualizar(cliente);
-            return msg;
         }
     }
 }

@@ -9,36 +9,12 @@ using System.Threading.Tasks;
 
 namespace Logica
 {
-    public class ServiciosVehiculos
+    public class ServiciosVehiculos :IServicios<Vehiculo>
     {
         Gestion_Vehiculos G_vehiculo = new Gestion_Vehiculos();
-        public string InsertarVehiculos(Vehiculo vehiculo)
-        {
-            string msg = G_vehiculo.Insertar(vehiculo);
-            return msg;
-        }
 
-        public string ActualizarVehiculos(Vehiculo vehiculo)
-        {
-            string msg = G_vehiculo.Actualizar(vehiculo);
-            return msg;
-        }
-        public Vehiculo ObtDatosVeh(string cl_cedula)
-        {
-            Vehiculo vehiculo = new Vehiculo();
-            List<Vehiculo> Vehiculos = G_vehiculo.Consultar();
-            foreach (Vehiculo Veh in Vehiculos)
-            {
-                if (Veh.CedulaCliente == cl_cedula)
-                {
-                    vehiculo = Veh; break;
-                }
-            }
 
-            return vehiculo;
-        }
-
-        public List<Vehiculo_Empleado> ObtInforVeh(string CedulaEmp)
+        public List<Vehiculo_Empleado> ObtInforVehiculos(string CedulaEmp)
         {
             List<Vehiculo_Empleado> vehiculo_Empleados = new List<Vehiculo_Empleado>();
             List<Vehiculo_Empleado> Filtro_vehiculo_Empleados = new List<Vehiculo_Empleado>();
@@ -53,10 +29,37 @@ namespace Logica
             return Filtro_vehiculo_Empleados;
         }
 
-        public string EliminarVehiculo (string placa) 
+        public string Insertar(Vehiculo item)
         {
-            string msg = G_vehiculo.Eliminar(placa);
+            string msg = G_vehiculo.Insertar(item);
             return msg;
+        }
+
+        public string Eliminar(string identificador)
+        {
+            string msg = G_vehiculo.Eliminar(identificador);
+            return msg;
+        }
+
+        public string Actualizar(Vehiculo item)
+        {
+            string msg = G_vehiculo.Actualizar(item);
+            return msg;
+        }
+
+        public Vehiculo Consultar(string identificador)
+        {
+            Vehiculo vehiculo = new Vehiculo();
+            List<Vehiculo> Vehiculos = G_vehiculo.Consultar();
+            foreach (Vehiculo Veh in Vehiculos)
+            {
+                if (Veh.CedulaCliente == identificador)
+                {
+                    vehiculo = Veh; break;
+                }
+            }
+
+            return vehiculo;
         }
     }
 }

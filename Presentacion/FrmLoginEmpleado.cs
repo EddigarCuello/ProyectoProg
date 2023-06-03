@@ -109,7 +109,7 @@ namespace Presentacion
                 vehiculo.Cilindraje = tbCilindraje.Text;
                 vehiculo.Version = dtpVersion.Value;
 
-                string msg = S_vehiculos.ActualizarVehiculos(vehiculo);
+                string msg = S_vehiculos.Actualizar(vehiculo);
 
 
 
@@ -132,7 +132,7 @@ namespace Presentacion
                 cedula_cl = cl_cedula;
                 CargarCuentaCliente();
                 Vehiculo Vehiculos = new Vehiculo();
-                Vehiculos = S_vehiculos.ObtDatosVeh(cl_cedula);
+                Vehiculos = S_vehiculos.Consultar(cl_cedula);
 
                 if (Vehiculos != null)
                 {
@@ -173,7 +173,7 @@ namespace Presentacion
         private void Cargar()
         {
             string CC_Emp = DatosCompartidos.ObtenerCedula();
-            dgClientes.DataSource = S_vehiculos.ObtInforVeh(CC_Emp);
+            dgClientes.DataSource = S_vehiculos.ObtInforVehiculos(CC_Emp);
 
             // Ocultar la cuarta columna (índice 3)
             dgClientes.Columns[3].Visible = false;
@@ -232,7 +232,7 @@ namespace Presentacion
 
 
                 
-                P_cliente = clientes.ObtCliente(cl_cedula);
+                P_cliente = clientes.Consultar(cl_cedula);
 
                 if (P_cliente != null)
                 {
@@ -263,14 +263,14 @@ namespace Presentacion
                 if(idFActura != 0)
                 {
                     string msF = S_factura.EliminarFactura(idFActura);
-                    string msV = S_vehiculos.EliminarVehiculo(placa);
-                    string msC = clientes.EliminarCliente(cedula_cl);
+                    string msV = S_vehiculos.Eliminar(placa);
+                    string msC = clientes.Eliminar(cedula_cl);
                     string msAc = S_cuentas.EliminarCuenta(cuentaCliente.Usuario);
                     MessageBox.Show(msF + msV  + msC + msAc);
                 }else
                 {
-                    string msV = S_vehiculos.EliminarVehiculo(placa);
-                    string msC = clientes.EliminarCliente(cedula_cl);
+                    string msV = S_vehiculos.Eliminar(placa);
+                    string msC = clientes.Eliminar(cedula_cl);
                     string msAc = S_cuentas.EliminarCuenta(cuentaCliente.Usuario);
                     MessageBox.Show(msV + msC + msAc);
                 }
@@ -286,7 +286,7 @@ namespace Presentacion
             cliente.Telefono = tbTelefono.Text;
             cliente.Id_calle = idCalleSeleccionada;
             cliente.Cedula = P_cliente.Cedula;
-            string msg = clientes.ActualizarCliente(cliente);
+            string msg = clientes.Actualizar(cliente);
             MessageBox.Show(msg);
         }
 

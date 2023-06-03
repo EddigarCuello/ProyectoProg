@@ -174,8 +174,8 @@ namespace Presentacion
 
 
             msg2 = S_cuentas.InsertarCuenta(cuenta);
-            msg1 = clientes.InsertarCliente(Cliente);
-            msg3 = S_vehiculos.InsertarVehiculos(vehiculo);
+            msg1 = clientes.Insertar(Cliente);
+            msg3 = S_vehiculos.Insertar(vehiculo);
             msg4 = S_factura.InsertarFactura(factura, vehiculo.Cilindraje, vehiculo.TipoVehiculo, vehiculo.Version);
 
             MessageBox.Show(msg4);

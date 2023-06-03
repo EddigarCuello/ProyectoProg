@@ -86,7 +86,7 @@ namespace Presentacion
                 vehiculo.Cilindraje = tbCilindraje.Text;
                 vehiculo.Version = dtpVersion.Value;
 
-                string msg = S_vehiculos.ActualizarVehiculos(vehiculo);
+                string msg = S_vehiculos.Actualizar(vehiculo);
 
 
 
@@ -107,7 +107,7 @@ namespace Presentacion
 
                 string cl_cedula = fila.Cells[0].Value.ToString();
                 Vehiculo Vehiculos = new Vehiculo();
-                Vehiculos = S_vehiculos.ObtDatosVeh(cl_cedula);
+                Vehiculos = S_vehiculos.Consultar(cl_cedula);
 
                 if (Vehiculos != null)
                 {
@@ -141,7 +141,7 @@ namespace Presentacion
         private void Cargar()
         {
             string CC_Emp = DatosCompartidos.ObtenerCedula();
-            dgClientes.DataSource = S_vehiculos.ObtInforVeh(CC_Emp);
+            dgClientes.DataSource = S_vehiculos.ObtInforVehiculos(CC_Emp);
 
             // Ocultar la cuarta columna (índice 3)
             dgClientes.Columns[3].Visible = false;
