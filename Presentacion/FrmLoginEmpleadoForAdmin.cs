@@ -18,25 +18,27 @@ namespace Presentacion
         {
             InitializeComponent();
             tbPlaca.Enabled = false;
-            pnPersona.Visible = false;
             dgClientes.AllowUserToAddRows = false;
             dgClientes.RowHeadersVisible = false;
         }
 
         #region "VARIABLES"
-        
+        FrmLoginAdmin frmLoginAdmin = new FrmLoginAdmin();
         FrmAgregarCliente frmAgregarCliente = new FrmAgregarCliente();
         ServiciosClientes clientes = new ServiciosClientes();
-        ServiciosEmpleados empleados = new ServiciosEmpleados();
-        ServiciosAdministradores Administradores = new ServiciosAdministradores();
-        ServiciosVehiculos S_vehiculos = new ServiciosVehiculos();
         ServiciosFactura S_factura = new ServiciosFactura();
-        ServiciosCuentas S_cuenta = new ServiciosCuentas();
+        ServiciosVehiculos S_vehiculos = new ServiciosVehiculos();
+        ServicioDirecciones S_direcciones = new ServicioDirecciones();
+        ServiciosCuentas S_cuentas = new ServiciosCuentas();
         Factura Factura = new Factura();
+        CuentaUser DatosUsuarioCLiente = new CuentaUser();
         string cedula_cl = "";
-        string idFActura;
-        string placa_veh;
-        string usuario;
+        Cliente P_cliente = new Cliente();
+        int idFActura;
+        string placa;
+        int idCiudadSeleccionada;
+        int idBarrioSeleccionado;
+        int idCalleSeleccionada;
         #endregion
 
         #region "Metodos para el form"
@@ -57,9 +59,34 @@ namespace Presentacion
             return false;
         }
 
+        private bool ComprobartbCliente()
+        {
+            if (string.IsNullOrEmpty(tbPr_Nombre.Text) || string.IsNullOrEmpty(tbPr_Apellido.Text) ||
+                string.IsNullOrEmpty(tbTelefono.Text) )
+            {
+                return true;
+            }
+
+            return false;
+        }
+
         private void FrmAgregarCliente()
         {
             frmAgregarCliente.ShowDialog();
+        }
+
+        private void DesactivarPanelCliente()
+        {
+            pnCliente.Visible = false;
+            pnVehiculo.Visible = true;
+
+        }
+
+        private void ActivarPanelCliente()
+        {
+            pnVehiculo.Visible = false;
+            pnCliente.Visible = true;
+
         }
         #endregion
 
@@ -78,7 +105,7 @@ namespace Presentacion
                     TipoVeh = "Carro";
                 }
                 Vehiculo vehiculo = new Vehiculo();
-                string msgF = S_factura.ActualizarFactura(idFActura, tbCilindraje.Text, TipoVeh, dtpVersion.Value);
+                string msgF = S_factura.ActualizarFactura(idFActura.ToString(), tbCilindraje.Text, TipoVeh, dtpVersion.Value);
                 vehiculo.Placa = tbPlaca.Text;
                 vehiculo.TipoVehiculo = TipoVeh;
                 vehiculo.Modelo = tbModelo.Text;
@@ -106,12 +133,15 @@ namespace Presentacion
                 DataGridViewRow fila = dgClientes.Rows[e.RowIndex];
 
                 string cl_cedula = fila.Cells[0].Value.ToString();
+                cedula_cl = cl_cedula;
+                CargarCuentaCliente();
                 Vehiculo Vehiculos = new Vehiculo();
                 Vehiculos = S_vehiculos.Consultar(cl_cedula);
 
                 if (Vehiculos != null)
                 {
                     // Obtener los valores de las columnas de la primera fila de la tabla
+                    placa = Vehiculos.Placa;
                     tbPlaca.Text = Vehiculos.Placa;
                     tbModelo.Text = Vehiculos.Modelo;
                     tbMarca.Text = Vehiculos.Marca;
@@ -127,7 +157,7 @@ namespace Presentacion
         }
         private void CargarCuenta()
         {
-            CuentaUser DatosUsuario = S_cuenta.DatosCuenta(DatosCompartidos.ObtenerCedula());
+            CuentaUser DatosUsuario = S_cuentas.DatosCuenta(DatosCompartidos.ObtenerCedula());
 
             // Verificar si se obtuvieron datos de la cuenta
             if (DatosUsuario != null)
@@ -138,6 +168,12 @@ namespace Presentacion
             }
         }
 
+        private void CargarCuentaCliente()
+        {
+            DatosUsuarioCLiente = S_cuentas.DatosCuenta(cedula_cl);
+
+        }
+
         private void Cargar()
         {
             string CC_Emp = DatosCompartidos.ObtenerCedula();
@@ -146,7 +182,7 @@ namespace Presentacion
             // Ocultar la cuarta columna (índice 3)
             dgClientes.Columns[3].Visible = false;
             Persona persona = new Persona();
-            persona = S_cuenta.ObtenerNombre(CC_Emp);
+            persona = S_cuentas.ObtenerNombre(CC_Emp);
             lbNombres.Text = persona.Pr_Nombre + "\n " + persona.Pr_Apellido;
         }
 
@@ -163,8 +199,15 @@ namespace Presentacion
 
                 if (factura != null)
                 {
+                    if (factura.Cod_Factura != null)
+                    {
+                        idFActura = int.Parse(factura.Cod_Factura);
+                    }
+                    else
+                    {
+                        idFActura = 0;
+                    }
 
-                    idFActura = factura.Cod_Factura;
                     lbCoidgoFact.Text = factura.Cod_Factura;
                     lbPrc_Servicios.Text = factura.servicios.ToString();
                     lbPrc_Revision.Text = factura.Prc_Revision.ToString();
@@ -183,42 +226,225 @@ namespace Presentacion
 
             }
         }
+
+        private void CargarDatosCliente(DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow fila = dgClientes.Rows[e.RowIndex];
+                string cl_cedula = fila.Cells[0].Value.ToString();
+
+
+
+                P_cliente = clientes.Consultar(cl_cedula);
+
+                if (P_cliente != null)
+                {
+
+                    tbPr_Nombre.Text = P_cliente.Pr_Nombre;
+                    tbPr_Apellido.Text = P_cliente.Pr_Apellido;
+                    tbTelefono.Text = P_cliente.Telefono;
+                }
+                else
+                {
+                    MessageBox.Show("No se encontraron datos del cliente.");
+                    tbPr_Nombre.Text = "None";
+                    tbPr_Apellido.Text = "None";
+                    tbTelefono.Text = "None";
+
+
+                }
+
+            }
+        }
+
+        private void EliminarCuenta()
+        {
+            CuentaUser cuentaCliente = new CuentaUser();
+            cuentaCliente = S_cuentas.DatosCuenta(cedula_cl);
+            if (dgClientes.SelectedRows.Count > 0)
+            {
+                if (idFActura != 0)
+                {
+                    string msF = S_factura.EliminarFactura(idFActura);
+                    string msV = S_vehiculos.Eliminar(placa);
+                    string msC = clientes.Eliminar(cedula_cl);
+                    string msAc = S_cuentas.EliminarCuenta(cuentaCliente.Usuario);
+                    MessageBox.Show(msF + msV + msC + msAc);
+                }
+                else
+                {
+                    string msV = S_vehiculos.Eliminar(placa);
+                    string msC = clientes.Eliminar(cedula_cl);
+                    string msAc = S_cuentas.EliminarCuenta(cuentaCliente.Usuario);
+                    MessageBox.Show(msV + msC + msAc);
+                }
+
+
+            }
+        }
+        private void ActualizarCliente()
+        {
+            if(ComprobartbCliente() == false)
+            {
+                Cliente cliente = new Cliente();
+                cliente.Pr_Apellido = tbPr_Apellido.Text;
+                cliente.Pr_Nombre = tbPr_Nombre.Text;
+                cliente.Telefono = tbTelefono.Text;
+                cliente.Id_calle = idCalleSeleccionada;
+                cliente.Cedula = P_cliente.Cedula;
+                string msg = clientes.Actualizar(cliente);
+                MessageBox.Show(msg);
+            }
+            else
+            {
+                MessageBox.Show("Faltann Datos");
+            }
+
+        }
+
+
+        #endregion
+
+        #region "METODOS DIRECCIONES"
+        private void MostrarCiudades()
+        {
+            CB_CIUDADES.DataSource = S_direcciones.Listado_Ciudades();
+            CB_CIUDADES.ValueMember = "id_ciudad";
+            CB_CIUDADES.DisplayMember = "nom_ciudad";
+        }
+
+        private void MostrarBarrios(int idCiudad)
+        {
+            CB_BARRIOS.SelectedIndex = -1;
+            CB_CALLES.SelectedIndex = -1;
+
+            List<Barrio> barrios = S_direcciones.Listado_Barrios(idCiudad);
+
+            CB_BARRIOS.DataSource = barrios;
+            CB_BARRIOS.ValueMember = "id_barrio";
+            CB_BARRIOS.DisplayMember = "nom_barrio";
+
+
+
+        }
+
+        private void ObtenerId_Ciudad()
+        {
+            Ciudad ciudadSeleccionada = (Ciudad)CB_CIUDADES.SelectedItem;
+            idCiudadSeleccionada = ciudadSeleccionada.Id_Ciudad;
+        }
+
+
+        private void ObtenerId_Barrio()
+        {
+            Barrio barrioSeleccionado = (Barrio)CB_BARRIOS.SelectedItem;
+            if (barrioSeleccionado != null)
+            {
+                idBarrioSeleccionado = barrioSeleccionado.id_Barrio;
+            }
+        }
+
+
+        private void ObtenerId_Calle()
+        {
+            Calle calleSeleccionada = (Calle)CB_CALLES.SelectedItem;
+            if (calleSeleccionada != null)
+            {
+                idCalleSeleccionada = calleSeleccionada.Id_Calle;
+            }
+        }
+        private void MostrarCalles(int IdBarrio)
+        {
+
+            CB_CALLES.SelectedIndex = -1;
+
+            List<Calle> calles = S_direcciones.Listado_Calles(IdBarrio);
+
+
+            CB_CALLES.DataSource = calles;
+            CB_CALLES.ValueMember = "id_calle";
+            CB_CALLES.DisplayMember = "nom_calle";
+        }
+
         #endregion
 
         #region "Eventos"
-        private void btnConsultar_Click_1(object sender, EventArgs e)
-        {
-            Cargar();
-        }
-        private void btnAgregarCliente_Click_1(object sender, EventArgs e)
-        {
-            FrmAgregarCliente();
-        }
-        private void FrmLoginEmpleadoForAdmin_Load(object sender, EventArgs e)
-        {
-            Cargar();
-            CargarCuenta();
-        }
-        private void dgClientes_CellClick_1(object sender, DataGridViewCellEventArgs e)
-        {
-            MostrarVeh(e);
-            CargarDatosFactura(e);
-        }
-        private void btnEditarVeh_Click_1(object sender, EventArgs e)
-        {
-            ActualizarVeh();
-        }
+
+
         private void btnSalir_Click_1(object sender, EventArgs e)
         {
             Salir();
         }
+        private void FrmLoginEmpleadoForAdmin_Load(object sender, EventArgs e)
+        {
+            DesactivarPanelCliente();
+            Cargar();
+            CargarCuenta();
+        }
 
 
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            EliminarCuenta();
+        }
+
+        private void dgClientes_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            ActivarPanelCliente();
+            CargarDatosCliente(e);
+            MostrarCiudades();
+        }
+
+        private void CB_CIUDADES_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ObtenerId_Ciudad();
+            MostrarBarrios(idCiudadSeleccionada);
+        }
+
+        private void CB_BARRIOS_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ObtenerId_Barrio();
+            MostrarCalles(idBarrioSeleccionado);
+            ObtenerId_Calle();
+        }
+
+        private void CB_CALLES_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ObtenerId_Calle();
+        }
+
+        private void btnEditarCliente_Click(object sender, EventArgs e)
+        {
+            ActualizarCliente();
+        }
 
 
+        private void btnConsultar_Click_1(object sender, EventArgs e)
+        {
+            Cargar();
+        }
 
+        private void btnAgregarCliente_Click_1(object sender, EventArgs e)
+        {
+            FrmAgregarCliente();
+        }
+
+        private void dgClientes_CellClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+            DesactivarPanelCliente();
+            MostrarVeh(e);
+            CargarDatosFactura(e);
+        }
+
+        private void btnEditarVeh_Click_1(object sender, EventArgs e)
+        {
+            ActualizarVeh();
+        }
         #endregion
 
 
     }
+
+
 }

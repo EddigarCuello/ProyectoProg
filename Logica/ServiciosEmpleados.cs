@@ -54,6 +54,25 @@ namespace Logica
             return empleado;
         }
         //Filtrado en codigo
+
+        public string ActualizarEmpleado(Persona Empleado)
+        {
+            string msg = G_Empleados.Actualizar(Empleado);
+            return msg;
+        }
+
+        public List<Persona> ObtenerTodosEmpleados() 
+        {
+            List<Persona> empleados = new List<Persona>();
+            empleados = G_Empleados.DatosEmp();
+            return empleados;
+        }
+
+        public string EliminarEmpleado(string CedulEmp,string NuevaCedulaEMp)
+        {
+            string msg = G_Empleados.Eliminar(CedulEmp, NuevaCedulaEMp);
+            return msg;
+        }
         
 
     }

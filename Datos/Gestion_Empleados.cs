@@ -119,6 +119,83 @@ namespace Datos
             }
         }
 
-        
+
+        public string Actualizar(Persona item)
+        {
+            string respuesta = string.Empty;
+            OracleConnection sqlconn = new OracleConnection();
+            try
+            {
+                sqlconn = Conexion_Propietario.ObtenerInstancia().CrearConexion();
+                OracleCommand comando = new OracleCommand("BEGIN :result := FN_EMPLOYEES.actualizar_empleado(:emp_cedula, :pr_nombre, :pr_apellido, :telefono, :id_calle); END;", sqlconn);
+                comando.CommandType = CommandType.Text;
+
+                comando.Parameters.Add("result", OracleDbType.Varchar2, 1000).Direction = ParameterDirection.ReturnValue;
+                comando.Parameters.Add("emp_cedula", OracleDbType.Varchar2).Value = item.Cedula;
+                comando.Parameters.Add("pr_nombre", OracleDbType.Varchar2).Value = item.Pr_Nombre;
+                comando.Parameters.Add("pr_apellido", OracleDbType.Varchar2).Value = item.Pr_Apellido;
+                comando.Parameters.Add("telefono", OracleDbType.Varchar2).Value = item.Telefono;
+                comando.Parameters.Add("id_calle", OracleDbType.Int32).Value = item.Id_calle;
+
+
+                sqlconn.Open();
+
+                comando.ExecuteNonQuery();
+
+                respuesta = comando.Parameters["result"].Value.ToString();
+            }
+            catch (Exception ex)
+            {
+                respuesta = "Error al guardar cliente: " + ex.Message;
+            }
+            finally
+            {
+                if (sqlconn.State == ConnectionState.Open)
+                {
+                    sqlconn.Close();
+                }
+            }
+
+            return respuesta;
+        }
+
+
+        public string Eliminar(string identificador,string identificador2)
+        {
+            string resultado = "";
+            OracleConnection sqlconn = new OracleConnection();
+            DataTable resultadoTabla = new DataTable();
+
+            try
+            {
+                sqlconn = Conexion_Propietario.ObtenerInstancia().CrearConexion();
+                OracleCommand comando = new OracleCommand();
+                comando.Connection = sqlconn;
+                comando.CommandText = "BEGIN :result := " +
+                                       "FN_EMPLOYEES.ELIMINAREMPLEADO(:p_emp_cedula,:p_nuevo_emp_cedula);" +
+                                       "END;";
+                comando.CommandType = CommandType.Text;
+
+
+                comando.Parameters.Add("result", OracleDbType.Varchar2, 1000).Direction = ParameterDirection.ReturnValue;
+                comando.Parameters.Add("p_emp_cedula", OracleDbType.Varchar2).Value = identificador;
+                comando.Parameters.Add("p_nuevo_emp_cedula", OracleDbType.Varchar2).Value = identificador2;
+
+
+                sqlconn.Open();
+                comando.ExecuteNonQuery();
+
+                resultado = comando.Parameters["result"].Value.ToString();
+
+                sqlconn.Close();
+            }
+            catch (Exception ex)
+            {
+                resultado = "ERROR al eliminar el cliente" + ex;
+            }
+
+            return resultado;
+        }
+
     }
 }

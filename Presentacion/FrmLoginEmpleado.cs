@@ -21,7 +21,6 @@ namespace Presentacion
         {
             InitializeComponent();
             tbPlaca.Enabled = false;
-            //pnCliente.Visible = false;
             dgClientes.AllowUserToAddRows = false;
             dgClientes.RowHeadersVisible = false;
         }
@@ -30,10 +29,8 @@ namespace Presentacion
         FrmPrincipal frmPrincipal = new FrmPrincipal();
         FrmAgregarCliente frmAgregarCliente = new FrmAgregarCliente();
         ServiciosClientes clientes = new ServiciosClientes();
-        ServiciosEmpleados empleados = new ServiciosEmpleados();
         ServiciosFactura S_factura = new ServiciosFactura();
         ServiciosVehiculos S_vehiculos = new ServiciosVehiculos();
-        ServiciosAdministradores Administradores = new ServiciosAdministradores();
         ServicioDirecciones S_direcciones = new ServicioDirecciones();
         ServiciosCuentas S_cuentas = new ServiciosCuentas();
         Factura Factura = new Factura();
@@ -83,6 +80,16 @@ namespace Presentacion
             pnVehiculo.Visible = false;
             pnCliente.Visible = true;
             
+        }
+        private bool ComprobartbCliente()
+        {
+            if (string.IsNullOrEmpty(tbPr_Nombre.Text) || string.IsNullOrEmpty(tbPr_Apellido.Text) ||
+                string.IsNullOrEmpty(tbTelefono.Text))
+            {
+                return true;
+            }
+
+            return false;
         }
         #endregion
 
@@ -280,14 +287,22 @@ namespace Presentacion
         }
         private void ActualizarCliente()
         {
-            Cliente cliente = new Cliente();
-            cliente.Pr_Apellido = tbPr_Apellido.Text;
-            cliente.Pr_Nombre = tbPr_Nombre.Text;
-            cliente.Telefono = tbTelefono.Text;
-            cliente.Id_calle = idCalleSeleccionada;
-            cliente.Cedula = P_cliente.Cedula;
-            string msg = clientes.Actualizar(cliente);
-            MessageBox.Show(msg);
+            if (ComprobartbCliente() == false)
+            {
+                Cliente cliente = new Cliente();
+                cliente.Pr_Apellido = tbPr_Apellido.Text;
+                cliente.Pr_Nombre = tbPr_Nombre.Text;
+                cliente.Telefono = tbTelefono.Text;
+                cliente.Id_calle = idCalleSeleccionada;
+                cliente.Cedula = P_cliente.Cedula;
+                string msg = clientes.Actualizar(cliente);
+                MessageBox.Show(msg);
+            }
+            else
+            {
+                MessageBox.Show("Faltann Datos");
+            }
+
         }
 
 
@@ -314,15 +329,6 @@ namespace Presentacion
 
 
 
-        }
-        private void DesactivarCb_Barrios()
-        {
-            CB_BARRIOS.Enabled = false;
-        }
-
-        private void ActivarCb_Barrios()
-        {
-            CB_BARRIOS.Enabled = true;
         }
 
         private void ObtenerId_Ciudad()
@@ -381,6 +387,7 @@ namespace Presentacion
         }
         private void FrmLoginEmpleado_Load(object sender, EventArgs e)
         {
+            DesactivarPanelCliente();
             Cargar();
             CargarCuenta();
         }
@@ -396,8 +403,6 @@ namespace Presentacion
         {
             ActualizarVeh();
         }
-
-        #endregion
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
@@ -433,6 +438,10 @@ namespace Presentacion
         {
             ActualizarCliente();
         }
+
+        #endregion
+
+
     }
 }
 

@@ -26,8 +26,19 @@ namespace Presentacion
         #region "INSTANCIAS"
         FrmPrincipal frmPrincipal = new FrmPrincipal();
         ServiciosEmpleados empleados = new ServiciosEmpleados();
+        ServiciosClientes S_clientes = new ServiciosClientes();
+        FrmSelectNewEmpleado newEmpleado = new FrmSelectNewEmpleado();
+        ServiciosVehiculos S_vehiculos = new ServiciosVehiculos();
         ServiciosAdministradores Administradores = new ServiciosAdministradores();
+        ServicioDirecciones S_direcciones = new ServicioDirecciones();
         ServiciosCuentas S_cuentas = new ServiciosCuentas();
+        ServiciosFactura S_factura = new ServiciosFactura();
+        Persona P_empleado = new Persona();
+        List<Persona> L_empleados = new List<Persona>();
+        int idCiudadSeleccionada;
+        int idBarrioSeleccionado;
+        int idCalleSeleccionada;
+        string Nueva_cedula_empleado;
 
         #endregion
 
@@ -72,6 +83,65 @@ namespace Presentacion
             FrmLoginEmpleadoForAdmin frmLoginEmpleado = new FrmLoginEmpleadoForAdmin();
             frmLoginEmpleado.ShowDialog();
         }
+
+        private void CargarDatosEmpleado(DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow fila = dgEmpleados.Rows[e.RowIndex];
+                string emp_cedula = fila.Cells[0].Value.ToString();
+                DatosCompartidos.ActualizarCedulaEmp(emp_cedula);
+
+
+
+                P_empleado = empleados.ObtDatosEmp(emp_cedula);
+
+                if (P_empleado != null)
+                {
+
+                    tbPr_nombre.Text = P_empleado.Pr_Nombre;
+                    tbPr_apellido.Text = P_empleado.Pr_Apellido;
+                    tbTelefono.Text = P_empleado.Telefono;
+                }
+                else
+                {
+                    MessageBox.Show("No se encontraron datos del cliente.");
+                    tbPr_nombre.Text = "None";
+                    tbPr_apellido.Text = "None";
+                    tbTelefono.Text = "None";
+
+
+                }
+
+            }
+        }
+
+
+        private void ActualizarEmpleado()
+        {
+            Persona Empleado = new Persona();
+            Empleado.Pr_Apellido = tbPr_apellido.Text;
+            Empleado.Pr_Nombre = tbPr_nombre.Text;
+            Empleado.Telefono = tbTelefono.Text;
+            Empleado.Id_calle = idCalleSeleccionada;
+            Empleado.Cedula = P_empleado.Cedula;
+            string msg = empleados.ActualizarEmpleado(Empleado);
+            MessageBox.Show(P_empleado.Cedula);
+            MessageBox.Show(msg);
+        }
+
+        private void MostrarVentanaNuevoEmp() 
+        {
+            newEmpleado.ShowDialog();
+        }
+
+        private void EliminarEmpleado()
+        {
+            string msg = empleados.EliminarEmpleado(DatosCompartidos.ObtenerCedulaEmp(),
+                DatosCompartidos.ObtenerCedulaNuevoEmp());
+            MessageBox.Show(msg);
+        }
+
         #endregion
 
         #region "METODOS PARA EL FORM"
@@ -82,10 +152,73 @@ namespace Presentacion
         }
         #endregion
 
+        #region "METODOS DIRECCIONES"
+        private void MostrarCiudades()
+        {
+            CB_CIUDADES.DataSource = S_direcciones.Listado_Ciudades();
+            CB_CIUDADES.ValueMember = "id_ciudad";
+            CB_CIUDADES.DisplayMember = "nom_ciudad";
+        }
+
+        private void MostrarBarrios(int idCiudad)
+        {
+            CB_BARRIOS.SelectedIndex = -1;
+            CB_CALLES.SelectedIndex = -1;
+
+            List<Barrio> barrios = S_direcciones.Listado_Barrios(idCiudad);
+
+            CB_BARRIOS.DataSource = barrios;
+            CB_BARRIOS.ValueMember = "id_barrio";
+            CB_BARRIOS.DisplayMember = "nom_barrio";
+
+
+
+        }
+
+        private void ObtenerId_Ciudad()
+        {
+            Ciudad ciudadSeleccionada = (Ciudad)CB_CIUDADES.SelectedItem;
+            idCiudadSeleccionada = ciudadSeleccionada.Id_Ciudad;
+        }
+
+
+        private void ObtenerId_Barrio()
+        {
+            Barrio barrioSeleccionado = (Barrio)CB_BARRIOS.SelectedItem;
+            if (barrioSeleccionado != null)
+            {
+                idBarrioSeleccionado = barrioSeleccionado.id_Barrio;
+            }
+        }
+
+
+        private void ObtenerId_Calle()
+        {
+            Calle calleSeleccionada = (Calle)CB_CALLES.SelectedItem;
+            if (calleSeleccionada != null)
+            {
+                idCalleSeleccionada = calleSeleccionada.Id_Calle;
+            }
+        }
+        private void MostrarCalles(int IdBarrio)
+        {
+
+            CB_CALLES.SelectedIndex = -1;
+
+            List<Calle> calles = S_direcciones.Listado_Calles(IdBarrio);
+
+
+            CB_CALLES.DataSource = calles;
+            CB_CALLES.ValueMember = "id_calle";
+            CB_CALLES.DisplayMember = "nom_calle";
+        }
+
+        #endregion
+
         #region "EVENTOS"
         private void btnConsultar_Click(object sender, EventArgs e)
         {
-
+            Cargar();
         }
 
         private void FrmLoginAdmin_Load(object sender, EventArgs e)
@@ -105,6 +238,44 @@ namespace Presentacion
             DatosParaLogearEmpleado(e);
             CargarLogEmpleado();
 
+        }
+
+        private void dgEmpleados_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            CargarDatosEmpleado(e);
+            MostrarCiudades();
+            
+            
+        }
+
+        private void CB_CIUDADES_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ObtenerId_Ciudad();
+            MostrarBarrios(idCiudadSeleccionada);
+        }
+
+        private void CB_BARRIOS_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ObtenerId_Barrio();
+            MostrarCalles(idBarrioSeleccionado);
+            ObtenerId_Calle();
+        }
+
+        private void CB_CALLES_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ObtenerId_Calle();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            ActualizarEmpleado();
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            
+            MostrarVentanaNuevoEmp();
+            EliminarEmpleado();
         }
     }
 }

@@ -30,6 +30,22 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmLoginEmpleadoForAdmin));
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pnCliente = new System.Windows.Forms.Panel();
+            this.CB_CALLES = new System.Windows.Forms.ComboBox();
+            this.CB_BARRIOS = new System.Windows.Forms.ComboBox();
+            this.CB_CIUDADES = new System.Windows.Forms.ComboBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.tbTelefono = new System.Windows.Forms.TextBox();
+            this.tbPr_Apellido = new System.Windows.Forms.TextBox();
+            this.tbPr_Nombre = new System.Windows.Forms.TextBox();
+            this.btnEditarCliente = new System.Windows.Forms.Button();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.btnEliminar = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.lb_Total = new System.Windows.Forms.Label();
             this.lbFechaFact = new System.Windows.Forms.Label();
@@ -42,21 +58,7 @@
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
-            this.pnCLients = new System.Windows.Forms.Panel();
-            this.pnPersona = new System.Windows.Forms.Panel();
-            this.CB_CALLES = new System.Windows.Forms.ComboBox();
-            this.CB_BARRIOS = new System.Windows.Forms.ComboBox();
-            this.CB_CIUDADES = new System.Windows.Forms.ComboBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox8 = new System.Windows.Forms.TextBox();
-            this.textBox9 = new System.Windows.Forms.TextBox();
-            this.btnEditarCliente = new System.Windows.Forms.Button();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
+            this.pnVehiculo = new System.Windows.Forms.Panel();
             this.dtpVersion = new System.Windows.Forms.DateTimePicker();
             this.label19 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -73,7 +75,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.btnAgregarCliente = new System.Windows.Forms.Button();
             this.dgClientes = new System.Windows.Forms.DataGridView();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.lbPass = new System.Windows.Forms.Label();
@@ -83,16 +85,17 @@
             this.btnSalir = new System.Windows.Forms.Button();
             this.btnConsultar = new System.Windows.Forms.Button();
             this.lbNombres = new System.Windows.Forms.Label();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            this.pnCliente.SuspendLayout();
             this.panel3.SuspendLayout();
-            this.pnCLients.SuspendLayout();
-            this.pnPersona.SuspendLayout();
+            this.pnVehiculo.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgClientes)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -106,6 +109,180 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 8;
             this.pictureBox1.TabStop = false;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox2.BackgroundImage")));
+            this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox2.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(1052, 450);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 9;
+            this.pictureBox2.TabStop = false;
+            // 
+            // pnCliente
+            // 
+            this.pnCliente.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.pnCliente.Controls.Add(this.CB_CALLES);
+            this.pnCliente.Controls.Add(this.CB_BARRIOS);
+            this.pnCliente.Controls.Add(this.CB_CIUDADES);
+            this.pnCliente.Controls.Add(this.label9);
+            this.pnCliente.Controls.Add(this.label3);
+            this.pnCliente.Controls.Add(this.label16);
+            this.pnCliente.Controls.Add(this.tbTelefono);
+            this.pnCliente.Controls.Add(this.tbPr_Apellido);
+            this.pnCliente.Controls.Add(this.tbPr_Nombre);
+            this.pnCliente.Controls.Add(this.btnEditarCliente);
+            this.pnCliente.Controls.Add(this.label15);
+            this.pnCliente.Controls.Add(this.label17);
+            this.pnCliente.Controls.Add(this.label18);
+            this.pnCliente.Location = new System.Drawing.Point(308, 0);
+            this.pnCliente.Margin = new System.Windows.Forms.Padding(2);
+            this.pnCliente.Name = "pnCliente";
+            this.pnCliente.Size = new System.Drawing.Size(329, 177);
+            this.pnCliente.TabIndex = 27;
+            // 
+            // CB_CALLES
+            // 
+            this.CB_CALLES.FormattingEnabled = true;
+            this.CB_CALLES.Location = new System.Drawing.Point(225, 110);
+            this.CB_CALLES.Margin = new System.Windows.Forms.Padding(2);
+            this.CB_CALLES.Name = "CB_CALLES";
+            this.CB_CALLES.Size = new System.Drawing.Size(92, 21);
+            this.CB_CALLES.TabIndex = 31;
+            this.CB_CALLES.SelectedIndexChanged += new System.EventHandler(this.CB_CALLES_SelectedIndexChanged);
+            // 
+            // CB_BARRIOS
+            // 
+            this.CB_BARRIOS.FormattingEnabled = true;
+            this.CB_BARRIOS.Location = new System.Drawing.Point(225, 64);
+            this.CB_BARRIOS.Margin = new System.Windows.Forms.Padding(2);
+            this.CB_BARRIOS.Name = "CB_BARRIOS";
+            this.CB_BARRIOS.Size = new System.Drawing.Size(92, 21);
+            this.CB_BARRIOS.TabIndex = 30;
+            this.CB_BARRIOS.SelectedIndexChanged += new System.EventHandler(this.CB_BARRIOS_SelectedIndexChanged);
+            // 
+            // CB_CIUDADES
+            // 
+            this.CB_CIUDADES.FormattingEnabled = true;
+            this.CB_CIUDADES.Location = new System.Drawing.Point(225, 17);
+            this.CB_CIUDADES.Margin = new System.Windows.Forms.Padding(2);
+            this.CB_CIUDADES.Name = "CB_CIUDADES";
+            this.CB_CIUDADES.Size = new System.Drawing.Size(92, 21);
+            this.CB_CIUDADES.TabIndex = 29;
+            this.CB_CIUDADES.SelectedIndexChanged += new System.EventHandler(this.CB_CIUDADES_SelectedIndexChanged);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Cooper Black", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(170, 113);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(37, 14);
+            this.label9.TabIndex = 28;
+            this.label9.Text = "Calle";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Cooper Black", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(170, 68);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(46, 14);
+            this.label3.TabIndex = 27;
+            this.label3.Text = "Barrio";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Cooper Black", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(166, 22);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(51, 14);
+            this.label16.TabIndex = 26;
+            this.label16.Text = "Ciudad";
+            // 
+            // tbTelefono
+            // 
+            this.tbTelefono.Location = new System.Drawing.Point(83, 102);
+            this.tbTelefono.Margin = new System.Windows.Forms.Padding(2);
+            this.tbTelefono.Name = "tbTelefono";
+            this.tbTelefono.Size = new System.Drawing.Size(76, 20);
+            this.tbTelefono.TabIndex = 16;
+            // 
+            // tbPr_Apellido
+            // 
+            this.tbPr_Apellido.Location = new System.Drawing.Point(83, 57);
+            this.tbPr_Apellido.Margin = new System.Windows.Forms.Padding(2);
+            this.tbPr_Apellido.Name = "tbPr_Apellido";
+            this.tbPr_Apellido.Size = new System.Drawing.Size(76, 20);
+            this.tbPr_Apellido.TabIndex = 14;
+            // 
+            // tbPr_Nombre
+            // 
+            this.tbPr_Nombre.Location = new System.Drawing.Point(83, 19);
+            this.tbPr_Nombre.Margin = new System.Windows.Forms.Padding(2);
+            this.tbPr_Nombre.Name = "tbPr_Nombre";
+            this.tbPr_Nombre.Size = new System.Drawing.Size(76, 20);
+            this.tbPr_Nombre.TabIndex = 13;
+            // 
+            // btnEditarCliente
+            // 
+            this.btnEditarCliente.Location = new System.Drawing.Point(131, 145);
+            this.btnEditarCliente.Margin = new System.Windows.Forms.Padding(2);
+            this.btnEditarCliente.Name = "btnEditarCliente";
+            this.btnEditarCliente.Size = new System.Drawing.Size(56, 19);
+            this.btnEditarCliente.TabIndex = 12;
+            this.btnEditarCliente.Text = "Editar";
+            this.btnEditarCliente.UseVisualStyleBackColor = true;
+            this.btnEditarCliente.Click += new System.EventHandler(this.btnEditarCliente_Click);
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Cooper Black", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(14, 108);
+            this.label15.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(55, 13);
+            this.label15.TabIndex = 4;
+            this.label15.Text = "telefono";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Cooper Black", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.Location = new System.Drawing.Point(14, 60);
+            this.label17.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(74, 13);
+            this.label17.TabIndex = 2;
+            this.label17.Text = "pr_apellido";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Cooper Black", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label18.Location = new System.Drawing.Point(14, 22);
+            this.label18.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(70, 13);
+            this.label18.TabIndex = 0;
+            this.label18.Text = "pr_nombre";
+            // 
+            // btnEliminar
+            // 
+            this.btnEliminar.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnEliminar.BackgroundImage")));
+            this.btnEliminar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEliminar.Location = new System.Drawing.Point(206, 132);
+            this.btnEliminar.Name = "btnEliminar";
+            this.btnEliminar.Size = new System.Drawing.Size(40, 49);
+            this.btnEliminar.TabIndex = 26;
+            this.btnEliminar.UseVisualStyleBackColor = true;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // panel3
             // 
@@ -125,7 +302,7 @@
             this.panel3.Margin = new System.Windows.Forms.Padding(2);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(214, 292);
-            this.panel3.TabIndex = 14;
+            this.panel3.TabIndex = 25;
             // 
             // lb_Total
             // 
@@ -243,173 +420,26 @@
             this.label13.TabIndex = 0;
             this.label13.Text = "Codigo";
             // 
-            // pnCLients
+            // pnVehiculo
             // 
-            this.pnCLients.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.pnCLients.Controls.Add(this.pnPersona);
-            this.pnCLients.Controls.Add(this.dtpVersion);
-            this.pnCLients.Controls.Add(this.label19);
-            this.pnCLients.Controls.Add(this.groupBox1);
-            this.pnCLients.Controls.Add(this.tbModelo);
-            this.pnCLients.Controls.Add(this.tbCilindraje);
-            this.pnCLients.Controls.Add(this.tbMarca);
-            this.pnCLients.Controls.Add(this.tbPlaca);
-            this.pnCLients.Controls.Add(this.btnEditarVeh);
-            this.pnCLients.Controls.Add(this.label7);
-            this.pnCLients.Controls.Add(this.label6);
-            this.pnCLients.Controls.Add(this.label4);
-            this.pnCLients.Controls.Add(this.label2);
-            this.pnCLients.Location = new System.Drawing.Point(308, 10);
-            this.pnCLients.Margin = new System.Windows.Forms.Padding(2);
-            this.pnCLients.Name = "pnCLients";
-            this.pnCLients.Size = new System.Drawing.Size(329, 250);
-            this.pnCLients.TabIndex = 13;
-            // 
-            // pnPersona
-            // 
-            this.pnPersona.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.pnPersona.Controls.Add(this.CB_CALLES);
-            this.pnPersona.Controls.Add(this.CB_BARRIOS);
-            this.pnPersona.Controls.Add(this.CB_CIUDADES);
-            this.pnPersona.Controls.Add(this.label9);
-            this.pnPersona.Controls.Add(this.label3);
-            this.pnPersona.Controls.Add(this.label16);
-            this.pnPersona.Controls.Add(this.textBox3);
-            this.pnPersona.Controls.Add(this.textBox8);
-            this.pnPersona.Controls.Add(this.textBox9);
-            this.pnPersona.Controls.Add(this.btnEditarCliente);
-            this.pnPersona.Controls.Add(this.label15);
-            this.pnPersona.Controls.Add(this.label17);
-            this.pnPersona.Controls.Add(this.label18);
-            this.pnPersona.Location = new System.Drawing.Point(0, 14);
-            this.pnPersona.Margin = new System.Windows.Forms.Padding(2);
-            this.pnPersona.Name = "pnPersona";
-            this.pnPersona.Size = new System.Drawing.Size(329, 177);
-            this.pnPersona.TabIndex = 19;
-            // 
-            // CB_CALLES
-            // 
-            this.CB_CALLES.FormattingEnabled = true;
-            this.CB_CALLES.Location = new System.Drawing.Point(225, 110);
-            this.CB_CALLES.Margin = new System.Windows.Forms.Padding(2);
-            this.CB_CALLES.Name = "CB_CALLES";
-            this.CB_CALLES.Size = new System.Drawing.Size(92, 21);
-            this.CB_CALLES.TabIndex = 31;
-            // 
-            // CB_BARRIOS
-            // 
-            this.CB_BARRIOS.FormattingEnabled = true;
-            this.CB_BARRIOS.Location = new System.Drawing.Point(225, 64);
-            this.CB_BARRIOS.Margin = new System.Windows.Forms.Padding(2);
-            this.CB_BARRIOS.Name = "CB_BARRIOS";
-            this.CB_BARRIOS.Size = new System.Drawing.Size(92, 21);
-            this.CB_BARRIOS.TabIndex = 30;
-            // 
-            // CB_CIUDADES
-            // 
-            this.CB_CIUDADES.FormattingEnabled = true;
-            this.CB_CIUDADES.Location = new System.Drawing.Point(225, 17);
-            this.CB_CIUDADES.Margin = new System.Windows.Forms.Padding(2);
-            this.CB_CIUDADES.Name = "CB_CIUDADES";
-            this.CB_CIUDADES.Size = new System.Drawing.Size(92, 21);
-            this.CB_CIUDADES.TabIndex = 29;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Cooper Black", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(170, 113);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(37, 14);
-            this.label9.TabIndex = 28;
-            this.label9.Text = "Calle";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Cooper Black", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(170, 68);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(46, 14);
-            this.label3.TabIndex = 27;
-            this.label3.Text = "Barrio";
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Cooper Black", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(166, 22);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(51, 14);
-            this.label16.TabIndex = 26;
-            this.label16.Text = "Ciudad";
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(83, 102);
-            this.textBox3.Margin = new System.Windows.Forms.Padding(2);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(76, 20);
-            this.textBox3.TabIndex = 16;
-            // 
-            // textBox8
-            // 
-            this.textBox8.Location = new System.Drawing.Point(83, 57);
-            this.textBox8.Margin = new System.Windows.Forms.Padding(2);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(76, 20);
-            this.textBox8.TabIndex = 14;
-            // 
-            // textBox9
-            // 
-            this.textBox9.Location = new System.Drawing.Point(83, 19);
-            this.textBox9.Margin = new System.Windows.Forms.Padding(2);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(76, 20);
-            this.textBox9.TabIndex = 13;
-            // 
-            // btnEditarCliente
-            // 
-            this.btnEditarCliente.Location = new System.Drawing.Point(131, 145);
-            this.btnEditarCliente.Margin = new System.Windows.Forms.Padding(2);
-            this.btnEditarCliente.Name = "btnEditarCliente";
-            this.btnEditarCliente.Size = new System.Drawing.Size(56, 19);
-            this.btnEditarCliente.TabIndex = 12;
-            this.btnEditarCliente.Text = "Editar";
-            this.btnEditarCliente.UseVisualStyleBackColor = true;
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Cooper Black", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(14, 108);
-            this.label15.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(55, 13);
-            this.label15.TabIndex = 4;
-            this.label15.Text = "telefono";
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Cooper Black", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(14, 60);
-            this.label17.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(74, 13);
-            this.label17.TabIndex = 2;
-            this.label17.Text = "pr_apellido";
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Font = new System.Drawing.Font("Cooper Black", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(14, 22);
-            this.label18.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(70, 13);
-            this.label18.TabIndex = 0;
-            this.label18.Text = "pr_nombre";
+            this.pnVehiculo.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.pnVehiculo.Controls.Add(this.dtpVersion);
+            this.pnVehiculo.Controls.Add(this.label19);
+            this.pnVehiculo.Controls.Add(this.groupBox1);
+            this.pnVehiculo.Controls.Add(this.tbModelo);
+            this.pnVehiculo.Controls.Add(this.tbCilindraje);
+            this.pnVehiculo.Controls.Add(this.tbMarca);
+            this.pnVehiculo.Controls.Add(this.tbPlaca);
+            this.pnVehiculo.Controls.Add(this.btnEditarVeh);
+            this.pnVehiculo.Controls.Add(this.label7);
+            this.pnVehiculo.Controls.Add(this.label6);
+            this.pnVehiculo.Controls.Add(this.label4);
+            this.pnVehiculo.Controls.Add(this.label2);
+            this.pnVehiculo.Location = new System.Drawing.Point(308, 10);
+            this.pnVehiculo.Margin = new System.Windows.Forms.Padding(2);
+            this.pnVehiculo.Name = "pnVehiculo";
+            this.pnVehiculo.Size = new System.Drawing.Size(329, 250);
+            this.pnVehiculo.TabIndex = 24;
             // 
             // dtpVersion
             // 
@@ -557,10 +587,10 @@
             this.btnAgregarCliente.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnAgregarCliente.BackgroundImage")));
             this.btnAgregarCliente.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnAgregarCliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAgregarCliente.Location = new System.Drawing.Point(206, 206);
+            this.btnAgregarCliente.Location = new System.Drawing.Point(206, 204);
             this.btnAgregarCliente.Name = "btnAgregarCliente";
             this.btnAgregarCliente.Size = new System.Drawing.Size(40, 47);
-            this.btnAgregarCliente.TabIndex = 12;
+            this.btnAgregarCliente.TabIndex = 23;
             this.btnAgregarCliente.UseVisualStyleBackColor = true;
             this.btnAgregarCliente.Click += new System.EventHandler(this.btnAgregarCliente_Click_1);
             // 
@@ -575,20 +605,21 @@
             this.dgClientes.RowHeadersWidth = 51;
             this.dgClientes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgClientes.Size = new System.Drawing.Size(600, 190);
-            this.dgClientes.TabIndex = 11;
+            this.dgClientes.TabIndex = 22;
             this.dgClientes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgClientes_CellClick_1);
+            this.dgClientes.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgClientes_CellDoubleClick);
             // 
-            // pictureBox2
+            // pictureBox3
             // 
-            this.pictureBox2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox2.BackgroundImage")));
-            this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox2.Location = new System.Drawing.Point(200, 0);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(852, 450);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox2.TabIndex = 9;
-            this.pictureBox2.TabStop = false;
+            this.pictureBox3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox3.BackgroundImage")));
+            this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox3.Location = new System.Drawing.Point(200, 0);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(852, 450);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox3.TabIndex = 20;
+            this.pictureBox3.TabStop = false;
             // 
             // panel1
             // 
@@ -601,12 +632,12 @@
             this.panel1.Controls.Add(this.btnSalir);
             this.panel1.Controls.Add(this.btnConsultar);
             this.panel1.Controls.Add(this.lbNombres);
-            this.panel1.Controls.Add(this.pictureBox3);
+            this.panel1.Controls.Add(this.pictureBox4);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(200, 450);
-            this.panel1.TabIndex = 10;
+            this.panel1.TabIndex = 21;
             // 
             // label1
             // 
@@ -695,52 +726,72 @@
             this.lbNombres.TabIndex = 1;
             this.lbNombres.Text = "Empleado nombres";
             // 
-            // pictureBox3
+            // pictureBox4
             // 
-            this.pictureBox3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
-            this.pictureBox3.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(200, 152);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox3.TabIndex = 0;
-            this.pictureBox3.TabStop = false;
+            this.pictureBox4.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
+            this.pictureBox4.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(200, 152);
+            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox4.TabIndex = 0;
+            this.pictureBox4.TabStop = false;
             // 
             // FrmLoginEmpleadoForAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1052, 450);
+            this.Controls.Add(this.pnCliente);
+            this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.panel3);
-            this.Controls.Add(this.pnCLients);
+            this.Controls.Add(this.pnVehiculo);
             this.Controls.Add(this.btnAgregarCliente);
             this.Controls.Add(this.dgClientes);
-            this.Controls.Add(this.pictureBox2);
+            this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.panel1);
+            this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.pictureBox1);
             this.Name = "FrmLoginEmpleadoForAdmin";
             this.Text = "FrmLoginEmpleadoForAdmin";
             this.Load += new System.EventHandler(this.FrmLoginEmpleadoForAdmin_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            this.pnCliente.ResumeLayout(false);
+            this.pnCliente.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
-            this.pnCLients.ResumeLayout(false);
-            this.pnCLients.PerformLayout();
-            this.pnPersona.ResumeLayout(false);
-            this.pnPersona.PerformLayout();
+            this.pnVehiculo.ResumeLayout(false);
+            this.pnVehiculo.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgClientes)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.Panel pnCliente;
+        private System.Windows.Forms.ComboBox CB_CALLES;
+        private System.Windows.Forms.ComboBox CB_BARRIOS;
+        private System.Windows.Forms.ComboBox CB_CIUDADES;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.TextBox tbTelefono;
+        private System.Windows.Forms.TextBox tbPr_Apellido;
+        private System.Windows.Forms.TextBox tbPr_Nombre;
+        private System.Windows.Forms.Button btnEditarCliente;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label lb_Total;
         private System.Windows.Forms.Label lbFechaFact;
@@ -753,21 +804,7 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Panel pnCLients;
-        private System.Windows.Forms.Panel pnPersona;
-        private System.Windows.Forms.ComboBox CB_CALLES;
-        private System.Windows.Forms.ComboBox CB_BARRIOS;
-        private System.Windows.Forms.ComboBox CB_CIUDADES;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox8;
-        private System.Windows.Forms.TextBox textBox9;
-        private System.Windows.Forms.Button btnEditarCliente;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Panel pnVehiculo;
         private System.Windows.Forms.DateTimePicker dtpVersion;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.GroupBox groupBox1;
@@ -784,7 +821,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnAgregarCliente;
         private System.Windows.Forms.DataGridView dgClientes;
-        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lbPass;
@@ -794,6 +831,6 @@
         private System.Windows.Forms.Button btnSalir;
         private System.Windows.Forms.Button btnConsultar;
         private System.Windows.Forms.Label lbNombres;
-        private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.PictureBox pictureBox4;
     }
 }

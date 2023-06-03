@@ -50,5 +50,20 @@ namespace Logica
 
             return cliente;
         }
+        public Cliente ConsultarClienteSegunEmpleado(String identificador)
+        {
+            List<Cliente> clientes = new List<Cliente>();
+            clientes = G_clientes.Consultar();
+            Cliente cliente = new Cliente();
+            foreach (Cliente client in clientes)
+            {
+                if (client.CedulaEmpleado == identificador)
+                {
+                    cliente = client;
+                }
+            }
+
+            return cliente;
+        }
     }
 }

@@ -10,6 +10,9 @@ namespace Entidades
     {
         public static string Cedula { get; set; }
         public static string CedulaAdmin{ get; set; }
+        public static string CedulaNuevoEmp { get; set; }
+
+        public static string CedulaEmp { get; set; }
 
         public static void ActualizarCedula(string cedula)
         {
@@ -33,6 +36,28 @@ namespace Entidades
         public static string ObtenerCedulaAdmin()
         {
             return CedulaAdmin;
+        }
+
+        public static void ActualizarCedulaNuevoEmp(string cedula)
+        {
+            CedulaNuevoEmp = cedula;
+        }
+
+
+        public static string ObtenerCedulaNuevoEmp()
+        {
+            return CedulaNuevoEmp;
+        }
+
+        public static void ActualizarCedulaEmp(string cedula)
+        {
+            CedulaEmp = cedula;
+        }
+
+
+        public static string ObtenerCedulaEmp()
+        {
+            return CedulaEmp;
         }
 
 
