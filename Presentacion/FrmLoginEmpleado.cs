@@ -388,15 +388,7 @@ namespace Presentacion
         }
         private void btnAgregarCliente_Click(object sender, EventArgs e)
         {
-            if (dgClientes.SelectedRows.Count > 0)
-            {
-                FrmAgregarCliente();
-            }
-            else
-            {
-                MessageBox.Show("Debe seleccionar antes");
-            }
-            
+                FrmAgregarCliente();   
         }
 
         private void btnSalir_Click(object sender, EventArgs e)
