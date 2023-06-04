@@ -45,6 +45,10 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.cbCilindraje = new System.Windows.Forms.ComboBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.rbCarro = new System.Windows.Forms.RadioButton();
+            this.rbMoto = new System.Windows.Forms.RadioButton();
             this.dtpVersion = new System.Windows.Forms.DateTimePicker();
             this.label8 = new System.Windows.Forms.Label();
             this.tbMarca = new System.Windows.Forms.TextBox();
@@ -65,16 +69,12 @@
             this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.btnAgregarC = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.rbCarro = new System.Windows.Forms.RadioButton();
-            this.rbMoto = new System.Windows.Forms.RadioButton();
-            this.cbCilindraje = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbSalir)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -103,7 +103,7 @@
             // 
             this.CB_CALLES.FormattingEnabled = true;
             this.CB_CALLES.Location = new System.Drawing.Point(358, 168);
-            this.CB_CALLES.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.CB_CALLES.Margin = new System.Windows.Forms.Padding(2);
             this.CB_CALLES.Name = "CB_CALLES";
             this.CB_CALLES.Size = new System.Drawing.Size(92, 21);
             this.CB_CALLES.TabIndex = 25;
@@ -113,7 +113,7 @@
             // 
             this.CB_BARRIOS.FormattingEnabled = true;
             this.CB_BARRIOS.Location = new System.Drawing.Point(358, 122);
-            this.CB_BARRIOS.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.CB_BARRIOS.Margin = new System.Windows.Forms.Padding(2);
             this.CB_BARRIOS.Name = "CB_BARRIOS";
             this.CB_BARRIOS.Size = new System.Drawing.Size(92, 21);
             this.CB_BARRIOS.TabIndex = 24;
@@ -123,7 +123,7 @@
             // 
             this.CB_CIUDADES.FormattingEnabled = true;
             this.CB_CIUDADES.Location = new System.Drawing.Point(358, 75);
-            this.CB_CIUDADES.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.CB_CIUDADES.Margin = new System.Windows.Forms.Padding(2);
             this.CB_CIUDADES.Name = "CB_CIUDADES";
             this.CB_CIUDADES.Size = new System.Drawing.Size(92, 21);
             this.CB_CIUDADES.TabIndex = 23;
@@ -246,10 +246,57 @@
             this.panel2.Size = new System.Drawing.Size(541, 277);
             this.panel2.TabIndex = 26;
             // 
+            // cbCilindraje
+            // 
+            this.cbCilindraje.FormattingEnabled = true;
+            this.cbCilindraje.Location = new System.Drawing.Point(405, 75);
+            this.cbCilindraje.Margin = new System.Windows.Forms.Padding(2);
+            this.cbCilindraje.Name = "cbCilindraje";
+            this.cbCilindraje.Size = new System.Drawing.Size(92, 21);
+            this.cbCilindraje.TabIndex = 31;
+            this.cbCilindraje.SelectedIndexChanged += new System.EventHandler(this.cbCilindraje_SelectedIndexChanged);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.rbCarro);
+            this.groupBox1.Controls.Add(this.rbMoto);
+            this.groupBox1.Location = new System.Drawing.Point(352, 122);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
+            this.groupBox1.Size = new System.Drawing.Size(136, 67);
+            this.groupBox1.TabIndex = 30;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Tipo De Vehiculos";
+            // 
+            // rbCarro
+            // 
+            this.rbCarro.AutoSize = true;
+            this.rbCarro.Location = new System.Drawing.Point(4, 17);
+            this.rbCarro.Margin = new System.Windows.Forms.Padding(2);
+            this.rbCarro.Name = "rbCarro";
+            this.rbCarro.Size = new System.Drawing.Size(49, 17);
+            this.rbCarro.TabIndex = 20;
+            this.rbCarro.TabStop = true;
+            this.rbCarro.Text = "carro";
+            this.rbCarro.UseVisualStyleBackColor = true;
+            // 
+            // rbMoto
+            // 
+            this.rbMoto.AutoSize = true;
+            this.rbMoto.Location = new System.Drawing.Point(4, 37);
+            this.rbMoto.Margin = new System.Windows.Forms.Padding(2);
+            this.rbMoto.Name = "rbMoto";
+            this.rbMoto.Size = new System.Drawing.Size(48, 17);
+            this.rbMoto.TabIndex = 19;
+            this.rbMoto.TabStop = true;
+            this.rbMoto.Text = "moto";
+            this.rbMoto.UseVisualStyleBackColor = true;
+            // 
             // dtpVersion
             // 
             this.dtpVersion.Location = new System.Drawing.Point(142, 206);
-            this.dtpVersion.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dtpVersion.Margin = new System.Windows.Forms.Padding(2);
             this.dtpVersion.Name = "dtpVersion";
             this.dtpVersion.Size = new System.Drawing.Size(151, 20);
             this.dtpVersion.TabIndex = 29;
@@ -440,53 +487,6 @@
             this.btnAgregarC.UseVisualStyleBackColor = false;
             this.btnAgregarC.Click += new System.EventHandler(this.btnAgregarC_Click);
             // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.rbCarro);
-            this.groupBox1.Controls.Add(this.rbMoto);
-            this.groupBox1.Location = new System.Drawing.Point(352, 122);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox1.Size = new System.Drawing.Size(136, 67);
-            this.groupBox1.TabIndex = 30;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Tipo De Vehiculos";
-            // 
-            // rbCarro
-            // 
-            this.rbCarro.AutoSize = true;
-            this.rbCarro.Location = new System.Drawing.Point(4, 17);
-            this.rbCarro.Margin = new System.Windows.Forms.Padding(2);
-            this.rbCarro.Name = "rbCarro";
-            this.rbCarro.Size = new System.Drawing.Size(49, 17);
-            this.rbCarro.TabIndex = 20;
-            this.rbCarro.TabStop = true;
-            this.rbCarro.Text = "carro";
-            this.rbCarro.UseVisualStyleBackColor = true;
-            // 
-            // rbMoto
-            // 
-            this.rbMoto.AutoSize = true;
-            this.rbMoto.Location = new System.Drawing.Point(4, 37);
-            this.rbMoto.Margin = new System.Windows.Forms.Padding(2);
-            this.rbMoto.Name = "rbMoto";
-            this.rbMoto.Size = new System.Drawing.Size(48, 17);
-            this.rbMoto.TabIndex = 19;
-            this.rbMoto.TabStop = true;
-            this.rbMoto.Text = "moto";
-            this.rbMoto.UseVisualStyleBackColor = true;
-            // 
-            // cbCilindraje
-            // 
-            this.cbCilindraje.FormattingEnabled = true;
-            this.cbCilindraje.Location = new System.Drawing.Point(405, 75);
-            this.cbCilindraje.Margin = new System.Windows.Forms.Padding(2);
-            this.cbCilindraje.Name = "cbCilindraje";
-            this.cbCilindraje.Size = new System.Drawing.Size(92, 21);
-            this.cbCilindraje.TabIndex = 31;
-            this.cbCilindraje.SelectedIndexChanged += new System.EventHandler(this.cbCilindraje_SelectedIndexChanged);
-            // 
             // FrmAgregarCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -505,6 +505,8 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.DoubleBuffered = true;
+            this.MaximumSize = new System.Drawing.Size(1161, 647);
+            this.MinimumSize = new System.Drawing.Size(1161, 647);
             this.Name = "FrmAgregarCliente";
             this.Text = "FrmAgregarEmpleado";
             this.Load += new System.EventHandler(this.FrmAgregarCliente_Load);
@@ -512,12 +514,12 @@
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbSalir)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 

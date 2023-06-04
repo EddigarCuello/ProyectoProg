@@ -84,6 +84,14 @@ namespace Logica
             placaParagraph.Add(placaValueChunk);
             document.Add(placaParagraph);
 
+            var Prc_TotalChunk = new Chunk("Precio Total: ", FontFactory.GetFont("ARIAL", 14, iTextSharp.text.Font.BOLD));
+            var Prc_TotalValueChunk = new Chunk(factura.Prc_Total.ToString(), font);
+            var Prc_TotalParagraph = new Paragraph();
+            Prc_TotalParagraph.Alignment = 1;
+            Prc_TotalParagraph.Add(Prc_TotalChunk);
+            Prc_TotalParagraph.Add(Prc_TotalValueChunk);
+            document.Add(Prc_TotalParagraph);
+
             document.Close();
 
         }

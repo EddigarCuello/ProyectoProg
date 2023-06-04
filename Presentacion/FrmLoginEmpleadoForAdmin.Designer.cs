@@ -752,6 +752,8 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.pictureBox1);
+            this.MaximumSize = new System.Drawing.Size(1068, 489);
+            this.MinimumSize = new System.Drawing.Size(1068, 489);
             this.Name = "FrmLoginEmpleadoForAdmin";
             this.Text = "FrmLoginEmpleadoForAdmin";
             this.Load += new System.EventHandler(this.FrmLoginEmpleadoForAdmin_Load);

@@ -63,6 +63,8 @@
             this.ControlBox = false;
             this.Controls.Add(this.CB_NewEmpleado);
             this.Controls.Add(this.lbNombres);
+            this.MaximumSize = new System.Drawing.Size(578, 365);
+            this.MinimumSize = new System.Drawing.Size(578, 365);
             this.Name = "FrmSelectNewEmpleado";
             this.Text = "FrmSelectNewEmpleado";
             this.Load += new System.EventHandler(this.FrmSelectNewEmpleado_Load);

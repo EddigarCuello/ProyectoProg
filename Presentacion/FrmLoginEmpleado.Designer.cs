@@ -43,6 +43,7 @@
             this.dgClientes = new System.Windows.Forms.DataGridView();
             this.btnAgregarCliente = new System.Windows.Forms.Button();
             this.pnVehiculo = new System.Windows.Forms.Panel();
+            this.cbCilindraje = new System.Windows.Forms.ComboBox();
             this.dtpVersion = new System.Windows.Forms.DateTimePicker();
             this.label19 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -83,7 +84,6 @@
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.btnEliminar = new System.Windows.Forms.Button();
-            this.cbCilindraje = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panel1.SuspendLayout();
@@ -269,6 +269,16 @@
             this.pnVehiculo.Name = "pnVehiculo";
             this.pnVehiculo.Size = new System.Drawing.Size(329, 250);
             this.pnVehiculo.TabIndex = 6;
+            // 
+            // cbCilindraje
+            // 
+            this.cbCilindraje.FormattingEnabled = true;
+            this.cbCilindraje.Location = new System.Drawing.Point(235, 17);
+            this.cbCilindraje.Margin = new System.Windows.Forms.Padding(2);
+            this.cbCilindraje.Name = "cbCilindraje";
+            this.cbCilindraje.Size = new System.Drawing.Size(92, 21);
+            this.cbCilindraje.TabIndex = 32;
+            this.cbCilindraje.SelectedIndexChanged += new System.EventHandler(this.cbCilindraje_SelectedIndexChanged);
             // 
             // dtpVersion
             // 
@@ -701,16 +711,6 @@
             this.btnEliminar.UseVisualStyleBackColor = true;
             this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
-            // cbCilindraje
-            // 
-            this.cbCilindraje.FormattingEnabled = true;
-            this.cbCilindraje.Location = new System.Drawing.Point(235, 17);
-            this.cbCilindraje.Margin = new System.Windows.Forms.Padding(2);
-            this.cbCilindraje.Name = "cbCilindraje";
-            this.cbCilindraje.Size = new System.Drawing.Size(92, 21);
-            this.cbCilindraje.TabIndex = 32;
-            this.cbCilindraje.SelectedIndexChanged += new System.EventHandler(this.cbCilindraje_SelectedIndexChanged);
-            // 
             // FrmLoginEmpleado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -726,8 +726,9 @@
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.panel1);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(1217, 495);
+            this.MaximumSize = new System.Drawing.Size(1068, 488);
             this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(1068, 488);
             this.Name = "FrmLoginEmpleado";
             this.Text = "FrmLogin";
             this.Load += new System.EventHandler(this.FrmLoginEmpleado_Load);
