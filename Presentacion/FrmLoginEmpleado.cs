@@ -23,6 +23,7 @@ namespace Presentacion
             tbPlaca.Enabled = false;
             dgClientes.AllowUserToAddRows = false;
             dgClientes.RowHeadersVisible = false;
+            
         }
 
         #region "VARIABLES"
@@ -387,7 +388,15 @@ namespace Presentacion
         }
         private void btnAgregarCliente_Click(object sender, EventArgs e)
         {
-            FrmAgregarCliente();
+            if (dgClientes.SelectedRows.Count > 0)
+            {
+                FrmAgregarCliente();
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar antes");
+            }
+            
         }
 
         private void btnSalir_Click(object sender, EventArgs e)
@@ -400,6 +409,7 @@ namespace Presentacion
             Cargar();
             CargarCuenta();
             CargarCbCilindraje();
+            dgClientes.ClearSelection();
         }
 
         private void dgClientes_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -416,7 +426,15 @@ namespace Presentacion
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            EliminarCuenta();
+            if (dgClientes.SelectedRows.Count > 0)
+            {
+                EliminarCuenta();
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar antes");
+            }
+            
         }
 
         private void dgClientes_CellDoubleClick(object sender, DataGridViewCellEventArgs e)

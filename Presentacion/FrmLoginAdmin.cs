@@ -236,6 +236,7 @@ namespace Presentacion
         {
             Cargar();
             CargarCuenta();
+            dgEmpleados.ClearSelection();
         }
 
         private void btnSalir_Click(object sender, EventArgs e)
@@ -284,9 +285,17 @@ namespace Presentacion
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            
-            MostrarVentanaNuevoEmp();
-            EliminarEmpleado();
+            if (dgEmpleados.SelectedRows.Count > 0)
+            {
+                MostrarVentanaNuevoEmp();
+                EliminarEmpleado();
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar antes una fila para eliminar.");
+            }
+
+
         }
     }
 }

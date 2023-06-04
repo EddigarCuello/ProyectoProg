@@ -381,12 +381,21 @@ namespace Presentacion
             DesactivarPanelCliente();
             Cargar();
             CargarCuenta();
+            dgClientes.ClearSelection();
         }
 
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            EliminarCuenta();
+            if (dgClientes.SelectedRows.Count > 0)
+            {
+                EliminarCuenta();
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar antes");
+            }
+            
         }
 
         private void dgClientes_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -427,7 +436,15 @@ namespace Presentacion
 
         private void btnAgregarCliente_Click_1(object sender, EventArgs e)
         {
-            FrmAgregarCliente();
+            if (dgClientes.SelectedRows.Count > 0)
+            {
+                FrmAgregarCliente();
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar antes");
+            }
+            
         }
 
         private void dgClientes_CellClick_1(object sender, DataGridViewCellEventArgs e)
