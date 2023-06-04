@@ -50,7 +50,7 @@ namespace Presentacion
             }
             else
             {
-                MessageBox.Show("No hay datos seleccionados");
+                MessageBox.Show("No hay datos seleccionados O se esta intentando borrar un empleado sin haber mas");
             }
         }
 

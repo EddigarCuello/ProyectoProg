@@ -49,7 +49,6 @@
             this.rbCarro = new System.Windows.Forms.RadioButton();
             this.rbMoto = new System.Windows.Forms.RadioButton();
             this.tbModelo = new System.Windows.Forms.TextBox();
-            this.tbCilindraje = new System.Windows.Forms.TextBox();
             this.tbMarca = new System.Windows.Forms.TextBox();
             this.tbPlaca = new System.Windows.Forms.TextBox();
             this.btnEditarVeh = new System.Windows.Forms.Button();
@@ -84,6 +83,7 @@
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.btnEliminar = new System.Windows.Forms.Button();
+            this.cbCilindraje = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panel1.SuspendLayout();
@@ -252,11 +252,11 @@
             // pnVehiculo
             // 
             this.pnVehiculo.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.pnVehiculo.Controls.Add(this.cbCilindraje);
             this.pnVehiculo.Controls.Add(this.dtpVersion);
             this.pnVehiculo.Controls.Add(this.label19);
             this.pnVehiculo.Controls.Add(this.groupBox1);
             this.pnVehiculo.Controls.Add(this.tbModelo);
-            this.pnVehiculo.Controls.Add(this.tbCilindraje);
             this.pnVehiculo.Controls.Add(this.tbMarca);
             this.pnVehiculo.Controls.Add(this.tbPlaca);
             this.pnVehiculo.Controls.Add(this.btnEditarVeh);
@@ -332,14 +332,6 @@
             this.tbModelo.Size = new System.Drawing.Size(76, 20);
             this.tbModelo.TabIndex = 17;
             // 
-            // tbCilindraje
-            // 
-            this.tbCilindraje.Location = new System.Drawing.Point(238, 17);
-            this.tbCilindraje.Margin = new System.Windows.Forms.Padding(2);
-            this.tbCilindraje.Name = "tbCilindraje";
-            this.tbCilindraje.Size = new System.Drawing.Size(76, 20);
-            this.tbCilindraje.TabIndex = 16;
-            // 
             // tbMarca
             // 
             this.tbMarca.Location = new System.Drawing.Point(67, 60);
@@ -382,7 +374,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Cooper Black", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(162, 22);
+            this.label6.Location = new System.Drawing.Point(157, 22);
             this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(67, 13);
@@ -709,6 +701,16 @@
             this.btnEliminar.UseVisualStyleBackColor = true;
             this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
+            // cbCilindraje
+            // 
+            this.cbCilindraje.FormattingEnabled = true;
+            this.cbCilindraje.Location = new System.Drawing.Point(235, 17);
+            this.cbCilindraje.Margin = new System.Windows.Forms.Padding(2);
+            this.cbCilindraje.Name = "cbCilindraje";
+            this.cbCilindraje.Size = new System.Drawing.Size(92, 21);
+            this.cbCilindraje.TabIndex = 32;
+            this.cbCilindraje.SelectedIndexChanged += new System.EventHandler(this.cbCilindraje_SelectedIndexChanged);
+            // 
             // FrmLoginEmpleado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -758,7 +760,6 @@
         private System.Windows.Forms.Button btnAgregarCliente;
         private System.Windows.Forms.Panel pnVehiculo;
         private System.Windows.Forms.TextBox tbModelo;
-        private System.Windows.Forms.TextBox tbCilindraje;
         private System.Windows.Forms.TextBox tbMarca;
         private System.Windows.Forms.TextBox tbPlaca;
         private System.Windows.Forms.Button btnEditarVeh;
@@ -803,5 +804,6 @@
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnEliminar;
+        private System.Windows.Forms.ComboBox cbCilindraje;
     }
 }

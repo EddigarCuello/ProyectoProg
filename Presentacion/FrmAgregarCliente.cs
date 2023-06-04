@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Presentacion
 {
@@ -35,6 +36,7 @@ namespace Presentacion
         Vehiculo vehiculo = new Vehiculo();
         CuentaUser cuenta = new CuentaUser();
         Factura factura = new Factura();
+        string cilindrajeSeleccionado;
         string msg1;
         string msg2;
         string msg3;
@@ -118,9 +120,8 @@ namespace Presentacion
         private bool ComprobarCampos()
         {
             if (string.IsNullOrEmpty(tbCedula.Text) || string.IsNullOrEmpty(tbPrNombre.Text) || string.IsNullOrEmpty(tbPrApellido.Text) ||
-                 string.IsNullOrEmpty(tbTelefono.Text) || string.IsNullOrEmpty(CB_CALLES.Text) || string.IsNullOrEmpty(tbUser.Text) ||
-                 string.IsNullOrEmpty(TbPass.Text) || string.IsNullOrEmpty(tbPlaca.Text) || string.IsNullOrEmpty(tbMarca.Text) ||
-                 string.IsNullOrEmpty(tbCilindraje.Text) || string.IsNullOrEmpty(tbTipoVeh.Text))
+                string.IsNullOrEmpty(tbTelefono.Text) || string.IsNullOrEmpty(CB_CALLES.Text) || string.IsNullOrEmpty(tbUser.Text) ||
+                string.IsNullOrEmpty(TbPass.Text) || string.IsNullOrEmpty(tbPlaca.Text) || string.IsNullOrEmpty(tbMarca.Text) ||  CB_CALLES.SelectedIndex == -1 || (!rbMoto.Checked && !rbCarro.Checked))
             {
                 return true;
             }
@@ -129,9 +130,17 @@ namespace Presentacion
                 return false;
             }
         }
+
         private void Salir()
         {
             this.Close();
+
+        }
+        private void CargarCbCilindraje()
+        {
+            cbCilindraje.Items.Add("ALTO");
+            cbCilindraje.Items.Add("MEDIO");
+            cbCilindraje.Items.Add("BAJO");
 
         }
         #endregion
@@ -156,14 +165,23 @@ namespace Presentacion
 
 
             ObtenerCuenta();
+            string TipoVeh;
+            if (rbMoto.Checked)
+            {
+                TipoVeh = "Moto";
+            }
+            else
+            {
+                TipoVeh = "Carro";
+            }
             Cliente.Usuario = cuenta.Usuario;
 
             vehiculo.Marca = tbMarca.Text;
             vehiculo.Placa = tbPlaca.Text;
-            vehiculo.Cilindraje = tbCilindraje.Text;
+            vehiculo.Cilindraje = cilindrajeSeleccionado;
             vehiculo.Version = dtpVersion.Value;
             vehiculo.Modelo = tbModelo.Text;
-            vehiculo.TipoVehiculo = tbTipoVeh.Text;
+            vehiculo.TipoVehiculo = TipoVeh;
             vehiculo.CedulaCliente = Cliente.Cedula;
 
             factura.placa = vehiculo.Placa;
@@ -211,6 +229,7 @@ namespace Presentacion
         private void FrmAgregarCliente_Load(object sender, EventArgs e)
         {
             MostrarCiudades();
+            CargarCbCilindraje();
         }
 
         private void pbSalir_Click(object sender, EventArgs e)
@@ -232,11 +251,17 @@ namespace Presentacion
                 MessageBox.Show("Faltan Datos");
             }
         }
-        #endregion
-
         private void CB_CALLES_SelectedIndexChanged(object sender, EventArgs e)
         {
             ObtenerId_Calle();
         }
+        private void cbCilindraje_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cilindrajeSeleccionado = cbCilindraje.SelectedItem.ToString();
+        }
+
+        #endregion
+
+
     }
 }

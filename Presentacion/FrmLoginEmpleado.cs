@@ -42,6 +42,7 @@ namespace Presentacion
         int idCiudadSeleccionada;
         int idBarrioSeleccionado;
         int idCalleSeleccionada;
+        string cilindrajeSeleccionado;
         #endregion
 
         #region "Metodos para el form"
@@ -55,7 +56,8 @@ namespace Presentacion
         private bool ComprobartbVehiculos()
         {
             if (string.IsNullOrEmpty(tbPlaca.Text) || string.IsNullOrEmpty(tbMarca.Text) ||
-                string.IsNullOrEmpty(tbModelo.Text) || (!rbMoto.Checked && !rbCarro.Checked))
+                string.IsNullOrEmpty(tbModelo.Text) || (!rbMoto.Checked && !rbCarro.Checked) ||
+                cbCilindraje.SelectedIndex == -1)
             {
                 return true;
             }
@@ -91,6 +93,14 @@ namespace Presentacion
 
             return false;
         }
+
+        private void CargarCbCilindraje()
+        {
+            cbCilindraje.Items.Add("ALTO");
+            cbCilindraje.Items.Add("MEDIO");
+            cbCilindraje.Items.Add("BAJO");
+
+        }
         #endregion
 
         #region "Metodo para datos"
@@ -108,12 +118,12 @@ namespace Presentacion
                     TipoVeh = "Carro";
                 }
                 Vehiculo vehiculo = new Vehiculo();
-                string msgF = S_factura.ActualizarFactura(idFActura.ToString(), tbCilindraje.Text, TipoVeh, dtpVersion.Value);
+                string msgF = S_factura.ActualizarFactura(idFActura.ToString(),cilindrajeSeleccionado, TipoVeh, dtpVersion.Value);
                 vehiculo.Placa = tbPlaca.Text;
                 vehiculo.TipoVehiculo = TipoVeh;
                 vehiculo.Modelo = tbModelo.Text;
                 vehiculo.Marca = tbMarca.Text;
-                vehiculo.Cilindraje = tbCilindraje.Text;
+                vehiculo.Cilindraje = cilindrajeSeleccionado;
                 vehiculo.Version = dtpVersion.Value;
 
                 string msg = S_vehiculos.Actualizar(vehiculo);
@@ -148,7 +158,6 @@ namespace Presentacion
                     tbPlaca.Text = Vehiculos.Placa;
                     tbModelo.Text = Vehiculos.Modelo;
                     tbMarca.Text = Vehiculos.Marca;
-                    tbCilindraje.Text = Vehiculos.Cilindraje;
                     dtpVersion.Value = Vehiculos.Version;
                 }
                 else
@@ -390,6 +399,7 @@ namespace Presentacion
             DesactivarPanelCliente();
             Cargar();
             CargarCuenta();
+            CargarCbCilindraje();
         }
 
         private void dgClientes_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -440,6 +450,11 @@ namespace Presentacion
         }
 
         #endregion
+
+        private void cbCilindraje_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cilindrajeSeleccionado = cbCilindraje.SelectedItem.ToString();
+        }
     }
 }
 

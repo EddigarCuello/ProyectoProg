@@ -94,6 +94,10 @@ namespace Presentacion
             System.Diagnostics.Process.Start(rutaPDF);
 
         }
+        private void btngenerarPdf_Click(object sender, EventArgs e)
+        {
+            GenerarPdf();
+        }
 
         #endregion
 
@@ -119,9 +123,6 @@ namespace Presentacion
         }
         #endregion
 
-        private void btngenerarPdf_Click(object sender, EventArgs e)
-        {
-            GenerarPdf();
-        }
+
     }
 }

@@ -158,6 +158,9 @@ namespace Presentacion
             this.Close();
             frmPrincipal.Show();
         }
+
+        
+
         #endregion
 
         #region "METODOS DIRECCIONES"
