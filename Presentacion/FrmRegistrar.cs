@@ -148,7 +148,7 @@ namespace Presentacion
             Item.Telefono = txtTelefono.Text;
             Item.Id_calle = idCalleSeleccionada;
             ObtenerCuenta();
-            Item.Usuario = Cuenta.Usuario;
+            Item.Usuario = tbUsuario.Text;
 
             
 
@@ -158,7 +158,7 @@ namespace Presentacion
                 msg1 = admin.InsertarAdministradores(Item);
                 if(msg2 == "OK")
                 {
-                    MessageBox.Show(msg1);
+                    MessageBox.Show("Se regisstro Correctamente");
                 }
                 else
                 {
@@ -171,7 +171,7 @@ namespace Presentacion
                 msg1 = empleados.InsertarEmpleado(Item);
                 if (msg2 == "OK")
                 {
-                    MessageBox.Show(msg1);
+                    MessageBox.Show("Se registro correctamente");
                 }
                 else
                 {
@@ -188,9 +188,6 @@ namespace Presentacion
         {
             Salir();
         }
-
-
-
         private void FrmRegistrar_Load(object sender, EventArgs e)
         {
 
@@ -226,11 +223,8 @@ namespace Presentacion
         {
             if (Comprobar() == false)
             {
-
                 Guardar();
-
-
-
+                Salir();
             }
             else
             {

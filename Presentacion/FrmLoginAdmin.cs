@@ -33,6 +33,7 @@ namespace Presentacion
         ServicioDirecciones S_direcciones = new ServicioDirecciones();
         ServiciosCuentas S_cuentas = new ServiciosCuentas();
         ServiciosFactura S_factura = new ServiciosFactura();
+        CuentaUser DatosUsuarioEmp = new CuentaUser();
         Persona P_empleado = new Persona();
         List<Persona> L_empleados = new List<Persona>();
         int idCiudadSeleccionada;
@@ -90,6 +91,7 @@ namespace Presentacion
             {
                 DataGridViewRow fila = dgEmpleados.Rows[e.RowIndex];
                 string emp_cedula = fila.Cells[0].Value.ToString();
+                CargarCuentaEmp(emp_cedula);
                 DatosCompartidos.ActualizarCedulaEmp(emp_cedula);
 
 
@@ -135,11 +137,17 @@ namespace Presentacion
             newEmpleado.ShowDialog();
         }
 
+        private void CargarCuentaEmp(string cedula_emp)
+        {
+            DatosUsuarioEmp = S_cuentas.DatosCuenta(cedula_emp);
+
+        }
         private void EliminarEmpleado()
         {
             string msg = empleados.EliminarEmpleado(DatosCompartidos.ObtenerCedulaEmp(),
                 DatosCompartidos.ObtenerCedulaNuevoEmp());
-            MessageBox.Show(msg);
+            string msAc = S_cuentas.EliminarCuenta(DatosUsuarioEmp.Usuario);
+            MessageBox.Show(msg + msAc);
         }
 
         #endregion

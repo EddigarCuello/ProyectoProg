@@ -18,7 +18,7 @@ namespace Datos
             try
             {
                 sqlconn = Conexion_Propietario.ObtenerInstancia().CrearConexion();
-                OracleCommand comando = new OracleCommand("BEGIN :result := FN_INSERTAR_EMPLEADO(:Emp_cedula, :pr_nombre, :pr_apellido, :id_calle, :telefono, :usuario); END;", sqlconn);
+                OracleCommand comando = new OracleCommand("BEGIN :result := FN_EMPLOYEES.FN_INSERTAR_EMPLEADO(:Emp_cedula, :pr_nombre, :pr_apellido, :id_calle, :telefono, :usuario); END;", sqlconn);
                 comando.CommandType = CommandType.Text;
 
                 comando.Parameters.Add("result", OracleDbType.Varchar2, 1000).Direction = ParameterDirection.ReturnValue;
