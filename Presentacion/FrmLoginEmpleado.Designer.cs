@@ -265,7 +265,7 @@
             this.pnVehiculo.Controls.Add(this.label4);
             this.pnVehiculo.Controls.Add(this.label2);
             this.pnVehiculo.Location = new System.Drawing.Point(308, 10);
-            this.pnVehiculo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnVehiculo.Margin = new System.Windows.Forms.Padding(2);
             this.pnVehiculo.Name = "pnVehiculo";
             this.pnVehiculo.Size = new System.Drawing.Size(329, 250);
             this.pnVehiculo.TabIndex = 6;
@@ -273,7 +273,7 @@
             // dtpVersion
             // 
             this.dtpVersion.Location = new System.Drawing.Point(144, 106);
-            this.dtpVersion.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dtpVersion.Margin = new System.Windows.Forms.Padding(2);
             this.dtpVersion.Name = "dtpVersion";
             this.dtpVersion.Size = new System.Drawing.Size(151, 20);
             this.dtpVersion.TabIndex = 31;
@@ -293,9 +293,9 @@
             this.groupBox1.Controls.Add(this.rbCarro);
             this.groupBox1.Controls.Add(this.rbMoto);
             this.groupBox1.Location = new System.Drawing.Point(102, 137);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox1.Size = new System.Drawing.Size(136, 67);
             this.groupBox1.TabIndex = 19;
             this.groupBox1.TabStop = false;
@@ -304,7 +304,7 @@
             // 
             this.rbCarro.AutoSize = true;
             this.rbCarro.Location = new System.Drawing.Point(4, 17);
-            this.rbCarro.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.rbCarro.Margin = new System.Windows.Forms.Padding(2);
             this.rbCarro.Name = "rbCarro";
             this.rbCarro.Size = new System.Drawing.Size(49, 17);
             this.rbCarro.TabIndex = 20;
@@ -316,7 +316,7 @@
             // 
             this.rbMoto.AutoSize = true;
             this.rbMoto.Location = new System.Drawing.Point(4, 37);
-            this.rbMoto.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.rbMoto.Margin = new System.Windows.Forms.Padding(2);
             this.rbMoto.Name = "rbMoto";
             this.rbMoto.Size = new System.Drawing.Size(48, 17);
             this.rbMoto.TabIndex = 19;
@@ -327,7 +327,7 @@
             // tbModelo
             // 
             this.tbModelo.Location = new System.Drawing.Point(238, 55);
-            this.tbModelo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbModelo.Margin = new System.Windows.Forms.Padding(2);
             this.tbModelo.Name = "tbModelo";
             this.tbModelo.Size = new System.Drawing.Size(76, 20);
             this.tbModelo.TabIndex = 17;
@@ -335,7 +335,7 @@
             // tbCilindraje
             // 
             this.tbCilindraje.Location = new System.Drawing.Point(238, 17);
-            this.tbCilindraje.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbCilindraje.Margin = new System.Windows.Forms.Padding(2);
             this.tbCilindraje.Name = "tbCilindraje";
             this.tbCilindraje.Size = new System.Drawing.Size(76, 20);
             this.tbCilindraje.TabIndex = 16;
@@ -343,7 +343,7 @@
             // tbMarca
             // 
             this.tbMarca.Location = new System.Drawing.Point(67, 60);
-            this.tbMarca.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbMarca.Margin = new System.Windows.Forms.Padding(2);
             this.tbMarca.Name = "tbMarca";
             this.tbMarca.Size = new System.Drawing.Size(76, 20);
             this.tbMarca.TabIndex = 14;
@@ -351,7 +351,7 @@
             // tbPlaca
             // 
             this.tbPlaca.Location = new System.Drawing.Point(67, 22);
-            this.tbPlaca.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbPlaca.Margin = new System.Windows.Forms.Padding(2);
             this.tbPlaca.Name = "tbPlaca";
             this.tbPlaca.Size = new System.Drawing.Size(76, 20);
             this.tbPlaca.TabIndex = 13;
@@ -359,7 +359,7 @@
             // btnEditarVeh
             // 
             this.btnEditarVeh.Location = new System.Drawing.Point(136, 208);
-            this.btnEditarVeh.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnEditarVeh.Margin = new System.Windows.Forms.Padding(2);
             this.btnEditarVeh.Name = "btnEditarVeh";
             this.btnEditarVeh.Size = new System.Drawing.Size(56, 19);
             this.btnEditarVeh.TabIndex = 12;
@@ -428,7 +428,7 @@
             this.pnCliente.Controls.Add(this.label17);
             this.pnCliente.Controls.Add(this.label18);
             this.pnCliente.Location = new System.Drawing.Point(308, 0);
-            this.pnCliente.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnCliente.Margin = new System.Windows.Forms.Padding(2);
             this.pnCliente.Name = "pnCliente";
             this.pnCliente.Size = new System.Drawing.Size(329, 177);
             this.pnCliente.TabIndex = 19;
@@ -437,7 +437,7 @@
             // 
             this.CB_CALLES.FormattingEnabled = true;
             this.CB_CALLES.Location = new System.Drawing.Point(225, 110);
-            this.CB_CALLES.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.CB_CALLES.Margin = new System.Windows.Forms.Padding(2);
             this.CB_CALLES.Name = "CB_CALLES";
             this.CB_CALLES.Size = new System.Drawing.Size(92, 21);
             this.CB_CALLES.TabIndex = 31;
@@ -447,7 +447,7 @@
             // 
             this.CB_BARRIOS.FormattingEnabled = true;
             this.CB_BARRIOS.Location = new System.Drawing.Point(225, 64);
-            this.CB_BARRIOS.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.CB_BARRIOS.Margin = new System.Windows.Forms.Padding(2);
             this.CB_BARRIOS.Name = "CB_BARRIOS";
             this.CB_BARRIOS.Size = new System.Drawing.Size(92, 21);
             this.CB_BARRIOS.TabIndex = 30;
@@ -457,7 +457,7 @@
             // 
             this.CB_CIUDADES.FormattingEnabled = true;
             this.CB_CIUDADES.Location = new System.Drawing.Point(225, 17);
-            this.CB_CIUDADES.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.CB_CIUDADES.Margin = new System.Windows.Forms.Padding(2);
             this.CB_CIUDADES.Name = "CB_CIUDADES";
             this.CB_CIUDADES.Size = new System.Drawing.Size(92, 21);
             this.CB_CIUDADES.TabIndex = 29;
@@ -496,7 +496,7 @@
             // tbTelefono
             // 
             this.tbTelefono.Location = new System.Drawing.Point(83, 102);
-            this.tbTelefono.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbTelefono.Margin = new System.Windows.Forms.Padding(2);
             this.tbTelefono.Name = "tbTelefono";
             this.tbTelefono.Size = new System.Drawing.Size(76, 20);
             this.tbTelefono.TabIndex = 16;
@@ -504,7 +504,7 @@
             // tbPr_Apellido
             // 
             this.tbPr_Apellido.Location = new System.Drawing.Point(83, 57);
-            this.tbPr_Apellido.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbPr_Apellido.Margin = new System.Windows.Forms.Padding(2);
             this.tbPr_Apellido.Name = "tbPr_Apellido";
             this.tbPr_Apellido.Size = new System.Drawing.Size(76, 20);
             this.tbPr_Apellido.TabIndex = 14;
@@ -512,7 +512,7 @@
             // tbPr_Nombre
             // 
             this.tbPr_Nombre.Location = new System.Drawing.Point(83, 19);
-            this.tbPr_Nombre.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbPr_Nombre.Margin = new System.Windows.Forms.Padding(2);
             this.tbPr_Nombre.Name = "tbPr_Nombre";
             this.tbPr_Nombre.Size = new System.Drawing.Size(76, 20);
             this.tbPr_Nombre.TabIndex = 13;
@@ -520,7 +520,7 @@
             // btnEditarCliente
             // 
             this.btnEditarCliente.Location = new System.Drawing.Point(131, 145);
-            this.btnEditarCliente.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnEditarCliente.Margin = new System.Windows.Forms.Padding(2);
             this.btnEditarCliente.Name = "btnEditarCliente";
             this.btnEditarCliente.Size = new System.Drawing.Size(56, 19);
             this.btnEditarCliente.TabIndex = 12;
@@ -576,7 +576,7 @@
             this.panel3.Controls.Add(this.label12);
             this.panel3.Controls.Add(this.label13);
             this.panel3.Location = new System.Drawing.Point(822, 72);
-            this.panel3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel3.Margin = new System.Windows.Forms.Padding(2);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(214, 292);
             this.panel3.TabIndex = 7;

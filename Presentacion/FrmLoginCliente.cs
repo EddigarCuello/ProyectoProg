@@ -14,9 +14,13 @@ namespace Presentacion
 {
     public partial class FrmLoginCliente : Form
     {
+        
+
         public FrmLoginCliente()
         {
             InitializeComponent();
+
+            
         }
 
         #region "INSTANCIAS"
@@ -26,6 +30,8 @@ namespace Presentacion
         ServiciosAdministradores Administradores = new ServiciosAdministradores();
         ServiciosFactura S_factura = new ServiciosFactura();
         ServiciosCuentas S_cuenta = new ServiciosCuentas();
+        Factura factura = new Factura();
+        ServicioReporte S_reporte = new ServicioReporte();
         #endregion
 
         #region "Metodos para datos"
@@ -33,7 +39,7 @@ namespace Presentacion
         {
 
 
-            Factura factura = new Factura();
+            
             factura = S_factura.ObtFactura(DatosCompartidos.ObtenerCedula());
 
             if (factura != null)
@@ -77,6 +83,18 @@ namespace Presentacion
             }
         }
 
+        private void GenerarPdf()
+        {
+
+            string nombrePDF = "FACTURA " + factura.Cod_Factura.ToString();
+            S_reporte.GenerarPDFFactura(factura, nombrePDF);
+
+            // Abrir el archivo PDF después de generarlo
+            string rutaPDF = nombrePDF + ".pdf";
+            System.Diagnostics.Process.Start(rutaPDF);
+
+        }
+
         #endregion
 
         #region "Metodos del form"
@@ -101,5 +119,9 @@ namespace Presentacion
         }
         #endregion
 
+        private void btngenerarPdf_Click(object sender, EventArgs e)
+        {
+            GenerarPdf();
+        }
     }
 }

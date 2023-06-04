@@ -50,6 +50,7 @@
             this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.lbNombres = new System.Windows.Forms.Label();
+            this.btngenerarPdf = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pbSalir)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panel1.SuspendLayout();
@@ -92,6 +93,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.panel1.Controls.Add(this.btngenerarPdf);
             this.panel1.Controls.Add(this.lb_Total);
             this.panel1.Controls.Add(this.lbFechaFact);
             this.panel1.Controls.Add(this.lbPrc_Revision);
@@ -104,7 +106,7 @@
             this.panel1.Controls.Add(this.label13);
             this.panel1.Controls.Add(this.label12);
             this.panel1.Location = new System.Drawing.Point(308, 20);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(363, 408);
             this.panel1.TabIndex = 28;
@@ -228,7 +230,7 @@
             this.panel2.Controls.Add(this.label15);
             this.panel2.Controls.Add(this.label16);
             this.panel2.Location = new System.Drawing.Point(346, 432);
-            this.panel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel2.Margin = new System.Windows.Forms.Padding(2);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(278, 162);
             this.panel2.TabIndex = 38;
@@ -299,6 +301,20 @@
             this.lbNombres.TabIndex = 40;
             this.lbNombres.Text = "cliente nombres";
             // 
+            // btngenerarPdf
+            // 
+            this.btngenerarPdf.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.btngenerarPdf.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btngenerarPdf.Font = new System.Drawing.Font("Cooper Black", 15.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btngenerarPdf.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btngenerarPdf.Location = new System.Drawing.Point(66, 345);
+            this.btngenerarPdf.Name = "btngenerarPdf";
+            this.btngenerarPdf.Size = new System.Drawing.Size(215, 41);
+            this.btngenerarPdf.TabIndex = 38;
+            this.btngenerarPdf.Text = "Generar un Pdf";
+            this.btngenerarPdf.UseVisualStyleBackColor = false;
+            this.btngenerarPdf.Click += new System.EventHandler(this.btngenerarPdf_Click);
+            // 
             // FrmLoginCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -313,7 +329,7 @@
             this.Controls.Add(this.pbSalir);
             this.Controls.Add(this.pictureBox2);
             this.DoubleBuffered = true;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "FrmLoginCliente";
             this.Text = "FrmLoginCliente";
             this.Load += new System.EventHandler(this.FrmLoginCliente_Load);
@@ -351,5 +367,6 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label lbNombres;
+        private System.Windows.Forms.Button btngenerarPdf;
     }
 }
