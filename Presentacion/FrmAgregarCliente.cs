@@ -130,10 +130,31 @@ namespace Presentacion
                 return false;
             }
         }
+        private void VaciarTodo()
+        {
+            // Vaciar TextBoxes
+            tbCedula.Text = string.Empty;
+            tbPrNombre.Text = string.Empty;
+            tbPrApellido.Text = string.Empty;
+            tbTelefono.Text = string.Empty;
+            tbUser.Text = string.Empty;
+            TbPass.Text = string.Empty;
+            tbPlaca.Text = string.Empty;
+            tbMarca.Text = string.Empty;
+            tbModelo.Text = string.Empty;
+
+
+            // Reiniciar RadioButtons
+            rbMoto.Checked = false;
+            rbCarro.Checked = false;
+        }
+
 
         private void Salir()
         {
+            
             this.Close();
+            
 
         }
         private void CargarCbCilindraje()
@@ -230,6 +251,7 @@ namespace Presentacion
         {
             MostrarCiudades();
             CargarCbCilindraje();
+            VaciarTodo();
         }
 
         private void pbSalir_Click(object sender, EventArgs e)

@@ -23,6 +23,7 @@ namespace Presentacion
         private void CargarRegistro()
         {
             dgregistro.DataSource = S_factura.ObtenerRegistros();
+            dgregistro.Columns["prc_total"].Visible = false;
         }
         private void Salir()
         {
