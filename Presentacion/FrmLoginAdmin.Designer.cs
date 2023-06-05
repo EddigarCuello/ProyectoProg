@@ -56,6 +56,7 @@
             this.label17 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.btnEliminar = new System.Windows.Forms.Button();
+            this.btnVerRegistro = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -361,12 +362,26 @@
             this.btnEliminar.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnEliminar.BackgroundImage")));
             this.btnEliminar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEliminar.Location = new System.Drawing.Point(206, 155);
+            this.btnEliminar.Location = new System.Drawing.Point(206, 74);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(40, 49);
             this.btnEliminar.TabIndex = 21;
             this.btnEliminar.UseVisualStyleBackColor = true;
             this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
+            // 
+            // btnVerRegistro
+            // 
+            this.btnVerRegistro.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.btnVerRegistro.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnVerRegistro.Font = new System.Drawing.Font("Cooper Black", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnVerRegistro.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnVerRegistro.Location = new System.Drawing.Point(200, 146);
+            this.btnVerRegistro.Name = "btnVerRegistro";
+            this.btnVerRegistro.Size = new System.Drawing.Size(76, 41);
+            this.btnVerRegistro.TabIndex = 40;
+            this.btnVerRegistro.Text = "Registro";
+            this.btnVerRegistro.UseVisualStyleBackColor = false;
+            this.btnVerRegistro.Click += new System.EventHandler(this.btnVerRegistro_Click);
             // 
             // FrmLoginAdmin
             // 
@@ -374,6 +389,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(758, 472);
             this.ControlBox = false;
+            this.Controls.Add(this.btnVerRegistro);
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.pnCLientes);
             this.Controls.Add(this.dgEmpleados);
@@ -424,5 +440,6 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label lbNombres;
         private System.Windows.Forms.Button btnEliminar;
+        private System.Windows.Forms.Button btnVerRegistro;
     }
 }

@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Presentacion
 {
@@ -17,6 +18,7 @@ namespace Presentacion
         public FrmSelectNewEmpleado()
         {
             InitializeComponent();
+            CB_NewEmpleado.SelectedItem = "None";
         }
         ServiciosEmpleados S_empleados = new ServiciosEmpleados();
         private void Cargar()
@@ -51,6 +53,7 @@ namespace Presentacion
             else
             {
                 MessageBox.Show("No hay datos seleccionados O se esta intentando borrar un empleado sin haber mas");
+                this.Close();
             }
         }
 
@@ -61,7 +64,9 @@ namespace Presentacion
 
         private void FrmSelectNewEmpleado_Load(object sender, EventArgs e)
         {
+            
             Cargar();
+            
         }
     }
 }

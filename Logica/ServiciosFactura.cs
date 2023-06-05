@@ -135,5 +135,12 @@ namespace Logica
             string msg = G_factura.Eliminar(p_id_factura.ToString());
             return msg;
         }
+
+        public List<Registro> ObtenerRegistros()
+        {
+            List<Registro> Registros = new List<Registro>();
+            Registros = G_factura.ConsultarRegistro();
+            return Registros;
+        }
     }
 }

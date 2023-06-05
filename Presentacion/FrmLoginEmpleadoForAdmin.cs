@@ -431,7 +431,10 @@ namespace Presentacion
 
         private void btnConsultar_Click_1(object sender, EventArgs e)
         {
+            DesactivarPanelCliente();
             Cargar();
+            CargarCuenta();
+            dgClientes.ClearSelection();
         }
 
         private void btnAgregarCliente_Click_1(object sender, EventArgs e)

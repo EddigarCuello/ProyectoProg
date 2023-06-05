@@ -36,6 +36,7 @@ namespace Presentacion
         CuentaUser DatosUsuarioEmp = new CuentaUser();
         Persona P_empleado = new Persona();
         List<Persona> L_empleados = new List<Persona>();
+        FrmRegistroFacturas Registro = new FrmRegistroFacturas();
         int idCiudadSeleccionada;
         int idBarrioSeleccionado;
         int idCalleSeleccionada;
@@ -158,6 +159,10 @@ namespace Presentacion
             this.Close();
             frmPrincipal.Show();
         }
+        private void AbrirRegistro()
+        {
+            Registro.ShowDialog();
+        }
 
         
 
@@ -243,8 +248,10 @@ namespace Presentacion
         {
             Salir();
         }
-        #endregion
-
+        private void btnVerRegistro_Click(object sender, EventArgs e)
+        {
+            AbrirRegistro();
+        }
         private void dgEmpleados_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             DatosParaLogearEmpleado(e);
@@ -256,8 +263,8 @@ namespace Presentacion
         {
             CargarDatosEmpleado(e);
             MostrarCiudades();
-            
-            
+
+
         }
 
         private void CB_CIUDADES_SelectedIndexChanged(object sender, EventArgs e)
@@ -297,5 +304,10 @@ namespace Presentacion
 
 
         }
+        #endregion
+
+
+
+
     }
 }

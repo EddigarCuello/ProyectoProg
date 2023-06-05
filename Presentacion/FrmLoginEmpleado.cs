@@ -314,6 +314,14 @@ namespace Presentacion
             }
 
         }
+        private void facturaNula()
+        {
+            lbCoidgoFact.Text = "None";
+            lbPrc_Servicios.Text = "None";
+            lbPrc_Revision.Text = "None";
+            lb_Total.Text = "None";
+            lbFechaFact.Text = "None";
+        }
 
 
         #endregion
@@ -384,7 +392,11 @@ namespace Presentacion
         #region "Eventos"
         private void btnConsultar_Click(object sender, EventArgs e)
         {
+            DesactivarPanelCliente();
             Cargar();
+            CargarCuenta();
+            dgClientes.ClearSelection();
+            facturaNula();
         }
         private void btnAgregarCliente_Click(object sender, EventArgs e)
         {

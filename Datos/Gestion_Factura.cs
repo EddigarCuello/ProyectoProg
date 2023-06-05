@@ -175,5 +175,52 @@ namespace Datos
                 }
             }
         }
+
+        public List<Registro> ConsultarRegistro()
+        {
+            List<Registro> Registros = new List<Registro>();
+            OracleDataReader ResultadoRegistro;
+            OracleConnection sqlconn = new OracleConnection();
+
+            try
+            {
+                sqlconn = Conexion_Propietario.ObtenerInstancia().CrearConexion();
+                OracleCommand comando = new OracleCommand();
+                comando.Connection = sqlconn;
+                comando.CommandText = "SELECT * FROM REGISTROS";
+                comando.CommandType = CommandType.Text;
+
+                sqlconn.Open();
+                ResultadoRegistro = comando.ExecuteReader();
+
+                while (ResultadoRegistro.Read())
+                {
+                    Registro Registro = new Registro();
+                    Registro.servicios = Convert.ToDouble(ResultadoRegistro["servicio"]);
+                    Registro.Prc_Revision = Convert.ToDouble(ResultadoRegistro["prc_revision"]);
+                    Registro.fecha_Fact = DateTime.Parse(ResultadoRegistro["fecha_fact"].ToString());
+                    Registro.Cliente_CC = ResultadoRegistro["cl_cedula"].ToString();
+                    Registro.Empleado_CC = ResultadoRegistro["emp_cedula"].ToString();
+                    Registro.placa = ResultadoRegistro["placa"].ToString();
+                    Registro.Cod_Factura = ResultadoRegistro["cod_factura"].ToString();
+                    Registro.Accion = ResultadoRegistro["accion"].ToString();
+
+
+                    Registros.Add(Registro);
+                }
+                return Registros;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                if (sqlconn.State == ConnectionState.Open)
+                {
+                    sqlconn.Close();
+                }
+            }
+        }
     }
 }
