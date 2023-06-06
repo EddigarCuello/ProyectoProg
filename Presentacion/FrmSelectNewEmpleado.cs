@@ -45,10 +45,8 @@ namespace Presentacion
                     DatosCompartidos.ActualizarCedulaNuevoEmp(nuevaCedula);
                     this.Hide();  // Ocultar la ventana en lugar de cerrarla
                 }
-                else
-                {
-                    MessageBox.Show("No puedes elegir el mismo empleado de nuevo");
-                }
+                
+
             }
             else
             {
