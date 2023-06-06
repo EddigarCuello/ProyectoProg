@@ -129,8 +129,8 @@ namespace Presentacion
             Empleado.Id_calle = idCalleSeleccionada;
             Empleado.Cedula = P_empleado.Cedula;
             string msg = empleados.ActualizarEmpleado(Empleado);
-            MessageBox.Show(P_empleado.Cedula);
-            MessageBox.Show(msg);
+            //MessageBox.Show(P_empleado.Cedula);
+            //MessageBox.Show(msg);
         }
 
         private void MostrarVentanaNuevoEmp() 
@@ -148,7 +148,7 @@ namespace Presentacion
             string msg = empleados.EliminarEmpleado(DatosCompartidos.ObtenerCedulaEmp(),
                 DatosCompartidos.ObtenerCedulaNuevoEmp());
             string msAc = S_cuentas.EliminarCuenta(DatosUsuarioEmp.Usuario);
-            MessageBox.Show(msg + msAc);
+            //MessageBox.Show(msg + msAc);
         }
 
         #endregion

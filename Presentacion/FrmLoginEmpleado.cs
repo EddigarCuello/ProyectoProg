@@ -127,11 +127,11 @@ namespace Presentacion
                 vehiculo.Cilindraje = cilindrajeSeleccionado;
                 vehiculo.Version = dtpVersion.Value;
 
-                string msg = S_vehiculos.Actualizar(vehiculo);
+                //string msg = S_vehiculos.Actualizar(vehiculo);
 
 
 
-                MessageBox.Show(" y " + msgF);//"Se ha editado correctamente");
+                //MessageBox.Show(" y " + msgF);//"Se ha editado correctamente");
 
             }
             else
@@ -283,13 +283,13 @@ namespace Presentacion
                     string msV = S_vehiculos.Eliminar(placa);
                     string msC = clientes.Eliminar(cedula_cl);
                     string msAc = S_cuentas.EliminarCuenta(cuentaCliente.Usuario);
-                    MessageBox.Show(msF + msV  + msC + msAc);
+                    //MessageBox.Show(msF + msV  + msC + msAc);
                 }else
                 {
                     string msV = S_vehiculos.Eliminar(placa);
                     string msC = clientes.Eliminar(cedula_cl);
                     string msAc = S_cuentas.EliminarCuenta(cuentaCliente.Usuario);
-                    MessageBox.Show(msV + msC + msAc);
+                    //MessageBox.Show(msV + msC + msAc);
                 }
 
 
@@ -306,7 +306,7 @@ namespace Presentacion
                 cliente.Id_calle = idCalleSeleccionada;
                 cliente.Cedula = P_cliente.Cedula;
                 string msg = clientes.Actualizar(cliente);
-                MessageBox.Show(msg);
+                //MessageBox.Show(msg);
             }
             else
             {
@@ -471,12 +471,14 @@ namespace Presentacion
             ActualizarCliente();
         }
 
-        #endregion
-
         private void cbCilindraje_SelectedIndexChanged(object sender, EventArgs e)
         {
             cilindrajeSeleccionado = cbCilindraje.SelectedItem.ToString();
         }
+
+        #endregion
+
+
     }
 }
 

@@ -113,11 +113,11 @@ namespace Presentacion
                 vehiculo.Cilindraje = tbCilindraje.Text;
                 vehiculo.Version = dtpVersion.Value;
 
-                string msg = S_vehiculos.Actualizar(vehiculo);
+                //string msg = S_vehiculos.Actualizar(vehiculo);
 
 
 
-                MessageBox.Show(" y " + msgF);//"Se ha editado correctamente");
+                //MessageBox.Show(" y " + msgF);//"Se ha editado correctamente");
 
             }
             else
@@ -294,13 +294,22 @@ namespace Presentacion
                 cliente.Id_calle = idCalleSeleccionada;
                 cliente.Cedula = P_cliente.Cedula;
                 string msg = clientes.Actualizar(cliente);
-                MessageBox.Show(msg);
+                //MessageBox.Show(msg);
             }
             else
             {
                 MessageBox.Show("Faltann Datos");
             }
 
+        }
+
+        private void facturaNula()
+        {
+            lbCoidgoFact.Text = "None";
+            lbPrc_Servicios.Text = "None";
+            lbPrc_Revision.Text = "None";
+            lb_Total.Text = "None";
+            lbFechaFact.Text = "None";
         }
 
 
@@ -435,6 +444,7 @@ namespace Presentacion
             Cargar();
             CargarCuenta();
             dgClientes.ClearSelection();
+            facturaNula();
         }
 
         private void btnAgregarCliente_Click_1(object sender, EventArgs e)

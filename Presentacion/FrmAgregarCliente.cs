@@ -179,7 +179,6 @@ namespace Presentacion
             Cliente.Pr_Apellido = tbPrApellido.Text;
             Cliente.Cedula = tbCedula.Text;
             Cliente.CedulaEmpleado = DatosCompartidos.ObtenerCedula();
-           // DatosCompartidos.ActualizarCedulaCliente(Cliente.Cedula);
             Cliente.Telefono = tbTelefono.Text;
             Cliente.Id_calle = idCalleSeleccionada;
 
@@ -217,15 +216,15 @@ namespace Presentacion
             msg3 = S_vehiculos.Insertar(vehiculo);
             msg4 = S_factura.InsertarFactura(factura, vehiculo.Cilindraje, vehiculo.TipoVehiculo, vehiculo.Version);
 
-            MessageBox.Show(msg4);
-            if (msg2 == "OK")
-            {
-                MessageBox.Show(msg1);
-            }
-            else
-            {
-                MessageBox.Show(msg2);
-            }
+            //MessageBox.Show(msg4);
+            //if (msg2 == "OK")
+            //{
+            //    MessageBox.Show(msg1);
+            //}
+            //else
+            //{
+            //    MessageBox.Show(msg2);
+            //}
 
         }
         #endregion
