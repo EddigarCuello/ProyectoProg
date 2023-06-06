@@ -127,7 +127,7 @@ namespace Presentacion
                 vehiculo.Cilindraje = cilindrajeSeleccionado;
                 vehiculo.Version = dtpVersion.Value;
 
-                //string msg = S_vehiculos.Actualizar(vehiculo);
+                 string msg = S_vehiculos.Actualizar(vehiculo);
 
 
 
